@@ -1,0 +1,35 @@
+import React from "react";
+import {combineReducers, createStore} from "redux";
+import {Provider} from "react-redux";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import MovieDetailContainer from ".."
+
+const reducers = combineReducers({movieDetail: movieDetailReducer});
+
+const store = createStore(reducers);
+
+class MovieHomeContainer extends React.Component {
+
+  render() {
+    return (
+      <Provider store={store}>
+        <div className="container-fluid">
+          <Router>
+            <Route
+              path="/details/:movieId"
+              exact={true}
+              render = {(props) =>
+                <MovieDetailContainer
+                  {...props}
+                  courseId={props.match.params.courseId}
+                  layout={this.state.layout}
+                  findCourse={this.findCourseById}/>
+              }/>
+          </Router>
+        </div>
+      </Provider>
+    );
+  }
+}
+
+export default CourseManagerContainer;
