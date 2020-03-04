@@ -29,16 +29,17 @@ class HomepageComponent extends React.Component {
     render() {
         return (
             <div>
-                <NavComponent/>
+                <NavComponent history={this.props.history}/>
                 <div className="container">
                     <div className="mt-5">
                         <h1 className="border-bottom pt-2">Top Rated Movies</h1>
                         <div className="row">
                             {
-                                this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(function (movie) {
-                                    return <MovieCardComponent movie={movie}
-                                                               key={movie.id}/>
-                                })
+                                this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
+                                    function (movie) {
+                                        return <MovieCardComponent movie={movie}
+                                                                   key={movie.id}/>
+                                    })
                             }
                         </div>
                     </div>
@@ -47,10 +48,11 @@ class HomepageComponent extends React.Component {
                         <h1 className="border-bottom pt-2">Top Rated Movies</h1>
                         <div className="row">
                             {
-                                this.state.topRatedMovies && this.state.topRatedMovies.map(function (movie) {
-                                    return <MovieCardComponent movie={movie}
-                                                               key={movie.id}/>
-                                })
+                                this.state.topRatedMovies && this.state.topRatedMovies.map(
+                                    function (movie) {
+                                        return <MovieCardComponent movie={movie}
+                                                                   key={movie.id}/>
+                                    })
                             }
                         </div>
                     </div>

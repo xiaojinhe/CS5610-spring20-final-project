@@ -19,7 +19,7 @@ class NavComponent extends React.Component {
     performSearch = () => {
         const criteria = this.state.searchCriteria.trim()
         if (criteria.length > 0) {
-            this.props.search(criteria)
+            this.props.history.push(`/search/${criteria}`)
         }
         this.clearInputField()
     };
