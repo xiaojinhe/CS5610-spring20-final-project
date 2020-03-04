@@ -3,18 +3,18 @@ import React from "react";
 class NavComponent extends React.Component {
     state = {
         searchCriteria: ''
-    }
+    };
 
     updateInputField = event =>
         this.setState({
                           searchCriteria: event.target.value
-                      })
+                      });
 
     clearInputField = () => {
         this.setState({
                           searchCriteria: ''
                       })
-    }
+    };
 
     performSearch = () => {
         const criteria = this.state.searchCriteria.trim()
@@ -22,7 +22,7 @@ class NavComponent extends React.Component {
             this.props.search(criteria)
         }
         this.clearInputField()
-    }
+    };
 
     render() {
         return (

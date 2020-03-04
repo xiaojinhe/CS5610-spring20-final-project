@@ -11,4 +11,4 @@ export const TMDb_MOVIE_NOW_PLAYING =
     `${TMDb_MOVIE_API}/now_playing?api_key=${TMDb_API_KEY}&language=en-US&page=1`;
 
 export const TMDb_IMAGE_BASE_URL =
-    (poster_path) => `https://image.tmdb.org/t/p/w500${poster_path}`;
+    (poster_path) => `https://image.tmdb.org/t/p/w300${poster_path}`;
