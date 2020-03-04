@@ -6,6 +6,9 @@ export const MOVIE_DETAIL_API_URL =
 export const MOVIE_REVIEWS_APT_URL =
   (movieTitle) => `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${movieTitle}&api-key=${NYT_API_KEY}`;
 
+export const MOVIE_POSTER_PATH =
+  (size, posterPath) =>  `http://image.tmdb.org/t/p/${size}/${posterPath}`;
+
 export const FIND_MOVIE_BY_ID = "FIND_MOVIE_BY_ID";
 export const FIND_REVIEWS_FOR_MOVIE = "FIND_REVIEWS_FOR_MOVIE";
 export const FIND_ALL_MOVIE_INFO_BY_ID = "FIND_ALL_MOVIE_INFO_BY_ID";

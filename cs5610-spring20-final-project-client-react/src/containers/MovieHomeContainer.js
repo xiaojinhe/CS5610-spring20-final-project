@@ -2,7 +2,8 @@ import React from "react";
 import {combineReducers, createStore} from "redux";
 import {Provider} from "react-redux";
 import {BrowserRouter as Router, Route} from "react-router-dom";
-import MovieDetailContainer from ".."
+import MovieDetailContainer from "./MovieDetailContainer";
+import movieDetailReducer from "../reducers/MovieDetailReducer";
 
 const reducers = combineReducers({movieDetail: movieDetailReducer});
 
@@ -30,4 +31,4 @@ class MovieHomeContainer extends React.Component {
   }
 }
 
-export default CourseManagerContainer;
+export default MovieHomeContainer;
