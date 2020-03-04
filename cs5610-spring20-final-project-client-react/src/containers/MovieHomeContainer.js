@@ -21,9 +21,7 @@ class MovieHomeContainer extends React.Component {
               render = {(props) =>
                 <MovieDetailContainer
                   {...props}
-                  courseId={props.match.params.courseId}
-                  layout={this.state.layout}
-                  findCourse={this.findCourseById}/>
+                  movieId={props.match.params.movieId}/>
               }/>
           </Router>
         </div>
