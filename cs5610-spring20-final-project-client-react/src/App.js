@@ -1,11 +1,8 @@
 import React from 'react';
 import './App.css';
-import NavComponent from "./components/NavComponent";
+import MovieHomeContainer from "./containers/MovieHomeContainer";
 
-function App() {
-    return (
-        <NavComponent/>
-    );
-}
+const App = () =>
+    <MovieHomeContainer/>;
 
 export default App;
