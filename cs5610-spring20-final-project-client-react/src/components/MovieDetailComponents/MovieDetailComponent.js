@@ -51,10 +51,10 @@ class MovieDetailComponent extends React.Component {
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
-                  <h6>Write Comment</h6>
+                  <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
                 <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
-                  <h6>Write Review</h6>
+                  <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
               </div>
             </div>
@@ -94,12 +94,30 @@ class MovieDetailComponent extends React.Component {
           }
 
           <div className="movie-comment m-1">
-            <h3 className="movie-header">Movie Comments</h3>
+            <div className="row">
+              <div className="col-9">
+                <h3 className="movie-header">Movie Comments</h3>
+              </div>
+              <div className="col-3 pt-2 pr-2 text-center">
+                <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
+                  <h6><i className="far fa-comment-alt"/> Write Comment</h6>
+                </Link>
+              </div>
+            </div>
             <MovieCommentsListComponent comments={this.props.comments}/>
           </div>
 
           {this.props.reviews && <div className="movie-review m-1">
-            <h3 className="movie-header">Critic Reviews</h3>
+            <div className="row">
+              <div className="col-9">
+                <h3 className="movie-header">Movie Reviews</h3>
+              </div>
+              <div className="col-3 pt-2 pr-2 text-center">
+                <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
+                  <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
+                </Link>
+              </div>
+            </div>
             <MovieReviewListComponent
               pickedReviews={this.props.reviews.results.slice(0, pickedReviewDisplayNum)}/>
           </div>}
