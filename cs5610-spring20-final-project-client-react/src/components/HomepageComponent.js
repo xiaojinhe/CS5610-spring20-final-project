@@ -1,9 +1,8 @@
 import React from 'react'
 import TMDbService from "../services/TMDbService";
-import MovieCardComponent from "./MovieDetailComponents/MovieCardComponent";
+import MovieCardComponent from "./MovieCardComponent";
 import NavComponent from "./NavComponent";
 import MovieReviewListComponent from "./MovieReviewListComponent";
-import movieReviewService from "../services/MovieReviewService";
 
 const topRatedMoviesDisplayNum = 18;
 const nowPlayingMoviesDisplayNum = 18;
@@ -13,20 +12,18 @@ class HomepageComponent extends React.Component {
 
     state = {
         topRatedMovies: [],
-        nowPlayingMovies: [],
-        pickedReviews: []
+        nowPlayingMovies: []
     };
 
     componentDidMount() {
-        Promise.all([TMDbService.findTopRatedMovies(), TMDbService.findNowPlayingMovies(), movieReviewService.findCriticPickedMovieReviews()])
-            .then(([topRatedMovies, nowPlayingMovies, pickedReviews]) => {
+        Promise.all([TMDbService.findTopRatedMovies(), TMDbService.findNowPlayingMovies()])
+            .then(([topRatedMovies, nowPlayingMovies]) => {
                 this.setState(
                     {
                         topRatedMovies:
                             topRatedMovies.results.slice(0, topRatedMoviesDisplayNum),
                         nowPlayingMovies:
-                            nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum),
-                        pickedReviews: pickedReviews.results.slice(0, pickedReviewDisplayNum)
+                            nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum)
                     })
             })
     }
@@ -65,7 +62,7 @@ class HomepageComponent extends React.Component {
                     <div>
                         <h1 className="border-bottom pt-2">Critic Picked Reviews</h1>
                         <MovieReviewListComponent
-                            pickedReviews={this.state.pickedReviews}/>
+                            displayNum={pickedReviewDisplayNum}/>
                     </div>
 
                 </div>
