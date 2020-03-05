@@ -95,13 +95,13 @@ class MovieDetailComponent extends React.Component {
             <MovieCommentsListComponent comments={this.props.comments}/>
           </div>
 
-          <div className="movie-review m-1">
+          {this.props.reviews && <div className="movie-review m-1">
             <h3 className="movie-header">Critic Reviews</h3>
             <h5 className="movie-header">New York Times Reviews</h5>
             {this.props.reviews.results.map(res => <div>
               <p>{res.summary_short} (<a href={res.link.url}>Link to Source</a>)</p>
             </div>)}
-          </div>
+          </div>}
 
         </div>
       )
