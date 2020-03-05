@@ -90,6 +90,7 @@ class MovieDetailComponent extends React.Component {
              <div>
                <iframe width="500"
                        height="300"
+                       title="trailer"
                        src={MOVIE_TRAILER_API_URL(this.props.movie.videos.results[0].key)}
                        frameBorder="0"
                        allow="autoplay; encrypted-media"
