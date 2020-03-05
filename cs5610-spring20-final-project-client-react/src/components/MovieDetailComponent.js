@@ -3,6 +3,7 @@ import {MOVIE_IMAGE_API_URL, MOVIE_TRAILER_API_URL} from "../common/constants";
 import {RatingStar} from "./RatingStar";
 import ReactStars from 'react-stars';
 import CastCardComponent from "./CastCardComponent";
+import MovieDetailSummaryComponent from "./MovieDetailSummaryComponent";
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -27,28 +28,10 @@ class MovieDetailComponent extends React.Component {
                      alt=""/>
               </div>
               <div className="col-lg-6 col-md-5 col-sm-5 col-12 p-1">
-                {this.props.movie.homepage ?
-                 <h2 className="font-weight-bold"><a href={this.props.movie.homepage}>{this.props.movie.title} ({this.props.movie.release_date.split("-")[0]})</a></h2> :
-                 <h2 className="font-weight-bold">{this.props.movie.title} ({this.props.movie.release_date.split("-")[0]})</h2>
-                }
-                <div>
-                  {this.props.movie.directors.length > 1 ?
-                   <h6><b>Directors</b>: {this.props.movie.directors.join(", ")}</h6> : <h6><b>Director</b>: {this.props.movie.directors}</h6>}
-                  {this.props.movie.writers.length > 1 ?
-                   <h6><b>Writers</b>: {this.props.movie.writers.join(", ")}</h6> : <h6><b>Writer</b>: {this.props.movie.writers}</h6>}
-                  {this.props.movie.stars.length > 1 ?
-                   <h6><b>Stars</b>: {this.props.movie.stars.map(cast => cast.name).join(", ")}</h6> : <h6><b>Star</b>: {this.props.movie.stars.map(cast => cast.name)}</h6>}
-                  {this.props.movie.genres.length > 1 ?
-                   <h6><b>Genres</b>: {this.props.movie.genres.map(genre => genre.name).join(" | ")}</h6> : <h6><b>Genre</b>: {this.props.movie.genres.map(genre => genre.name)}</h6>}
-                  {this.props.movie.spoken_languages.length > 1 ?
-                   <h6><b>Languages</b>: {this.props.movie.spoken_languages.map(l => l.name).join(" | ")}</h6> : <h6><b>Language</b>: {this.props.movie.spoken_languages.map(l => l.name)}</h6>}
-                  <h6><b>Release Date</b>: {this.props.movie.release_date}</h6>
-                  {this.props.movie.runtime && <h6><b>Runtime</b>: {this.props.movie.runtime} mins</h6>}
-                  <h6><b>Popularity</b>: {this.props.movie.popularity}</h6>
-                </div>
+                <MovieDetailSummaryComponent movie={this.props.movie}/>
               </div>
               <div className="col-lg-3 col-md-3 col-sm-2 col-12">
-                <h6>Vote Average</h6>
+                <h6>Rating</h6>
                 <div className="row">
                   <div className="col-3">
                     <h3>{this.props.movie.vote_average}</h3>
