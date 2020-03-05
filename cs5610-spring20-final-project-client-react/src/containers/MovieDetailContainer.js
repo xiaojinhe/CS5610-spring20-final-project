@@ -1,4 +1,4 @@
-import service from "../services/MovieDetailService";
+import service, {findCommentsForMovie} from "../services/MovieDetailService";
 import {
   findAllMovieInfoById,
   findMovieById,
@@ -28,7 +28,12 @@ const dispatchToPropertyMapper = (dispatch) => ({
     //TODO: switch to use our own api's reviews
     const reviews = await service.findReviewsForMovie(movie.title);
     //TODO: need to add comments fetch from our own api
-    dispatch(findAllMovieInfoById(movie, [], reviews));
+    const comments = await service.findCommentsForMovie(movieId);
+    dispatch(findAllMovieInfoById(movie, comments, reviews));
+  },
+  findCommentsForMovie: async (movieId) => {
+    const comments = await service.findCommentsForMovie(movieId);
+    dispatch(findCommentsForMovie(comments));
   }
 });
 

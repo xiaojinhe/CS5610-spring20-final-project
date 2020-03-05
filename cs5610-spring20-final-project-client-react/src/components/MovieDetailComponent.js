@@ -3,6 +3,9 @@ import {MOVIE_TRAILER_API_URL, TMDB_IMAGE_URL} from "../common/constants";
 import CastCardComponent from "./CastCardComponent";
 import MovieDetailSummaryComponent from "./MovieDetailSummaryComponent";
 import MovieRatingFavorComponent from "./MovieRatingFavorComponent";
+import {Link} from "react-router-dom";
+import Rating from "react-rating";
+import MovieCommentsListComponent from "./MovieCommentsListComponent";
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -16,14 +19,14 @@ class MovieDetailComponent extends React.Component {
   }
 
   renderTrailer = (video) =>
-      <iframe width="400"
-              height="250"
-              title="trailer"
-              className="pr-1"
-              src={MOVIE_TRAILER_API_URL(video.key)}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen />;
+    <iframe width="400"
+            height="250"
+            title="trailer"
+            className="pr-2"
+            src={MOVIE_TRAILER_API_URL(video.key)}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen />;
 
   render() {
     if (this.props.movie) {
@@ -31,7 +34,7 @@ class MovieDetailComponent extends React.Component {
         <div className="container-fluid movie-detail-container p-3">
           <div className="movie-summary">
             <div className="row">
-              <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-2 mt-2 mr-lg-5 mr-md-4">
+              <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mt-2 mr-lg-5 mr-md-4">
                 <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}
                      className="image-fluid"
                      alt=""/>
@@ -40,17 +43,25 @@ class MovieDetailComponent extends React.Component {
                 <MovieDetailSummaryComponent movie={this.props.movie}/>
               </div>
               <div className="col-lg-3 col-md-3 col-sm-2 col-12">
+                {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
+                <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
+                  <h6>Write Comment</h6>
+                </Link>
+                <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
+                  <h6>Write Review</h6>
+                </Link>
               </div>
             </div>
           </div>
-          <div className="movie-overview">
+
+          <div className="movie-overview mt-2 ml-1">
             <h3 className="movie-header">Overview</h3>
             {this.props.movie.overview && <p>{this.props.movie.overview}</p>}
           </div>
-          <div className="movie-cast">
+          <div className="movie-cast ml-1">
             <h3 className="movie-header">Major Cast</h3>
             <div className="row">
               {this.props.movie.stars.map((star, index) =>
@@ -60,14 +71,15 @@ class MovieDetailComponent extends React.Component {
             </div>
           </div>
           {this.props.movie.videos &&
-           <div className="movie-trailer">
+           <div className="movie-trailer ml-1">
              {this.props.movie.videos.results.length > 1 &&
-              this.props.movie.videos.results.slice(0, 2).map(video =>
-                <div>
-                  <h3 className="movie-header">Trailers</h3>
-                  {this.renderTrailer(video)}
+              <div>
+                <h3 className="movie-header">Trailers</h3>
+                <div className="justify-content-center">
+                  {this.props.movie.videos.results.slice(0, 2).map(video => this.renderTrailer(video))}
                 </div>
-             )}
+              </div>
+             }
              {this.props.movie.videos.results.length === 1 &&
               <div>
                 <h3 className="movie-header">Trailer</h3>
@@ -77,13 +89,19 @@ class MovieDetailComponent extends React.Component {
 
            </div>
           }
-          <div className="movie-review">
+
+          <div className="movie-comment m-1">
+            <h3 className="movie-header">Movie Comments</h3>
+            <MovieCommentsListComponent comments={this.props.comments}/>
+          </div>
+
+          {this.props.reviews && <div className="movie-review m-1">
             <h3 className="movie-header">Critic Reviews</h3>
             <h5 className="movie-header">New York Times Reviews</h5>
             {this.props.reviews.results.map(res => <div>
               <p>{res.summary_short} (<a href={res.link.url}>Link to Source</a>)</p>
             </div>)}
-          </div>
+          </div>}
 
         </div>
       )

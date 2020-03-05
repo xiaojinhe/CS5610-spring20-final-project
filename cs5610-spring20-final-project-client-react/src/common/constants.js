@@ -32,11 +32,16 @@ export const MOVIE_DETAIL_API_URL =
 export const MOVIE_TRAILER_API_URL =
     (key) => `https://www.youtube.com/embed/${key}`;
 
+//TODO: NEED TO REPLACE WITH REAL COMMENTS API
+export const MOVIE_COMMENTS_API_URL =
+    (movieId) => `${TMDB_API}/movie/${movieId}/reviews?api_key=${TMDB_API_KEY}`;
+
 export const MOVIE_REVIEWS_API_URL =
     (movieTitle) => `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${movieTitle}&api-key=${NYT_API_KEY}`;
 
 export const FIND_MOVIE_BY_ID = "FIND_MOVIE_BY_ID";
 export const FIND_REVIEWS_FOR_MOVIE = "FIND_REVIEWS_FOR_MOVIE";
+export const FIND_COMMENTS_FOR_MOVIE = "FIND_COMMENTS_FOR_MOVIE";
 export const FIND_ALL_MOVIE_INFO_BY_ID = "FIND_ALL_MOVIE_INFO_BY_ID";
 export const RATE_MOVIE = "RATE_MOVIE";
 export const FAVORITE_MOVIE = "FAVORITE_MOVIE";
