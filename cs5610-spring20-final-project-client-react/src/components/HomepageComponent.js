@@ -30,7 +30,7 @@ class HomepageComponent extends React.Component {
         return (
             <div>
                 <NavComponent history={this.props.history}
-                enableSearch={true}/>
+                              enableSearch={true}/>
                 <div className="container">
                     <div className="mt-5">
                         <h1 className="border-bottom pt-2">Now Playing Movies</h1>

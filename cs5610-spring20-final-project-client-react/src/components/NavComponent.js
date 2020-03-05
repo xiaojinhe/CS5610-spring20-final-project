@@ -7,13 +7,13 @@ class NavComponent extends React.Component {
 
     updateInputField = event =>
         this.setState({
-                          searchCriteria: event.target.value
-                      });
+            searchCriteria: event.target.value
+        });
 
     clearInputField = () => {
         this.setState({
-                          searchCriteria: ''
-                      })
+            searchCriteria: ''
+        })
     };
 
     performSearch = () => {
@@ -42,15 +42,15 @@ class NavComponent extends React.Component {
                             <a className="nav-link" href="#">Link</a>
                         </li>
                     </ul>
-                    { this.props.enableSearch &&
-                        <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                                   onChange={this.updateInputField}/>
-                            <button className="btn btn-outline-success my-2 my-sm-0"
-                                    type="button" onClick={this.performSearch}>
-                                Search
-                            </button>
-                        </form>
+                    {this.props.enableSearch &&
+                    <form className="form-inline my-2 my-lg-0">
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search"
+                               onChange={this.updateInputField}/>
+                        <button className="btn btn-outline-success my-2 my-sm-0"
+                                type="button" onClick={this.performSearch}>
+                            Search
+                        </button>
+                    </form>
                     }
                 </div>
             </nav>

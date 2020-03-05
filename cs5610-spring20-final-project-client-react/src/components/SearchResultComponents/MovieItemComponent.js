@@ -1,5 +1,5 @@
 import React from 'react'
-import {TMDb_IMAGE_URL} from "../../common/constants";
+import {TMDB_IMAGE_URL} from "../../common/constants";
 import {Link} from "react-router-dom";
 
 const MovieItemComponent = ({movie}) =>
@@ -7,7 +7,7 @@ const MovieItemComponent = ({movie}) =>
         <div className="col-2">
 
             <Link to={`/movie/${movie.id}`}>
-                <img src={TMDb_IMAGE_URL(200,movie.poster_path)}
+                <img src={TMDB_IMAGE_URL(200, movie.poster_path)}
                      alt="Poster"
                      className="img-thumbnail"/>
             </Link>
