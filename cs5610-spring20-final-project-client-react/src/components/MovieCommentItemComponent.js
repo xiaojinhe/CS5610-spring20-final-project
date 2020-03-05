@@ -2,8 +2,8 @@ import React from "react";
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
 
-const MovieCommentItemComponent = ({comment, key}) =>
-  <div key={key} className="mt-2 pb-2 border border-top-0 border-right-0 border-left-0 border-secondary">
+const MovieCommentItemComponent = ({comment}) =>
+  <div className="mt-2 pb-2 border border-top-0 border-right-0 border-left-0 border-secondary">
     <div>
       {/*TODO: Need to change the author to user id*/}
       <Link to={`/users/${comment.author}`}
