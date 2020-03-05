@@ -1,11 +1,13 @@
 import React from "react";
-import {MOVIE_TRAILER_API_URL, TMDB_IMAGE_URL} from "../common/constants";
+import {MOVIE_TRAILER_API_URL, TMDB_IMAGE_URL} from "../../common/constants";
 import CastCardComponent from "./CastCardComponent";
 import MovieDetailSummaryComponent from "./MovieDetailSummaryComponent";
 import MovieRatingFavorComponent from "./MovieRatingFavorComponent";
 import {Link} from "react-router-dom";
-import Rating from "react-rating";
-import MovieCommentsListComponent from "./MovieCommentsListComponent";
+import MovieCommentsListComponent from "../MovieCommentsListComponent";
+import MovieReviewListComponent from "../MovieReviewListComponent";
+
+const pickedReviewDisplayNum = 5;
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -97,10 +99,8 @@ class MovieDetailComponent extends React.Component {
 
           {this.props.reviews && <div className="movie-review m-1">
             <h3 className="movie-header">Critic Reviews</h3>
-            <h5 className="movie-header">New York Times Reviews</h5>
-            {this.props.reviews.results.map(res => <div>
-              <p>{res.summary_short} (<a href={res.link.url}>Link to Source</a>)</p>
-            </div>)}
+            <MovieReviewListComponent
+              pickedReviews={this.props.reviews.results.slice(0, pickedReviewDisplayNum)}/>
           </div>}
 
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TMDB_IMAGE_URL} from "../common/constants";
+import {TMDB_IMAGE_URL} from "../../common/constants";
 
 const CastCardComponent = ({key, object}) =>
   <div className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-2">

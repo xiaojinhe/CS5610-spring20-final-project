@@ -4,7 +4,7 @@ import {
   findMovieById,
   findReviewsForMovie
 } from "../actions/MovieDetailActions";
-import MovieDetailComponent from "../components/MovieDetailComponent";
+import MovieDetailComponent from "../components/MovieDetailComponents/MovieDetailComponent";
 import {connect} from "react-redux";
 
 const stateToPropertyMapper = (state) => ({
