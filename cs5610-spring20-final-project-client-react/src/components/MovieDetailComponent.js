@@ -84,17 +84,19 @@ class MovieDetailComponent extends React.Component {
                                               object={star}/>)}
             </div>
           </div>
-          <div className="movie-trailer">
-            <h3>Trailers</h3>
-            <div>
-              <iframe width="500"
-                      height="300"
-                      src={MOVIE_TRAILER_API_URL(this.props.movie.videos.results[0].key)}
-                      frameBorder="0"
-                      allow="autoplay; encrypted-media"
-                      allowFullScreen />
-            </div>
-          </div>
+          {this.props.movie.videos &&
+           <div className="movie-trailer">
+             <h3>Trailer</h3>
+             <div>
+               <iframe width="500"
+                       height="300"
+                       src={MOVIE_TRAILER_API_URL(this.props.movie.videos.results[0].key)}
+                       frameBorder="0"
+                       allow="autoplay; encrypted-media"
+                       allowFullScreen />
+             </div>
+           </div>
+          }
           <div className="movie-review">
             <h3>Critic Reviews</h3>
             <h5>New York Times Reviews</h5>
