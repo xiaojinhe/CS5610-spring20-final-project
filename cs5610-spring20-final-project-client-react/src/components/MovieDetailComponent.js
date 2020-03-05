@@ -19,7 +19,7 @@ class MovieDetailComponent extends React.Component {
       <iframe width="400"
               height="250"
               title="trailer"
-              className="pr-1"
+              className="pr-2"
               src={MOVIE_TRAILER_API_URL(video.key)}
               frameBorder="0"
               allow="autoplay; encrypted-media"
@@ -62,12 +62,13 @@ class MovieDetailComponent extends React.Component {
           {this.props.movie.videos &&
            <div className="movie-trailer">
              {this.props.movie.videos.results.length > 1 &&
-              this.props.movie.videos.results.slice(0, 2).map(video =>
-                <div>
-                  <h3 className="movie-header">Trailers</h3>
-                  {this.renderTrailer(video)}
+              <div>
+                <h3 className="movie-header">Trailers</h3>
+                <div className="justify-content-center">
+                  {this.props.movie.videos.results.slice(0, 2).map(video => this.renderTrailer(video))}
                 </div>
-             )}
+              </div>
+             }
              {this.props.movie.videos.results.length === 1 &&
               <div>
                 <h3 className="movie-header">Trailer</h3>
