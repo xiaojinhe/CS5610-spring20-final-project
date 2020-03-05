@@ -1,11 +1,10 @@
 import React from 'react';
 import {TMDB_IMAGE_URL} from "../../common/constants";
 
-const CastCardComponent = ({key, object}) =>
+const CastCardComponent = ({object}) =>
   <div className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mb-2">
     <div className="card">
-      <div key={key}
-           className="card crew-cast-card">
+      <div className="card crew-cast-card">
         <img src={TMDB_IMAGE_URL(185, object.profile_path)}
              className="card-img"
              alt="Card" />
