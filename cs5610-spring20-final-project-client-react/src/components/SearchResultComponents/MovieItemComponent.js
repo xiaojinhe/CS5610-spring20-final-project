@@ -1,6 +1,7 @@
 import React from 'react'
 import {TMDB_IMAGE_URL} from "../../common/constants";
 import {Link} from "react-router-dom";
+import {RatingStar} from "../RatingStar";
 
 const MovieItemComponent = ({movie}) =>
     <div className="row p-2">
@@ -14,7 +15,7 @@ const MovieItemComponent = ({movie}) =>
         </div>
         <div className="col-10">
             <Link to={`/movie/${movie.id}`} className="lead">{movie.title}</Link>
-            <div>Ratings: {movie.vote_average}</div>
+            <div><RatingStar rating={movie.vote_average}/></div>
             <div>Release date: {movie.release_date}</div>
             <p>{movie.overview}</p>
         </div>

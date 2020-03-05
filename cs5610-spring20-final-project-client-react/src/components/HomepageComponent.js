@@ -2,9 +2,11 @@ import React from 'react'
 import TMDbService from "../services/TMDbService";
 import MovieCardComponent from "./MovieCardComponent";
 import NavComponent from "./NavComponent";
+import MovieReviewListComponent from "./MovieReviewListComponent";
 
 const topRatedMoviesDisplayNum = 18;
 const nowPlayingMoviesDisplayNum = 18;
+const pickedReviewDisplayNum = 5;
 
 class HomepageComponent extends React.Component {
 
@@ -57,6 +59,12 @@ class HomepageComponent extends React.Component {
                             }
                         </div>
                     </div>
+                    <div>
+                        <h1 className="border-bottom pt-2">Critic Picked Reviews</h1>
+                        <MovieReviewListComponent
+                            displayNum={pickedReviewDisplayNum}/>
+                    </div>
+
                 </div>
             </div>
         );

@@ -42,6 +42,7 @@ class NavComponent extends React.Component {
                             <a className="nav-link" href="#">Link</a>
                         </li>
                     </ul>
+                    {/*//todo: MAYBE enable search when user enter Return*/}
                     {this.props.enableSearch &&
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search"

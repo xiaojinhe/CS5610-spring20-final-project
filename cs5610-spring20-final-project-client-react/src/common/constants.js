@@ -22,6 +22,8 @@ export const TMDB_IMAGE_URL = (width, poster_path) => {
     }
 };
 
+export const NYTIMES_MOVIE_REVIEW_URL = `https://api.nytimes.com/svc/movies/v2/reviews/pick.json?api-key=${NYT_API_KEY}`;
+
 export const TMDB_SEARCH_MOVIE_URL = (query) =>
     `${TMDB_SEARCH_API}/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${query}`;
 

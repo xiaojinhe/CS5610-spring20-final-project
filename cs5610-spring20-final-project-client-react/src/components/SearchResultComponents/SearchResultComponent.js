@@ -18,7 +18,6 @@ class SearchResultComponent extends React.Component {
     }
 
     render() {
-        console.log(this.state.results);
         return (
             <div>
                 <NavComponent/>

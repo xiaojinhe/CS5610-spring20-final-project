@@ -10,7 +10,7 @@ const MovieCardComponent = ({movie}) =>
         </div>
         <div className="card-body">
             <div className="card-title">
-                <Link to={`/movie/${movie.id}`}>
+                <Link to={`/details/${movie.id}`}>
                     {movie.title}
                 </Link>
                 <span className="ml-2">{movie.vote_average}</span>
