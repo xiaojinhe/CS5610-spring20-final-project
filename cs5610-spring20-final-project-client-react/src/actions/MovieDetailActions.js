@@ -1,7 +1,8 @@
 import {
+  FAVORITE_MOVIE,
   FIND_ALL_MOVIE_INFO_BY_ID,
   FIND_MOVIE_BY_ID,
-  FIND_REVIEWS_FOR_MOVIE
+  FIND_REVIEWS_FOR_MOVIE, RATE_MOVIE
 } from "../common/constants";
 
 export const findMovieById = (movie) => ({
@@ -19,4 +20,14 @@ export const findAllMovieInfoById = (movie, comments, reviews) => ({
   comments: comments,
   reviews: reviews,
   type:FIND_ALL_MOVIE_INFO_BY_ID
+});
+
+export const rateMovie = (rate) => ({
+  rate: rate,
+  type: RATE_MOVIE
+});
+
+export const favoriteMovie = (favorite) => ({
+  favorite: favorite,
+  type: FAVORITE_MOVIE
 });
