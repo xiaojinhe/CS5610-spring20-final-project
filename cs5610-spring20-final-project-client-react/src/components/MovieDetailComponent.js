@@ -1,8 +1,7 @@
 import React from "react";
-import {MOVIE_IMAGE_API_URL, MOVIE_TRAILER_API_URL} from "../common/constants";
+import {MOVIE_TRAILER_API_URL, TMDB_IMAGE_URL} from "../common/constants";
 import CastCardComponent from "./CastCardComponent";
 import MovieDetailSummaryComponent from "./MovieDetailSummaryComponent";
-import Rating from "react-rating";
 import MovieRatingFavorComponent from "./MovieRatingFavorComponent";
 
 class MovieDetailComponent extends React.Component {
@@ -33,7 +32,7 @@ class MovieDetailComponent extends React.Component {
           <div className="movie-summary">
             <div className="row">
               <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-2 mt-2 mr-lg-5 mr-md-4">
-                <img src={MOVIE_IMAGE_API_URL("w185", this.props.movie.poster_path)}
+                <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}
                      className="image-fluid"
                      alt=""/>
               </div>

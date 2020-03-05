@@ -3,6 +3,6 @@ import './App.css';
 import MovieHomeContainer from "./containers/MovieHomeContainer";
 
 const App = () =>
-  <MovieHomeContainer />;
+    <MovieHomeContainer/>;
 
 export default App;
