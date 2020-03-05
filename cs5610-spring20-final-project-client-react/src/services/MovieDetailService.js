@@ -14,7 +14,7 @@ export const findMovieById = async (movieId) => {
   });
   response.directors = directors;
   response.writers = writers;
-  console.log(response.directors);
+  response.stars = response.credits.cast.slice(0, 5);
   return response;
 };
 
