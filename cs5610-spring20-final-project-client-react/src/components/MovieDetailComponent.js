@@ -1,5 +1,5 @@
 import React from "react";
-import {MOVIE_POSTER_BASE_PATH, MOVIE_POSTER_PATH} from "../common/constants";
+import {MOVIE_POSTER_PATH_API_URL} from "../common/constants";
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -16,14 +16,21 @@ class MovieDetailComponent extends React.Component {
     return(
       <div className="container-fluid movie-detail-container">
         <div className="movie-title">
-          <h2 className="font-weight-bold">{this.props.movie.title}</h2>
+          <h1 className="font-weight-bold">{this.props.movie.title}</h1>
         </div>
         <div className="row">
-          <div className="col-lg-3 col-md-4 col-sm-12 col-12">
+          <div className="col-lg-2 col-md-3 col-sm-12 col-12">
             {console.log(this.props.movie)}
-            <img src={MOVIE_POSTER_PATH("w185", this.props.movie.poster_path)}
-                 className="image-fuild"
+            <img src={MOVIE_POSTER_PATH_API_URL("w185", this.props.movie.poster_path)}
+                 className="image-fluid"
                  alt=""/>
+          </div>
+          <div className="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div>
+              <h6>Director: {this.props.movie.directors}</h6>
+              <h6>Writers: {this.props.movie.writers}</h6>
+            </div>
+
           </div>
         </div>
       </div>
