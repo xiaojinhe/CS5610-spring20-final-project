@@ -1,5 +1,5 @@
 import React from 'react'
-import {TMDB_IMAGE_URL} from "../common/constants";
+import {TMDB_IMAGE_URL} from "../../common/constants";
 import {Link} from "react-router-dom";
 
 const MovieCardComponent = ({movie}) =>
