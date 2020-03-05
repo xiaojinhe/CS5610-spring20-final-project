@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import HomepageComponent from "../components/HomepageComponent";
-import SearchResultComponent from "../components/SearchResultComponent";
+import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
 
 class MovieHomeContainer extends React.Component {
 

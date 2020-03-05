@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const MovieCardComponent = ({movie}) =>
         <div className="col-4 col-sm-3 col-md-2">
             <div className="card">
-                <img className="card-img-top" src={TMDb_IMAGE_URL(movie.poster_path)}
+                <img className="card-img-top" src={TMDb_IMAGE_URL(500, movie.poster_path)}
                      alt="Preview"/>
             </div>
             <div className="card-body">

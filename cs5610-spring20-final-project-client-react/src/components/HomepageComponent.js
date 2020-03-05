@@ -3,8 +3,8 @@ import TMDbService from "../services/TMDbService";
 import MovieCardComponent from "./MovieCardComponent";
 import NavComponent from "./NavComponent";
 
-const topRatedMoviesDisplayNum = 18
-const nowPlayingMoviesDisplayNum = 18
+const topRatedMoviesDisplayNum = 18;
+const nowPlayingMoviesDisplayNum = 18;
 
 class HomepageComponent extends React.Component {
 
@@ -29,10 +29,11 @@ class HomepageComponent extends React.Component {
     render() {
         return (
             <div>
-                <NavComponent history={this.props.history}/>
+                <NavComponent history={this.props.history}
+                enableSearch={true}/>
                 <div className="container">
                     <div className="mt-5">
-                        <h1 className="border-bottom pt-2">Top Rated Movies</h1>
+                        <h1 className="border-bottom pt-2">Now Playing Movies</h1>
                         <div className="row">
                             {
                                 this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
