@@ -1,6 +1,6 @@
 import React from 'react'
 import TMDbService from "../services/TMDbService";
-import MovieCardComponent from "./MovieDetailComponents/MovieCardComponent";
+import MovieCardComponent from "./MovieCardComponent";
 import NavComponent from "./NavComponent";
 import MovieReviewListComponent from "./MovieReviewListComponent";
 import movieReviewService from "../services/MovieReviewService";

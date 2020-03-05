@@ -10,8 +10,7 @@ const CastCardComponent = ({key, object}) =>
              className="card-img"
              alt="Card" />
         <div className="card-body">
-          <p>{object.name}</p>
-          <p>{object.character}</p>
+          <small>{object.name} ({object.character})</small>
         </div>
       </div>
     </div>

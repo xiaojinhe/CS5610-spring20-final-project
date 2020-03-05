@@ -6,6 +6,7 @@ import MovieRatingFavorComponent from "./MovieRatingFavorComponent";
 import {Link} from "react-router-dom";
 import MovieCommentsListComponent from "../MovieCommentsListComponent";
 import MovieReviewListComponent from "../MovieReviewListComponent";
+import MovieCardComponent from "../MovieCardComponent";
 
 const pickedReviewDisplayNum = 5;
 
@@ -102,6 +103,19 @@ class MovieDetailComponent extends React.Component {
             <MovieReviewListComponent
               pickedReviews={this.props.reviews.results.slice(0, pickedReviewDisplayNum)}/>
           </div>}
+
+          {this.props.movie.similar.results &&
+           <div className="similar-movie m-1">
+             <h3 className="movie-header">Similar Movies</h3>
+             <div className="row">
+               {this.props.movie.similar.results.slice(0, 6).map(
+                 function (movie) {
+                   return <MovieCardComponent movie={movie}
+                                              key={movie.id}/>
+                 })
+               }
+             </div>
+           </div>}
 
         </div>
       )

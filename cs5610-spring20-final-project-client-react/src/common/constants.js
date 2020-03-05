@@ -28,7 +28,7 @@ export const TMDB_SEARCH_MOVIE_URL = (query) =>
     `${TMDB_SEARCH_API}/movie?api_key=${TMDB_API_KEY}&language=en-US&query=${query}`;
 
 export const MOVIE_DETAIL_API_URL =
-    (movieId) => `${TMDB_API}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits,videos`;
+    (movieId) => `${TMDB_API}/movie/${movieId}?api_key=${TMDB_API_KEY}&append_to_response=credits,videos,similar`;
 export const MOVIE_TRAILER_API_URL =
     (key) => `https://www.youtube.com/embed/${key}`;
 
