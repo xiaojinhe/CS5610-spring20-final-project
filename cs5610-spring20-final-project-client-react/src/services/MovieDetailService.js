@@ -1,4 +1,8 @@
-import {MOVIE_DETAIL_API_URL, MOVIE_REVIEWS_API_URL} from "../common/constants";
+import {
+  MOVIE_COMMENTS_API_URL,
+  MOVIE_DETAIL_API_URL,
+  MOVIE_REVIEWS_API_URL
+} from "../common/constants";
 
 export const findMovieById = async (movieId) => {
   const response = await fetch(MOVIE_DETAIL_API_URL(movieId))
@@ -23,6 +27,11 @@ export const findReviewsForMovie = async (movieTitle) => {
   return await response.json();
 };
 
+export const findCommentsForMovie = async (movieId) => {
+  const response = await fetch(MOVIE_COMMENTS_API_URL(movieId));
+  return await response.json();
+};
+
 export default {
-  findMovieById, findReviewsForMovie
+  findMovieById, findReviewsForMovie, findCommentsForMovie
 }

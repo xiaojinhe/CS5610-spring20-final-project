@@ -1,5 +1,5 @@
 import {
-  FIND_ALL_MOVIE_INFO_BY_ID,
+  FIND_ALL_MOVIE_INFO_BY_ID, FIND_COMMENTS_FOR_MOVIE,
   FIND_MOVIE_BY_ID,
   FIND_REVIEWS_FOR_MOVIE
 } from "../common/constants";
@@ -23,6 +23,12 @@ const movieDetailReducer = (state = {movie: "", comments: [], reviews: []}, acti
         movie: action.movie,
         comments: action.comments,
         reviews: action.reviews
+      };
+    case FIND_COMMENTS_FOR_MOVIE:
+      return {
+        movie: state.movie,
+        comments: action.comments,
+        reviews: state.reviews
       };
     default:
       return state
