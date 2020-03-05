@@ -17,7 +17,7 @@ const MovieCommentItemComponent = ({comment}) =>
               readonly={true}
               fullSymbol={<i className="fas fa-star"/>}
               emptySymbol={<i className="far fa-star"/>}/>
-      <small className="pl-2">{comment.date ? comment.date : "03-05-2020"}</small>
+      <span className="pl-2">{comment.date ? comment.date : "2020-03-05"}</span>
     </div>
     <div>{comment.content}</div>
   </div>;
