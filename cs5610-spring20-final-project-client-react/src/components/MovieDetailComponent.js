@@ -90,12 +90,12 @@ class MovieDetailComponent extends React.Component {
            </div>
           }
 
-          <div className="movie-comment ml-1">
+          <div className="movie-comment m-1">
             <h3 className="movie-header">Movie Comments</h3>
             <MovieCommentsListComponent comments={this.props.comments}/>
           </div>
 
-          <div className="movie-review ml-1">
+          <div className="movie-review m-1">
             <h3 className="movie-header">Critic Reviews</h3>
             <h5 className="movie-header">New York Times Reviews</h5>
             {this.props.reviews.results.map(res => <div>
