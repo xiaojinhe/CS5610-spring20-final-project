@@ -22,7 +22,7 @@ const MovieRatingFavorComponent = ({rating, voteCount}) =>
     <h6 className="movie-header">Total votes: {voteCount}</h6>
     <br/>
     <h6 className="movie-header">Rate this:</h6>
-    TODO: Need to add onChange to record the rating
+    {/*TODO: Need to add onChange to record the rating*/}
     <div className="mb-2">
       <Rating fractions={4}
               start={0}
@@ -35,7 +35,7 @@ const MovieRatingFavorComponent = ({rating, voteCount}) =>
     <label htmlFor="favor" className="favor-label pr-2">
       <h6 className="movie-header">Favor this:</h6>
     </label>
-    TODO: Need to add onClick to add the movie to user's favorite list
+    {/*TODO: Need to add onClick to add the movie to user's favorite list*/}
     <button className="btn border-0" id="favor">
       <i className="fas fa-heart fa-2x"/>
     </button>
