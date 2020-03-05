@@ -1,5 +1,5 @@
 import React from 'react'
-import {TMDB_IMAGE_URL} from "../../common/constants";
+import {TMDB_IMAGE_URL} from "../common/constants";
 import {Link} from "react-router-dom";
 
 const MovieCardComponent = ({movie}) =>
@@ -8,7 +8,7 @@ const MovieCardComponent = ({movie}) =>
             <img className="card-img-top" src={TMDB_IMAGE_URL(500, movie.poster_path)}
                  alt="Preview"/>
         </div>
-        <div className="card-body">
+        <div className="card-body p-1">
             <div className="card-title">
                 <Link to={`/details/${movie.id}`}>
                     {movie.title}
@@ -17,6 +17,6 @@ const MovieCardComponent = ({movie}) =>
             </div>
 
         </div>
-    </div>
+    </div>;
 
 export default MovieCardComponent
