@@ -22,7 +22,7 @@ const UserProfileHeaderComponent = ({user, isLoggedInUser}) =>
         <div className="row">
           <div className="col-6">
             <div>
-              <h2 className="text-center font-weight-bold">{user.follows.length}</h2>
+              <h2 className="text-center font-weight-bold">{user.following.length}</h2>
               <div className="text-center">Following</div>
             </div>
           </div>
