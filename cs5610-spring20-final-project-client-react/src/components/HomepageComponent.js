@@ -50,7 +50,7 @@ class HomepageComponent extends React.Component {
                         </div>
                     </div>
 
-                    <div className="mt-5">
+                    <div className="mt-2">
                         <h1 className="border-bottom pt-2 pb-2">Top Rated Movies</h1>
                         <div className="row">
                             {
