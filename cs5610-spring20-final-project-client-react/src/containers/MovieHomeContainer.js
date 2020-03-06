@@ -7,6 +7,7 @@ import MovieDetailContainer from "./MovieDetailContainer";
 import movieDetailReducer from "../reducers/MovieDetailReducer";
 import HomepageComponent from "../components/HomepageComponent";
 import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
+import UserProfileContainer from "./UserProfileContainer";
 
 const reducers = combineReducers({movieDetail: movieDetailReducer});
 
@@ -38,6 +39,21 @@ class MovieHomeContainer extends React.Component {
                                     {...props}
                                     movieId={props.match.params.movieId}/>
                             }/>
+                        <Route
+                            path="/profile/:userId"
+                            exact={true}
+                            render={(props) =>
+                                <UserProfileContainer
+                                    {...props}
+                                    userId={props.match.params.userId}/>
+                            }/>
+                        <Route
+                            path="/profile"
+                            exact={true}
+                            render={(props) =>
+                                <UserProfileContainer {...props}/>
+                            }/>
+
                     </Router>
                 </div>
             </Provider>
