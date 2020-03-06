@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './register.style.client.css';
 
 class RegisterComponent extends React.Component {
 
@@ -20,7 +21,7 @@ class RegisterComponent extends React.Component {
   render() {
     return(
       <div className="container-fluid">
-        <div className="signup-form m-5">
+        <div className="signup-form m-lg-5">
           <h2 className=" text-primary text-center">Create your account</h2>
           <div className="form-group row">
             <label htmlFor="username"
