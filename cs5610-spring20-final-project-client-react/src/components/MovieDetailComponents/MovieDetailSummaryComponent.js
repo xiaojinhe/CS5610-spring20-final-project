@@ -20,7 +20,7 @@ const MovieDetailSummaryComponent = ({movie}) =>
       {movie.spoken_languages.length > 1 ?
        <h6><b>Languages</b>: {movie.spoken_languages.map(l => l.name).join(" | ")}</h6> : <h6><b>Language</b>: {movie.spoken_languages.map(l => l.name)}</h6>}
       <h6><b>Release Date</b>: {movie.release_date}</h6>
-      {movie.runtime && <h6><b>Runtime</b>: {movie.runtime} mins</h6>}
+      {movie.runtime && <h6><b>Runtime</b>: {movie.runtime} MIN</h6>}
       <h6><b>Popularity</b>: {movie.popularity}</h6>
     </div>
   </div>;
