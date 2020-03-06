@@ -7,10 +7,10 @@ const stateToPropertyMapper = (state) => ({
 const dispatchToPropertyMapper = (dispatch) => ({
 });
 
-const MovieDetailContainer = connect(
+const UserProfileContainer = connect(
     stateToPropertyMapper,
     dispatchToPropertyMapper
 )(UserProfileComponent);
 
-export default MovieDetailContainer
+export default UserProfileContainer
 
