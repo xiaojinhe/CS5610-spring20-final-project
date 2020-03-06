@@ -6,7 +6,7 @@
     "phone": "1234567890",
     "email": "abc@abc.com",
     "role": "regular",
-    "movieLikes": [
+    "favorites": [
       {
         "id": "769",
         "title": "GoodFellas",
@@ -55,7 +55,7 @@
     "phone": "1234567890",
     "email": "abc@abc.com",
     "role": "critic",
-    "movieLikes": [],
+    "favorites": [],
     "followers": [
       {
         "uid": "1",
@@ -80,7 +80,7 @@
     "phone": "1234567890",
     "email": "abc@abc.com",
     "role": "critic",
-    "movieLikes": [],
+    "favorites": [],
     "followers": [
       {
         "uid": "1",

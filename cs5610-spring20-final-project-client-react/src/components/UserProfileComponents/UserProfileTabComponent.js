@@ -11,8 +11,8 @@ const UserProfileTabComponent = ({user}) =>
         <a className="nav-item nav-link active" data-toggle="tab" href="#nav-profile" role="tab">
           Profile
         </a>
-        <a className="nav-item nav-link" data-toggle="tab" href="#nav-likes" role="tab">
-          Likes
+        <a className="nav-item nav-link" data-toggle="tab" href="#nav-favorites" role="tab">
+          Favorites
         </a>
         {user.role === "regular" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-follows" role="tab">
@@ -41,8 +41,8 @@ const UserProfileTabComponent = ({user}) =>
         <UserProfileInfoComponent
           user={user}/>
       </div>
-      <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
-        {user.movieLikes && user.movieLikes.map(movie =>
+      <div className="tab-pane fade show" id="nav-favorites" role="tabpanel">
+        {user.favorites && user.favorites.map(movie =>
           <MovieItemComponent
             movie={movie}
             key={movie.id}/>
