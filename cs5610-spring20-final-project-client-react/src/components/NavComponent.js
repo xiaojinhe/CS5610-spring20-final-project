@@ -17,11 +17,17 @@ class NavComponent extends React.Component {
     };
 
     performSearch = () => {
-        const criteria = this.state.searchCriteria.trim()
+        const criteria = this.state.searchCriteria.trim();
         if (criteria.length > 0) {
             this.props.history.push(`/search/${criteria}`)
         }
         this.clearInputField()
+    };
+
+    handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            this.performSearch();
+        }
     };
 
     render() {
@@ -42,13 +48,15 @@ class NavComponent extends React.Component {
                             <a className="nav-link" href="#">Link</a>
                         </li>
                     </ul>
-                    {/*//todo: MAYBE enable search when user enter Return*/}
+
                     {this.props.enableSearch &&
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search"
-                               onChange={this.updateInputField}/>
+                               onChange={this.updateInputField}
+                               onKeyDown={this.handleKeyDown}/>
                         <button className="btn btn-outline-success my-2 my-sm-0"
-                                type="button" onClick={this.performSearch}>
+                                type="button"
+                                onClick={this.performSearch}>
                             Search
                         </button>
                     </form>
