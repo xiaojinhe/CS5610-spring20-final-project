@@ -70,7 +70,7 @@ class MovieDetailComponent extends React.Component {
             <h3 className="movie-header">Overview</h3>
             {this.props.movie.overview && <p>{this.props.movie.overview}</p>}
           </div>
-          <div className="movie-cast ml-1">
+          <div className="movie-cast ml-1 mt-2">
             <h3 className="movie-header">Major Cast</h3>
             <div className="row">
               {this.props.movie.stars.map((star, index) =>
@@ -80,7 +80,7 @@ class MovieDetailComponent extends React.Component {
             </div>
           </div>
           {this.props.movie.videos &&
-           <div className="movie-trailer ml-1">
+           <div className="movie-trailer ml-1 mt-3">
              {this.props.movie.videos.results.length > 1 &&
               <div>
                 <h3 className="movie-header">Trailers</h3>
@@ -95,25 +95,27 @@ class MovieDetailComponent extends React.Component {
                 {this.renderTrailer(this.props.movie.videos.results[0])}
               </div>
              }
-
            </div>
           }
 
-          <div className="movie-comment m-1">
-            <div className="row">
-              <div className="col-9">
-                <h3 className="movie-header">Movie Comments</h3>
-              </div>
-              <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={`/movies/${this.props.movieId}/new_comment`}>
-                  <h6><i className="far fa-comment-alt"/> Write Comment</h6>
-                </Link>
-              </div>
-            </div>
-            <MovieCommentsListComponent comments={this.props.comments}/>
-          </div>
+          {this.props.comments &&
+           <div className="movie-comment m-1 mt-3">
+             <div className="row">
+               <div className="col-9">
+                 <h3 className="movie-header">Movie Comments</h3>
+               </div>
+               <div className="col-3 pt-2 pr-2 text-center">
+                 <Link to={`/movies/${this.props.movieId}/new_comment`}>
+                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
+                 </Link>
+               </div>
+             </div>
+             <MovieCommentsListComponent comments={this.props.comments}/>
+           </div>
+          }
 
-          {this.props.reviews && <div className="movie-review m-1">
+          {this.props.reviews && this.props.reviews.results &&
+           <div className="movie-review m-1 mt-3">
             <div className="row">
               <div className="col-9">
                 <h3 className="movie-header">Movie Reviews</h3>
@@ -129,7 +131,7 @@ class MovieDetailComponent extends React.Component {
           </div>}
 
           {this.props.movie.similar.results &&
-           <div className="similar-movie m-1">
+           <div className="similar-movie m-1 mt-3">
              <h3 className="movie-header">Similar Movies</h3>
              <div className="row">
                {this.props.movie.similar.results.slice(0, 6).map(
@@ -146,7 +148,7 @@ class MovieDetailComponent extends React.Component {
     }
     return (
       <div className="m-4">
-        <h2>Page is loading...</h2>
+        <h2>Loading...</h2>
       </div>
     )
   }
