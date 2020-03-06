@@ -1,7 +1,7 @@
 import Rating from "react-rating";
 import React from "react";
 
-const MovieRatingFavorComponent = ({rating, voteCount}) =>
+const MovieRatingFavorComponent = ({rating, voteCount, toggleFavorite, favorite}) =>
   <div>
     <h6 className="movie-header">Rating Score</h6>
     <div className="row">
@@ -20,8 +20,7 @@ const MovieRatingFavorComponent = ({rating, voteCount}) =>
       </div>
     </div>
     <h6 className="movie-header">Total votes: {voteCount}</h6>
-    <br/>
-    <h6 className="movie-header">Rate this:</h6>
+    <h6 className="movie-header mt-2">Rate this:</h6>
     {/*TODO: Need to add onChange to record the rating*/}
     <div className="mb-2">
       <Rating fractions={4}
@@ -36,8 +35,8 @@ const MovieRatingFavorComponent = ({rating, voteCount}) =>
       <h6 className="movie-header">Favor this:</h6>
     </label>
     {/*TODO: Need to add onClick to add the movie to user's favorite list*/}
-    <button className="btn border-0" id="favor">
-      <i className="fas fa-heart fa-2x"/>
+    <button className="btn border-0" id="favor" onClick={toggleFavorite}>
+      {favorite ? <i className="fas fa-heart fa-2x"/> : <i className="far fa-heart fa-2x"/>}
     </button>
   </div>;
 

@@ -1,5 +1,6 @@
 import service, {findCommentsForMovie} from "../services/MovieDetailService";
 import {
+  toggleFavorite,
   findAllMovieInfoById,
   findMovieById,
   findReviewsForMovie
@@ -10,7 +11,8 @@ import {connect} from "react-redux";
 const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
   comments: state.movieDetail.comments,
-  reviews: state.movieDetail.reviews
+  reviews: state.movieDetail.reviews,
+  favorite: state.movieDetail.favorite
 });
 
 const dispatchToPropertyMapper = (dispatch) => ({
@@ -34,6 +36,9 @@ const dispatchToPropertyMapper = (dispatch) => ({
   findCommentsForMovie: async (movieId) => {
     const comments = await service.findCommentsForMovie(movieId);
     dispatch(findCommentsForMovie(comments));
+  },
+  toggleFavorite: () => {
+    dispatch(toggleFavorite())
   }
 });
 
