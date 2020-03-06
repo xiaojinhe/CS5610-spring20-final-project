@@ -21,8 +21,9 @@ class MovieDetailComponent extends React.Component {
     }
   }
 
-  renderTrailer = (video) =>
+  renderTrailer = (video, index) =>
     <iframe width="400"
+            key={index}
             height="250"
             title="trailer"
             className="pr-2"
@@ -81,7 +82,7 @@ class MovieDetailComponent extends React.Component {
               <div>
                 <h3 className="movie-header">Trailers</h3>
                 <div className="justify-content-center">
-                  {this.props.movie.videos.results.slice(0, 2).map(video => this.renderTrailer(video))}
+                  {this.props.movie.videos.results.slice(0, 2).map((video, index) => this.renderTrailer(video, index))}
                 </div>
               </div>
              }

@@ -4,7 +4,6 @@ import MovieCommentItemComponent from "./MovieCommentItemComponent";
 const MovieCommentsListComponent = ({comments}) =>
   <div>
     <div className="container-fluid comment-list">
-      {console.log(comments)}
       {
         comments.results.map(comment => {
           // TODO: NEED TO REMOVE THE LIMIT WHEN USING OUR API
