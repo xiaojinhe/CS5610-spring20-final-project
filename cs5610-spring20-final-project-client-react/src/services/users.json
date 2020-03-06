@@ -40,7 +40,8 @@
         "author": "webdev",
         "movie": {
           "mid": "550",
-          "title": "Fight Club"
+          "title": "Fight Club",
+          "poster_path": "/4GpwvwDjgwiShr1UBJIn5fk1gwT.jpg"
         },
         "content": "\"'It's only after we've lost everything that we're free to do anything,' he says, sounding like a man who tripped over the Nietzsche display on his way to the coffee bar in Borders.\"\n\nI loved Fight Club, but few could write like Roger Ebert. This might be my single favorite line from his long career."
       },
@@ -49,7 +50,8 @@
         "author": "webdev",
         "movie": {
           "mid": "311",
-          "title": "Once Upon A Time In America"
+          "title": "Once Upon A Time In America",
+          "poster_path": "/x733R4ISI0RbKeHhVkXdTMFmTFr.jpg"
         },
         "content": "Stereotypical Sergio Leone film with endless waitings and sight crossings. One of the performances that made Robert de Niro de actor he is and an interesting way of telling a story and the evolution of America during the years of the alcohol prohibition."
       }
