@@ -51,3 +51,4 @@ export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
 
 //action type for user profile
 export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
+export const USER_LOGIN = "USER_LOGIN";
