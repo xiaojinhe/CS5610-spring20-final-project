@@ -1,0 +1,18 @@
+[
+  {
+    "rid": "1",
+    "mid": "550",
+    "uid": "2",
+    "content": "REVIEW CONTENT",
+    "likes": [],
+    "dislikes": []
+  },
+  {
+    "rid": "2",
+    "mid": "110",
+    "uid": "2",
+    "content": "REVIEW CONTENT",
+    "likes": [],
+    "dislikes": []
+  }
+]

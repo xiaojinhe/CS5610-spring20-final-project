@@ -1,0 +1,32 @@
+[
+  {
+    "uid": "1",
+    "username": "webdev",
+    "password": "***",
+    "phone": "1234567890",
+    "email": "abc@abc.com",
+    "role": "regular",
+    "movieLikes": [
+      "550"
+    ],
+    "follows": [
+      "2"
+    ],
+    "movieComments": []
+  },
+  {
+    "uid": "2",
+    "username": "webdev_critic",
+    "password": "***",
+    "phone": "1234567890",
+    "email": "abc@abc.com",
+    "role": "critic",
+    "movieLikes": [],
+    "followers": [
+      "1"
+    ],
+    "reviews": [
+      "1"
+    ]
+  }
+]
