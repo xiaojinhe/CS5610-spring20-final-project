@@ -56,10 +56,10 @@ class MovieDetailComponent extends React.Component {
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
-                <Link to={`/movies/${this.props.movieId}/new_comment`}>
+                <Link to={{pathname: `/movies/${this.props.movieId}/new_comment`, state: {movieTitle: this.props.movie.title}}}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
-                <Link to={`/movies/${this.props.movieId}/new_review`}>
+                <Link to={{pathname: `/movies/${this.props.movieId}/new_review`, state: {movieTitle: this.props.movie.title}}}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
               </div>
@@ -105,7 +105,7 @@ class MovieDetailComponent extends React.Component {
                  <h3 className="movie-header">Movie Comments</h3>
                </div>
                <div className="col-3 pt-2 pr-2 text-center">
-                 <Link to={`/movies/${this.props.movieId}/new_comment`}>
+                 <Link to={{pathname: `/movies/${this.props.movieId}/new_comment`, state: {movieTitle: this.props.movie.title}}}>
                    <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                  </Link>
                </div>
@@ -121,7 +121,7 @@ class MovieDetailComponent extends React.Component {
                 <h3 className="movie-header">Movie Reviews</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={`/movies/${this.props.movieId}/new_review`}>
+                <Link to={{pathname: `/movies/${this.props.movieId}/new_review`, state: {movieTitle: this.props.movie.title}}}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
               </div>

@@ -5,8 +5,14 @@ import {Link} from "react-router-dom";
 class WriteCommentComponent extends React.Component {
   state = {
     comment: "",
-    rating: 0
+    rating: 0,
+    movieTitle: ""
   };
+
+  componentDidMount() {
+    const {movieTitle} = this.props.location.state;
+    this.setState({movieTitle: movieTitle})
+  }
 
   render() {
     let textArea;
@@ -15,7 +21,7 @@ class WriteCommentComponent extends React.Component {
         <div className="rounded m-5 border border-primary">
           <div className="row mt-3 ml-3 mr-3 pl-1 pr-3 pt-3">
             <div className="col-9 pl-0">
-              <h3>Comment for {this.props.movieId}</h3>
+              <h3>Comment for {this.state.movieTitle}</h3>
             </div>
             <div className="col-3 text-right pt-2">
               <Link to={`/details/${this.props.movieId}`}><i className="fas fa-times fa-lg"/></Link>
