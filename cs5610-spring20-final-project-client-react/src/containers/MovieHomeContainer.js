@@ -18,20 +18,18 @@ class MovieHomeContainer extends React.Component {
             <Provider store={store}>
                 <div className="container-fluid">
                     <Router>
-                        <Router>
-                            <Route path="/"
-                                   exact={true}
-                                   render={(props) => <HomepageComponent
-                                       {...props}/>
-                                   }/>
-                            <Route path="/search/:criteria"
-                                   exact={true}
-                                   render={(props) => <SearchResultComponent
-                                       {...props}
-                                       criteria={props.match.params.criteria}
-                                   />
-                                   }/>
-                        </Router>
+                        <Route path="/"
+                               exact={true}
+                               render={(props) => <HomepageComponent
+                                   {...props}/>
+                               }/>
+                        <Route path="/search/:criteria"
+                               exact={true}
+                               render={(props) => <SearchResultComponent
+                                   {...props}
+                                   criteria={props.match.params.criteria}
+                               />
+                               }/>
                         <Route
                             path="/details/:movieId"
                             exact={true}
