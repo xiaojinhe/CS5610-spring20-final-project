@@ -6,7 +6,7 @@ const MovieCommentItemComponent = ({comment}) =>
   <div className="mt-2 pb-2 border border-top-0 border-right-0 border-left-0 border-secondary">
     <div>
       {/*TODO: Need to change the author to user id*/}
-      <Link to={`/users/${comment.author}`}
+      <Link to={`/profile/${comment.author}`}
             className="font-weight-bold pr-2">{comment.author}</Link>
       {/*TODO: Need to change to actual comment rating and date*/}
       <Rating fractions={4}

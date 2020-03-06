@@ -9,6 +9,7 @@ import HomepageComponent from "../components/HomepageComponent";
 import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
+import WriteCommentComponent from "../components/WriteCommentComponent";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
@@ -42,6 +43,15 @@ class MovieHomeContainer extends React.Component {
                 <MovieDetailContainer
                   {...props}
                   movieId={props.match.params.movieId}/>
+              }/>
+            <Route
+              path="/movies/:movieId/new_comment"
+              exact={true}
+              render={(props) =>
+                <WriteCommentComponent
+                  {...props}
+                  movieId={props.match.params.movieId}
+                  isLoggedInUser={true}/>
               }/>
             <Route
               path="/profile/:userId"
