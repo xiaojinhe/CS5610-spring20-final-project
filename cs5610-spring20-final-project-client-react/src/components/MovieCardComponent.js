@@ -5,8 +5,10 @@ import {Link} from "react-router-dom";
 const MovieCardComponent = ({movie}) =>
     <div className="col-4 col-sm-3 col-md-2">
         <div className="card">
+          <Link to={`/details/${movie.id}`}>
             <img className="card-img-top" src={TMDB_IMAGE_URL(500, movie.poster_path)}
                  alt="Preview"/>
+          </Link>
         </div>
         <div className="card-body p-1">
             <div className="card-title">
