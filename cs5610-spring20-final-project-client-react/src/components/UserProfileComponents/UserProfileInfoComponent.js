@@ -114,9 +114,6 @@ class UserProfileInfoComponent extends React.Component {
                   }}>
             Update
           </button>
-          <button className="btn btn-danger btn-block">
-            Logout
-          </button>
         </div>
       </div>
     )
