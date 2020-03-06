@@ -1,5 +1,5 @@
 import React from "react";
-import MovieReviewItemComponent from "./MovieReivewItemComponent";
+import MovieReviewItemComponent from "./MovieReviewItemComponent";
 
 class MovieReviewListComponent extends React.Component {
     render() {
