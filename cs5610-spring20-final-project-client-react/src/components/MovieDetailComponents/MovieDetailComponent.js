@@ -59,7 +59,7 @@ class MovieDetailComponent extends React.Component {
                 <Link to={`/movies/${this.props.movieId}/new_comment`}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
-                <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
+                <Link to={`/movies/${this.props.movieId}/new_review`}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
               </div>
