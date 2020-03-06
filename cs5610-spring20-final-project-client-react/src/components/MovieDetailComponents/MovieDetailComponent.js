@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import MovieCommentsListComponent from "../MovieCommentsListComponent";
 import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
+import NavComponent from "../NavComponent";
 
 const pickedReviewDisplayNum = 5;
 
@@ -35,8 +36,10 @@ class MovieDetailComponent extends React.Component {
   render() {
     if (this.props.movie) {
       return(
-        <div className="container-fluid movie-detail-container p-3">
-          <div className="movie-summary">
+        <div className="container-fluid movie-detail-container">
+          <NavComponent history={this.props.history}
+                        enableSearch={true}/>
+          <div className="movie-summary pt-3">
             <div className="row">
               <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mt-2 mr-lg-5 mr-md-4">
                 <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}
@@ -46,17 +49,17 @@ class MovieDetailComponent extends React.Component {
               <div className="col-lg-6 col-md-5 col-sm-5 col-12 p-1">
                 <MovieDetailSummaryComponent movie={this.props.movie}/>
               </div>
-              <div className="col-lg-3 col-md-3 col-sm-2 col-12">
+              <div className="col-lg-3 col-md-3 col-sm-2 col-12 p-1">
                 {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
                   toggleFavorite={this.props.toggleFavorite}
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
-                <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
+                <Link to={`/movies/${this.props.movieId}/new_comment`}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
-                <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
+                <Link to={`/movies/${this.props.movieId}/new_review`}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
               </div>
@@ -102,7 +105,7 @@ class MovieDetailComponent extends React.Component {
                 <h3 className="movie-header">Movie Comments</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
+                <Link to={`/movies/${this.props.movieId}/new_comment`}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
               </div>
@@ -116,7 +119,7 @@ class MovieDetailComponent extends React.Component {
                 <h3 className="movie-header">Movie Reviews</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
+                <Link to={`/movies/${this.props.movieId}/new_review`}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
               </div>

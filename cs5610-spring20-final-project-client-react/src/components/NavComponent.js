@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 class NavComponent extends React.Component {
     state = {
@@ -33,19 +34,21 @@ class NavComponent extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="/">MovieHome</a>
+                <a className="navbar-brand" href="/">MovieTime</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent">
                     <span className="navbar-toggler-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="/">Home</a>
-                        </li>
+                    <ul className="navbar-nav mr-auto pl-2">
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Link</a>
+                            {/*TODO: change to real link*/}
+                            <Link className="nav-link p-0" to="/profile/1"><i className="far fa-user-circle fa-2x pt-1"/></Link>
+                        </li>
+                        {/*TODO: Hide this tab when user has logged in*/}
+                        <li className="nav-item d-flex ml-2 align-items-center">
+                            <Link className="nav-link p-0" to="/login">Login</Link>
                         </li>
                     </ul>
 

@@ -22,7 +22,7 @@ const MovieRatingFavorComponent = ({rating, voteCount, toggleFavorite, favorite}
     <h6 className="movie-header">Total votes: {voteCount}</h6>
     <h6 className="movie-header mt-2">Rate this:</h6>
     {/*TODO: Need to add onChange to record the rating*/}
-    <div className="mb-2">
+    <div className="mb-3">
       <Rating fractions={4}
               start={0}
               stop={10}

@@ -10,6 +10,8 @@ import SearchResultComponent from "../components/SearchResultComponents/SearchRe
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
 import UserLoginContainer from "./UserLoginContainer";
+import WriteCommentComponent from "../components/WriteCommentComponent";
+import WriteReviewComponent from "../components/WriteReviewComponent";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
@@ -50,6 +52,24 @@ class MovieHomeContainer extends React.Component {
                 <MovieDetailContainer
                   {...props}
                   movieId={props.match.params.movieId}/>
+              }/>
+            <Route
+              path="/movies/:movieId/new_comment"
+              exact={true}
+              render={(props) =>
+                <WriteCommentComponent
+                  {...props}
+                  movieId={props.match.params.movieId}
+                  isLoggedInUser={true}/>
+              }/>
+            <Route
+              path="/movies/:movieId/new_review"
+              exact={true}
+              render={(props) =>
+                <WriteReviewComponent
+                  {...props}
+                  movieId={props.match.params.movieId}
+                  isLoggedInUser={true}/>
               }/>
             <Route
               path="/profile/:userId"
