@@ -33,7 +33,7 @@ class HomepageComponent extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <NavComponent history={this.props.history}
                               enableSearch={true}/>
                 <div className="container">
