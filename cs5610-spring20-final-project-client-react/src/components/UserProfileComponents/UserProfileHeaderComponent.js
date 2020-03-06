@@ -1,8 +1,10 @@
 import React from 'react'
 import {USER_ICON_PATH} from "../../common/constants";
 import "./userProfile.css"
+import {Link} from "react-router-dom";
 
-const UserProfileHeaderComponent = ({user, isLoggedInUser}) =>
+const enableEditProfile = true;
+const UserProfileHeaderComponent = ({user}) =>
 
   <div className="card bg-light mt-5">
     <div className="card-body">
@@ -10,11 +12,23 @@ const UserProfileHeaderComponent = ({user, isLoggedInUser}) =>
            className="rounded-circle user-icon mx-auto d-flex border p-3"
            alt="user icon"/>
       <div className="row mt-3">
-        <h4 className="ml-auto my-auto">{user.username}</h4>
-        {!isLoggedInUser &&
+        <h4 className={`my-auto ${user.role === "critic" || enableEditProfile? "ml-auto" : "mx-auto"}`}>{user.username}</h4>
+        {/*//todo: hide the follow button for three situation:
+        (1) the logged in user is viewing his own profile
+        (2) if the profile belongs to a regular user
+        (3) if the profile is viewing by anonymous user*/}
+        {user.role === "critic" &&
         <button className="ml-2 btn btn-info mr-auto my-auto">
           Follow <i className="fa fa-plus"/>
         </button>
+        }
+        {/*//todo: show this button only when user,
+        right now just assume the regular user is logged in user to make UI consistent*/}
+        {
+          user.role === "regular" && enableEditProfile &&
+          <Link to="/profile/edit" className="ml-2 btn btn-info mr-auto my-auto">
+            Edit <i className="fa fa-pencil-alt"/>
+          </Link>
         }
       </div>
       <div className="mt-3">
@@ -32,7 +46,6 @@ const UserProfileHeaderComponent = ({user, isLoggedInUser}) =>
               <div className="text-center">Comments</div>
             </div>
           </div>
-
         </div>
         }
         {user.role === "critic" &&
