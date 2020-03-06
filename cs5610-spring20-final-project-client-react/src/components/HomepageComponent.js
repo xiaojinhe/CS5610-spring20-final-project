@@ -37,8 +37,8 @@ class HomepageComponent extends React.Component {
                 <NavComponent history={this.props.history}
                               enableSearch={true}/>
                 <div className="container">
-                    <div className="mt-5">
-                        <h1 className="border-bottom pt-2">Now Playing Movies</h1>
+                    <div className="mt-3">
+                        <h1 className="border-bottom pt-2 pb-2">Now Playing Movies</h1>
                         <div className="row">
                             {
                                 this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
@@ -51,7 +51,7 @@ class HomepageComponent extends React.Component {
                     </div>
 
                     <div className="mt-5">
-                        <h1 className="border-bottom pt-2">Top Rated Movies</h1>
+                        <h1 className="border-bottom pt-2 pb-2">Top Rated Movies</h1>
                         <div className="row">
                             {
                                 this.state.topRatedMovies && this.state.topRatedMovies.map(
@@ -63,7 +63,7 @@ class HomepageComponent extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <h1 className="border-bottom pt-2">Critic Picked Reviews</h1>
+                        <h1 className="border-bottom pt-2 pb-2">Critic Picked Reviews</h1>
                         <MovieReviewListComponent
                             pickedReviews={this.state.pickedReviews}/>
                     </div>

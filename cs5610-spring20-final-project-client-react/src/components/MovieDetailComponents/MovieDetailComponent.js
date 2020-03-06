@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import MovieCommentsListComponent from "../MovieCommentsListComponent";
 import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
+import NavComponent from "../NavComponent";
 
 const pickedReviewDisplayNum = 5;
 
@@ -35,8 +36,10 @@ class MovieDetailComponent extends React.Component {
   render() {
     if (this.props.movie) {
       return(
-        <div className="container-fluid movie-detail-container p-3">
-          <div className="movie-summary">
+        <div className="container-fluid movie-detail-container">
+          <NavComponent history={this.props.history}
+                        enableSearch={true}/>
+          <div className="movie-summary pt-3">
             <div className="row">
               <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mt-2 mr-lg-5 mr-md-4">
                 <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}

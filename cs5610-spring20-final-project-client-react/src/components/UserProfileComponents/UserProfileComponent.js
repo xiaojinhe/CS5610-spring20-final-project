@@ -20,7 +20,8 @@ class UserProfileComponent extends React.Component {
   render() {
     return (
       <div>
-        <NavComponent/>
+        <NavComponent history={this.props.history}
+                      enableSearch={true}/>
         <div className="container">
           {
             this.props.user &&
