@@ -1,5 +1,8 @@
 import React from 'react'
 import UserProfileInfoComponent from "./UserProfileInfoComponent";
+import MovieItemComponent from "../SearchResultComponents/MovieItemComponent";
+import MovieCommentItemComponent from "../MovieCommentItemComponent";
+import UserItemComponent from "./UserItemComponent";
 
 const UserProfileTabComponent = ({user}) =>
   <div className="mt-5">
@@ -39,16 +42,32 @@ const UserProfileTabComponent = ({user}) =>
           user={user}/>
       </div>
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
-        Likes
+        {user.movieLikes && user.movieLikes.map(movie =>
+          <MovieItemComponent
+            movie={movie}
+            key={movie.id}/>
+        )}
       </div>
       <div className="tab-pane fade show" id="nav-follows" role="tabpanel">
-        Follows
+        {user.follows && user.follows.map(f =>
+          <UserItemComponent
+            user={f}
+          />
+        )}
       </div>
       <div className="tab-pane fade show" id="nav-followers" role="tabpanel">
-        Followers
+        {user.followers && user.followers.map(f =>
+          <UserItemComponent
+            user={f}
+          />
+        )}
       </div>
       <div className="tab-pane fade show" id="nav-comments" role="tabpanel">
-        Comments
+        {user.comments && user.comments.map(comment =>
+          <MovieCommentItemComponent
+            comment={comment}
+            key={comment.id}/>
+        )}
       </div>
       <div className="tab-pane fade show" id="nav-reviews" role="tabpanel">
         Reviews

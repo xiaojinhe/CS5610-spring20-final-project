@@ -13,7 +13,7 @@ class UserProfileInfoComponent extends React.Component {
             Username
           </label>
           <div className="col-sm-10">
-            <input disabled
+            <input readOnly
                    className="form-control"
                    id="username"
                    value={this.props.user.username}
@@ -65,7 +65,7 @@ class UserProfileInfoComponent extends React.Component {
             Role
           </label>
           <div className="col-sm-10">
-            <input disabled
+            <input readOnly
                    className="form-control"
                    id="role"
                    value={this.props.user.role}/>
