@@ -44,4 +44,8 @@ export const FIND_REVIEWS_FOR_MOVIE = "FIND_REVIEWS_FOR_MOVIE";
 export const FIND_COMMENTS_FOR_MOVIE = "FIND_COMMENTS_FOR_MOVIE";
 export const FIND_ALL_MOVIE_INFO_BY_ID = "FIND_ALL_MOVIE_INFO_BY_ID";
 export const RATE_MOVIE = "RATE_MOVIE";
+export const FAVORITE_MOVIE = "FAVORITE_MOVIE";
 export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
+
+//action type for user profile
+export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
