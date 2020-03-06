@@ -48,13 +48,15 @@ class MovieDetailComponent extends React.Component {
               <div className="col-lg-3 col-md-3 col-sm-2 col-12">
                 {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
+                  toggleFavorite={this.props.toggleFavorite}
+                  favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={`/movies/${this.props.movie.movieId}/new_comment`}>
-                  <h6><i className="far fa-comment-alt"/> Write Comment</h6>
+                  <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
                 <Link to={`/movies/${this.props.movie.movieId}/new_review`}>
-                  <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
+                  <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
               </div>
             </div>

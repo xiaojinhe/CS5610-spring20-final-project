@@ -38,13 +38,13 @@ class MovieReviewItemComponent extends React.Component {
             <button className="btn"
                     onClick={() =>
                     {this.setState((prevState) => {return {likes: prevState.likes + 1}})}}>
-              <i className="far fa-thumbs-up"/>
+              <i className="far fa-thumbs-up fa-lg pr-2"/>
               {this.state.likes}
             </button>
-            <button className="btn"
+            <button className="btn ml-4"
                     onClick={() =>
                     {this.setState((prevState) => {return {dislikes: prevState.dislikes + 1}})}}>
-              <i className="far fa-thumbs-down"/>
+              <i className="far fa-thumbs-down fa-lg pr-2"/>
               {this.state.dislikes}
             </button>
           </div>
