@@ -6,22 +6,54 @@
     "phone": "1234567890",
     "email": "abc@abc.com",
     "role": "regular",
-    "movieLikes": [
-      "550"
-    ],
-    "follows": [
+    "favorites": [
       {
-        "id": "2"
+        "id": "769",
+        "title": "GoodFellas",
+        "vote_average": 8.4,
+        "release_date": "1990-09-12",
+        "overview": "The true story of Henry Hill, a half-Irish, half-Sicilian Brooklyn kid who is adopted by neighbourhood gangsters at an early age and climbs the ranks of a Mafia family under the guidance of Jimmy Conway.",
+        "poster_path": "/pwpGfTImTGifEGgLb3s6LRPd4I6.jpg"
+      },
+      {
+        "id": "122",
+        "title": "The Lord of the Rings: The Return of the King",
+        "vote_average": 8.4,
+        "overview": "Aragorn is revealed as the heir to the ancient kings as he, Gandalf and the other members of the broken fellowship struggle to save Gondor from Sauron's forces. Meanwhile, Frodo and Sam take the ring closer to the heart of Mordor, the dark lord's realm.",
+        "release_date": "2003-12-01",
+        "poster_path": "/rCzpDGLbOoPwLjy3OAm5NUPOTrC.jpg"
+      }
+    ],
+    "following": [
+      {
+        "uid": "2",
+        "username": "webdev_critic"
+      },
+      {
+        "uid": "3",
+        "username": "critic_5566"
       }
     ],
     "comments": [
       {
-        "id": "1",
+        "cid": "1",
+        "author": "webdev",
+        "movie": {
+          "mid": "550",
+          "title": "Fight Club",
+          "poster_path": "/4GpwvwDjgwiShr1UBJIn5fk1gwT.jpg"
+        },
         "content": "\"'It's only after we've lost everything that we're free to do anything,' he says, sounding like a man who tripped over the Nietzsche display on his way to the coffee bar in Borders.\"\n\nI loved Fight Club, but few could write like Roger Ebert. This might be my single favorite line from his long career."
       },
       {
-        "id": "2",
-        "content": "Outrageous. A smug, self-serving line of scorn - the same sentiment that permeates throughout - and a high-minded, snide dismissal of a searing work of anti-consumerism by Palahniuk, which translated surprisingly well into film.\n\nI strongly suspect the film struck a nerve with the reviewer, as opposed to being the philosophically impotent orgy of masturbatory fight-porn violence he'd like to convince us is all the film amounts to. One wonders which particular point most rankled?\nI hold this pitiful review in the same vein as the recent Vice piece on how Bill Hicks was 'overrated' and neither iconoclastic nor ahead of his time.\n\nGenerally I try to stay within the realm of positive energy, but for this, I simply had to sign up and convey my own scorn and contempt for this embarrassing mediocrity of a review."
+        "cid": "2",
+        "author": "webdev",
+        "movie": {
+          "mid": "311",
+          "title": "Once Upon A Time In America",
+          "poster_path": "/x733R4ISI0RbKeHhVkXdTMFmTFr.jpg"
+        },
+        "content": "Stereotypical Sergio Leone film with endless waitings and sight crossings. One of the performances that made Robert de Niro de actor he is and an interesting way of telling a story and the evolution of America during the years of the alcohol prohibition."
       }
     ]
   },
@@ -32,10 +64,11 @@
     "phone": "1234567890",
     "email": "abc@abc.com",
     "role": "critic",
-    "movieLikes": [],
+    "favorites": [],
     "followers": [
       {
-        "id": "1"
+        "uid": "1",
+        "username": "webdev"
       }
     ],
     "reviews": [
@@ -45,6 +78,31 @@
       },
       {
         "id": "2",
+        "content": "Outrageous. A smug, self-serving line of scorn - the same sentiment that permeates throughout - and a high-minded, snide dismissal of a searing work of anti-consumerism by Palahniuk, which translated surprisingly well into film.\n\nI strongly suspect the film struck a nerve with the reviewer, as opposed to being the philosophically impotent orgy of masturbatory fight-porn violence he'd like to convince us is all the film amounts to. One wonders which particular point most rankled?\nI hold this pitiful review in the same vein as the recent Vice piece on how Bill Hicks was 'overrated' and neither iconoclastic nor ahead of his time.\n\nGenerally I try to stay within the realm of positive energy, but for this, I simply had to sign up and convey my own scorn and contempt for this embarrassing mediocrity of a review."
+      }
+    ]
+  },
+  {
+    "uid": "3",
+    "username": "critic_5566",
+    "password": "***",
+    "phone": "1234567890",
+    "email": "abc@abc.com",
+    "role": "critic",
+    "favorites": [],
+    "followers": [
+      {
+        "uid": "1",
+        "username": "webdev"
+      }
+    ],
+    "reviews": [
+      {
+        "id": "3",
+        "content": "Of the two current films in which buttoned-down businessmen rebel against middle-class notions of masculinity, David Fincher's savage \"Fight Club\" is by far the more visionary and disturbing.\n\nWhere \"American Beauty\" hinges on the subversive allure of a rose-covered blond cheerleader, Fincher has something a good deal tougher in mind. The director of \"Seven\" and \"The Game\" for the first time finds subject matter audacious enough to suit his lightning-fast visual sophistication, and puts that style to stunningly effective use.\n\nLurid sensationalism and computer gamesmanship left this filmmaker's earlier work looking hollow and manipulative. But the sardonic, testosterone-fueled science fiction of \"Fight Club\" touches a raw nerve.\n\nIn a film as strange and single-mindedly conceived as \"Eyes Wide Shut,\" Fincher's angry, diffidently witty ideas about contemporary manhood unfold. As based on a novel by Chuck Palahniuk (and deftly written by Jim Uhls), it builds a huge, phantasmagorical structure around the search for lost masculine authority, and attempts to psychoanalyze an entire society in the process.\n\nComplete with an even bigger narrative whammy than the one that ends \"The Sixth Sense,\" this film twists and turns in ways that only add up fully on the way out of the theater and might just require another viewing. Fincher uses his huge arsenal of tricks to bury little hints at what this story is really about.\n\n\"Fight Club\" has two central figures, the milquetoast narrator played by Edward Norton and his charismatic, raging crony played by Brad Pitt. The narrator has been driven to the edge of his sanity by a dull white-collar job, an empty fondness for material things (\"I'd flip through catalogues and wonder what kind of dining set defined me as a person\") and the utter absence of anything to make him feel alive.\n\nTormented by insomnia, he finds his only relief in going to meetings of 12-step support groups, where he can at least cry. The film hurtles along so smoothly that its meaningfully bizarre touches, like Meat Loaf Aday as a testicular cancer patient with very large breasts, aren't jarring at all.\n\n\nThe narrator finds a fellow 12-step addict in Marla, played with witchy sensuality by Helena Bonham Carter and described by the script as \"the little scratch on the roof of your mouth that would heal if only you could stop tonguing it -- but you can't.\"\n\nAs that suggests, Marla's grunge recklessness makes a big impression on the film's narrator, and can mostly be blamed for setting the story in motion. Soon after meeting her he is on an airplane, craving any sensation but antiseptic boredom, and he meets Pitt's Tyler Durden in the next seat. Surveying the bourgeois wimp he nicknames Ikea Boy, Tyler asks all the hard questions. Like: \"Why do guys like you and I know what a duvet is?\"\n\nNorton, drawn into Tyler's spell, soon forsakes his tidy ways and moves into the abandoned wreck that is ground central for Tyler. Then Tyler teaches his new roommate to fight in a nearby parking lot.\n\nThe tacitly homoerotic bouts between these two men become addictive (as does sex with Marla), and their fight group expands into a secret society, all of which the film presents with the curious matter-of-factness of a dream. Somehow nobody gets hurt badly, but the fights leave frustrated, otherwise emasculated men with secret badges of not-quite-honor.\n\n\"Fight Club\" watches this form of escapism morph into something much more dangerous. Tyler somehow builds a bridge from the anti-materialist rhetoric of the 1960s (\"It's only after we've lost everything that we're free to do anything\") into the kind of paramilitary dream project that Ayn Rand might have admired.\n\nThe group's rigorous training and subversive agenda are as deeply disturbing to Norton's mild-mannered character as Tyler's original wild streak was thrilling. But even when acts of terrorism are in the offing, he can't seem to tear himself away.\n\nLike Kevin Smith's \"Dogma,\" \"Fight Club\" sounds offensive from afar. If watched sufficiently mindlessly, it might be mistaken for a dangerous endorsement of totalitarian tactics and super-violent nihilism in an all-out assault on society.\n\nBut this is a much less gruesome film than \"Seven\" and a notably more serious one. It means to explore the lure of violence in an even more dangerously regimented, dehumanized culture. That's a hard thing to illustrate this powerfully without, so to speak, stepping on a few toes.\n\nIn an expertly shot and edited film spiked with clever computer-generated surprises, Fincher also benefits, of course, from marquee appeal. The teamwork of Norton and Pitt is as provocative and complex as it's meant to be.\n\nNorton, an ingenious actor, is once again trickier than he looks. Pitt struts through the film with rekindled brio and a visceral sense of purpose. He's right at home in a movie that warns against worshiping false idols.\n\nPRODUCTION NOTES\n\n'FIGHT CLUB'\n\nRating: \"Fight Club\" is rated R (Under 17 requires accompanying parent or adult guardian). It includes bloody fights, grisly touches, sexual situations and nudity, profanity and assorted intentional gross-out shocks, including the rendering of human fat into soap.\n\nDirected by David Fincher; written by Jim Uhls, based on the novel \"Fight Club,\" by Chuck Palahniuk; director of photography, Jeff Cronenweth; edited by James Haygood; music by the Dust Brothers; production designer, Alex McDowell; produced by Art Linson, Cean Chaffin and Ross Grayson Bell; released by Fox 2000 Pictures. Running time: 135 minutes.\n\nCast: Brad Pitt (Tyler Durden), Edward Norton (Narrator), Helena Bonham Carter (Marla Singer), Robert (Meat Loaf Aday) and Jared Leto (Angel Face).\n\n"
+      },
+      {
+        "id": "4",
         "content": "Outrageous. A smug, self-serving line of scorn - the same sentiment that permeates throughout - and a high-minded, snide dismissal of a searing work of anti-consumerism by Palahniuk, which translated surprisingly well into film.\n\nI strongly suspect the film struck a nerve with the reviewer, as opposed to being the philosophically impotent orgy of masturbatory fight-porn violence he'd like to convince us is all the film amounts to. One wonders which particular point most rankled?\nI hold this pitiful review in the same vein as the recent Vice piece on how Bill Hicks was 'overrated' and neither iconoclastic nor ahead of his time.\n\nGenerally I try to stay within the realm of positive energy, but for this, I simply had to sign up and convey my own scorn and contempt for this embarrassing mediocrity of a review."
       }
     ]

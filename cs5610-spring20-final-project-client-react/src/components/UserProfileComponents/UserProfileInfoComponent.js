@@ -1,10 +1,43 @@
 import React from 'react'
 
 class UserProfileInfoComponent extends React.Component {
+  state = {
+    user: this.props.user
+  };
+
+  onPhoneChange = (event) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        phone: event.target.value
+      }
+    })
+  };
+
+  onPasswordChange = (event) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        password: event.target.value
+      }
+    })
+  };
+
+  onEmailChange = (event) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        email: event.target.value
+      }
+    })
+  };
+
   render() {
+    console.log(this.state.user)
     return (
-      <div>
-        <div className="alert alert-success" role="alert">
+      <div className="m-3">
+        {/*//todo: show this when user save profile success*/}
+        <div className="alert alert-success d-none" role="alert">
           Profile successfully saved!
         </div>
         <div className="form-group row">
@@ -13,10 +46,10 @@ class UserProfileInfoComponent extends React.Component {
             Username
           </label>
           <div className="col-sm-10">
-            <input disabled
+            <input readOnly
                    className="form-control"
                    id="username"
-                   value={this.props.user.username}
+                   value={this.state.user.username}
             />
           </div>
         </div>
@@ -30,7 +63,8 @@ class UserProfileInfoComponent extends React.Component {
                    className="form-control"
                    id="password"
                    placeholder="123qwe#$%"
-                   value={this.props.user.password}/>
+                   value={this.state.user.password}
+                   onChange={this.onPasswordChange}/>
           </div>
         </div>
         <div className="form-group row">
@@ -43,7 +77,8 @@ class UserProfileInfoComponent extends React.Component {
                    className="form-control"
                    id="phone"
                    placeholder="(123) 456-7890"
-                   value={this.props.user.phone}/>
+                   value={this.state.user.phone}
+                   onChange={this.onPhoneChange}/>
           </div>
         </div>
         <div className="form-group row">
@@ -56,7 +91,8 @@ class UserProfileInfoComponent extends React.Component {
                    className="form-control"
                    id="email"
                    placeholder="harry@hogwarts.edu"
-                   value={this.props.user.email}/>
+                   value={this.state.user.email}
+                   onChange={this.onEmailChange}/>
           </div>
         </div>
         <div className="form-group row">
@@ -65,15 +101,18 @@ class UserProfileInfoComponent extends React.Component {
             Role
           </label>
           <div className="col-sm-10">
-            <input disabled
+            <input readOnly
                    className="form-control"
                    id="role"
-                   value={this.props.user.role}/>
+                   value={this.state.user.role}/>
           </div>
         </div>
 
         <div className="form-group row">
-          <button className="btn btn-info btn-block">
+          <button className="btn btn-info btn-block"
+                  onClick={() => {
+                    this.props.updateUser(this.state.user.id, this.state.user)
+                  }}>
             Update
           </button>
           <button className="btn btn-danger btn-block">

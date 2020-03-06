@@ -9,6 +9,7 @@ import HomepageContainer from "./HomepageContainer";
 import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
+import UserLoginContainer from "./UserLoginContainer";
 import WriteCommentComponent from "../components/WriteCommentComponent";
 import WriteReviewComponent from "../components/WriteReviewComponent";
 import RegisterContainer from "./RegisterContainer";
@@ -37,6 +38,13 @@ class MovieHomeContainer extends React.Component {
                      {...props}
                      criteria={props.match.params.criteria}
                    />
+                   }/>
+            <Route path="/login"
+                   exact={true}
+                   render={(props) =>
+                     <UserLoginContainer
+                       {...props}
+                     />
                    }/>
             <Route
               path="/details/:movieId"

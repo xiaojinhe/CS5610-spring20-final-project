@@ -22,6 +22,8 @@ export const TMDB_IMAGE_URL = (width, poster_path) => {
     }
 };
 
+export const USER_ICON_PATH = "../user_icon_img.png";
+
 export const NYTIMES_MOVIE_REVIEW_URL = `https://api.nytimes.com/svc/movies/v2/reviews/pick.json?api-key=${NYT_API_KEY}`;
 
 export const TMDB_SEARCH_MOVIE_URL = (query) =>
@@ -47,9 +49,12 @@ export const RATE_MOVIE = "RATE_MOVIE";
 export const FAVORITE_MOVIE = "FAVORITE_MOVIE";
 export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
 
-//action type for user
+//action type for user profile
 export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
+export const UPDATE_USER = "UPDATE_USER"
 
 // action for login and register
 export const REGISTER = "REGISTER";
+export const LOGIN = "LOGIN";
+
 

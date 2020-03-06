@@ -21,5 +21,6 @@ export const searchMovies = (criteria) =>
 
 export default {
     findTopRatedMovies,
-    findNowPlayingMovies
+    findNowPlayingMovies,
+    searchMovies
 }
