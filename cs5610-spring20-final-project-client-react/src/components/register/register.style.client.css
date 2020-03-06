@@ -1,0 +1,10 @@
+h1 {
+    text-align: center;
+}
+
+.signup-form {
+    background-color: white;
+    margin-top: 2rem;
+    padding:40px;
+    border-radius:10px;
+}

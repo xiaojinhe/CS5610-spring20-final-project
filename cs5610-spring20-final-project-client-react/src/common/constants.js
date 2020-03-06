@@ -47,5 +47,9 @@ export const RATE_MOVIE = "RATE_MOVIE";
 export const FAVORITE_MOVIE = "FAVORITE_MOVIE";
 export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
 
-//action type for user profile
+//action type for user
 export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
+
+// action for login and register
+export const REGISTER = "REGISTER";
+

@@ -1,15 +1,15 @@
 import React from 'react'
 import TMDbService from "../services/TMDbService";
-import MovieCardComponent from "./MovieCardComponent";
-import NavComponent from "./NavComponent";
-import MovieReviewListComponent from "./MovieReviewListComponent";
+import MovieCardComponent from "../components/MovieCardComponent";
+import NavComponent from "../components/NavComponent";
+import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import movieReviewService from "../services/MovieReviewService";
 
 const topRatedMoviesDisplayNum = 18;
 const nowPlayingMoviesDisplayNum = 18;
 const pickedReviewDisplayNum = 5;
 
-class HomepageComponent extends React.Component {
+class HomepageContainer extends React.Component {
 
     state = {
         topRatedMovies: [],
@@ -74,4 +74,4 @@ class HomepageComponent extends React.Component {
     }
 }
 
-export default HomepageComponent
+export default HomepageContainer

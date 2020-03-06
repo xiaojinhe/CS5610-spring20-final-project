@@ -5,12 +5,13 @@ import {Provider} from "react-redux";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import MovieDetailContainer from "./MovieDetailContainer";
 import movieDetailReducer from "../reducers/MovieDetailReducer";
-import HomepageComponent from "../components/HomepageComponent";
+import HomepageContainer from "./HomepageContainer";
 import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
 import WriteCommentComponent from "../components/WriteCommentComponent";
 import WriteReviewComponent from "../components/WriteReviewComponent";
+import RegisterContainer from "./RegisterContainer";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
@@ -27,7 +28,7 @@ class MovieHomeContainer extends React.Component {
           <Router>
             <Route path="/"
                    exact={true}
-                   render={(props) => <HomepageComponent
+                   render={(props) => <HomepageContainer
                      {...props}/>
                    }/>
             <Route path="/search/:criteria"
@@ -73,11 +74,18 @@ class MovieHomeContainer extends React.Component {
                   isLoggedInUser={false}/>
               }/>
             <Route
-              path="/profile"
+            path="/profile"
+            exact={true}
+            render={(props) =>
+              <UserProfileContainer {...props}
+                                    isLoggedInUser={true}/>
+            }/>
+            <Route
+              path="/register"
               exact={true}
               render={(props) =>
-                <UserProfileContainer {...props}
-                                      isLoggedInUser={true}/>
+                <RegisterContainer {...props}
+                                   isLoggedInUser={false}/>
               }/>
 
           </Router>
