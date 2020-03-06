@@ -34,6 +34,9 @@ const UserProfileTabComponent = ({user}) =>
           Reviews
         </a>
         }
+        <a className="nav-item nav-link" data-toggle="tab" href="#nav-likes" role="tab">
+          Likes
+        </a>
       </div>
     </nav>
     <div className="tab-content" id="nav-tabContent">
@@ -52,6 +55,7 @@ const UserProfileTabComponent = ({user}) =>
         {user.following && user.following.map(f =>
           <UserItemComponent
             user={f}
+            key={f.uid}
           />
         )}
       </div>
@@ -59,18 +63,23 @@ const UserProfileTabComponent = ({user}) =>
         {user.followers && user.followers.map(f =>
           <UserItemComponent
             user={f}
+            key={f.uid}
           />
         )}
       </div>
       <div className="tab-pane fade show" id="nav-comments" role="tabpanel">
         {user.comments && user.comments.map(comment =>
           <MovieCommentItemComponent
+            isInProfile={true}
             comment={comment}
-            key={comment.id}/>
+            key={comment.cid}/>
         )}
       </div>
       <div className="tab-pane fade show" id="nav-reviews" role="tabpanel">
         Reviews
+      </div>
+      <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
+        Likes
       </div>
     </div>
   </div>

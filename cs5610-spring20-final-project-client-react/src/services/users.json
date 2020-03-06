@@ -16,7 +16,6 @@
         "poster_path": "/pwpGfTImTGifEGgLb3s6LRPd4I6.jpg"
       },
       {
-
         "id": "122",
         "title": "The Lord of the Rings: The Return of the King",
         "vote_average": 8.4,
@@ -37,14 +36,22 @@
     ],
     "comments": [
       {
-        "id": "1",
+        "cid": "1",
         "author": "webdev",
+        "movie": {
+          "mid": "550",
+          "title": "Fight Club"
+        },
         "content": "\"'It's only after we've lost everything that we're free to do anything,' he says, sounding like a man who tripped over the Nietzsche display on his way to the coffee bar in Borders.\"\n\nI loved Fight Club, but few could write like Roger Ebert. This might be my single favorite line from his long career."
       },
       {
-        "id": "2",
+        "cid": "2",
         "author": "webdev",
-        "content": "Outrageous. A smug, self-serving line of scorn - the same sentiment that permeates throughout - and a high-minded, snide dismissal of a searing work of anti-consumerism by Palahniuk, which translated surprisingly well into film.\n\nI strongly suspect the film struck a nerve with the reviewer, as opposed to being the philosophically impotent orgy of masturbatory fight-porn violence he'd like to convince us is all the film amounts to. One wonders which particular point most rankled?\nI hold this pitiful review in the same vein as the recent Vice piece on how Bill Hicks was 'overrated' and neither iconoclastic nor ahead of his time.\n\nGenerally I try to stay within the realm of positive energy, but for this, I simply had to sign up and convey my own scorn and contempt for this embarrassing mediocrity of a review."
+        "movie": {
+          "mid": "311",
+          "title": "Once Upon A Time In America"
+        },
+        "content": "Stereotypical Sergio Leone film with endless waitings and sight crossings. One of the performances that made Robert de Niro de actor he is and an interesting way of telling a story and the evolution of America during the years of the alcohol prohibition."
       }
     ]
   },

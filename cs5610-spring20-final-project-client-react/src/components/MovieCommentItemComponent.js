@@ -2,7 +2,7 @@ import React from "react";
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
 
-const MovieCommentItemComponent = ({comment}) =>
+const MovieCommentItemComponent = ({comment, isInProfile}) =>
   <div className="mt-2 pb-2 border border-top-0 border-right-0 border-left-0 border-secondary">
     <div>
       {/*TODO: Need to change the author to user id*/}
@@ -19,6 +19,14 @@ const MovieCommentItemComponent = ({comment}) =>
               emptySymbol={<i className="far fa-star"/>}/>
       <span className="pl-2">{comment.date ? comment.date : "2020-03-05"}</span>
     </div>
+    {
+      isInProfile &&
+      <small>Comment for&nbsp;
+        <Link to={`/details/${comment.movie.mid}`}>
+          {comment.movie.title}
+        </Link>
+      </small>
+    }
     <div>{comment.content}</div>
   </div>;
 
