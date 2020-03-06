@@ -2,7 +2,7 @@ import React from 'react'
 import UserProfileInfoComponent from "./UserProfileInfoComponent";
 
 const UserProfileTabComponent = ({user}) =>
-  <div className="container">
+  <div className="mt-5">
     <nav>
       <div className="nav nav-tabs" id="nav-tab" role="tablist">
         <a className="nav-item nav-link active" data-toggle="tab" href="#nav-profile" role="tab">
@@ -11,18 +11,26 @@ const UserProfileTabComponent = ({user}) =>
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-likes" role="tab">
           Likes
         </a>
+        {user.role === "regular" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-follows" role="tab">
           Follows
         </a>
+        }
+        {user.role === "critic" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-followers" role="tab">
           Followers
         </a>
+        }
+        {user.role === "regular" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-comments" role="tab">
           Comments
         </a>
+        }
+        {user.role === "critic" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-reviews" role="tab">
           Reviews
         </a>
+        }
       </div>
     </nav>
     <div className="tab-content" id="nav-tabContent">
