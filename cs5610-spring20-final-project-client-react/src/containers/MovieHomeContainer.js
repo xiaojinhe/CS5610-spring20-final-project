@@ -21,7 +21,7 @@ class MovieHomeContainer extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="container-fluid">
+        <div>
           <Router>
             <Route path="/"
                    exact={true}
