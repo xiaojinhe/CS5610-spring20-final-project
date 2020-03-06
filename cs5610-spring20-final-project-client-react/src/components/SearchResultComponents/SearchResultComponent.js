@@ -20,7 +20,8 @@ class SearchResultComponent extends React.Component {
     render() {
         return (
             <div>
-                <NavComponent/>
+              <NavComponent history={this.props.history}
+                            enableSearch={true}/>
                 <div className="container">
                     {this.state.results && this.state.results.map(movie =>
                         <MovieItemComponent
