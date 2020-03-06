@@ -11,13 +11,12 @@ const MovieCardComponent = ({movie}) =>
           </Link>
         </div>
         <div className="card-body p-1">
-            <div className="card-title">
+            <div className="card-title text-truncate">
                 <Link to={`/details/${movie.id}`}>
                     {movie.title}
                 </Link>
-                <span className="ml-2">{movie.vote_average}</span>
+                <span className="ml-2 text-right">{movie.vote_average}</span>
             </div>
-
         </div>
     </div>;
 

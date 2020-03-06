@@ -1,15 +1,15 @@
 import {connect} from "react-redux";
 import UserService from "../services/UserSerivce";
-import {userLoginAction} from "../actions/UserProfileAction";
+import {loginUserAction} from "../actions/UserProfileAction";
 import UserLoginComponent from "../components/UserLoginComponent";
 
 const stateToPropertyMapper = (state) => ({});
 
 const dispatchToPropertyMapper = (dispatch) => ({
-  userLogin: (email, password) => {
+  userLogin: (username, password) => {
     //todo: implement the actual user login
-    const user = UserService.userLogin(email, password);
-    dispatch(userLoginAction(user))
+    const user = UserService.userLogin(username, password);
+    dispatch(loginUserAction(user))
   }
 });
 

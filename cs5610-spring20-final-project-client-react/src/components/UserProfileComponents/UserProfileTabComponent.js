@@ -4,7 +4,7 @@ import MovieItemComponent from "../SearchResultComponents/MovieItemComponent";
 import MovieCommentItemComponent from "../MovieCommentItemComponent";
 import UserItemComponent from "./UserItemComponent";
 
-const UserProfileTabComponent = ({user}) =>
+const UserProfileTabComponent = ({user, updateUser}) =>
   <div className="mt-5">
     <nav>
       <div className="nav nav-tabs" id="nav-tab" role="tablist">
@@ -42,7 +42,8 @@ const UserProfileTabComponent = ({user}) =>
     <div className="tab-content" id="nav-tabContent">
       <div className="tab-pane fade show active" id="nav-profile" role="tabpanel">
         <UserProfileInfoComponent
-          user={user}/>
+          user={user}
+        updateUser={updateUser}/>
       </div>
       <div className="tab-pane fade show" id="nav-favorites" role="tabpanel">
         {user.favorites && user.favorites.map(movie =>
@@ -79,7 +80,7 @@ const UserProfileTabComponent = ({user}) =>
         Reviews
       </div>
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
-        Likes
+        Liked Reviews
       </div>
     </div>
   </div>

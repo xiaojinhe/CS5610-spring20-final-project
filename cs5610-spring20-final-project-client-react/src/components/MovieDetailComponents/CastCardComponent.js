@@ -9,7 +9,8 @@ const CastCardComponent = ({object}) =>
              className="card-img"
              alt="Card" />
         <div className="card-body p-0 text-center">
-          <small>{object.name} ({object.character})</small>
+          <p className="text-truncate m-0">{object.name}</p>
+          <small className="text-truncate m-0">{object.character}</small>
         </div>
       </div>
     </div>

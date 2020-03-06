@@ -4,13 +4,13 @@ import {Link} from "react-router-dom";
 
 class UserLoginComponent extends React.Component {
   state = {
-    email: "",
+    username: "",
     password: ""
   };
 
-  onEmailChange = (event) => {
+  onUsernameChange = (event) => {
     this.setState({
-      email: event.target.value
+      username: event.target.value
     })
   };
 
@@ -21,7 +21,7 @@ class UserLoginComponent extends React.Component {
   };
 
   userLogin = () => {
-    this.props.userLogin(this.state.email, this.state.password);
+    this.props.userLogin(this.state.username, this.state.password);
     //todo: change the /profile/:id to /profile after implemented the user login logic
     this.props.history.push("/profile/1")
   };
@@ -41,12 +41,11 @@ class UserLoginComponent extends React.Component {
               </label>
               <div className="col-sm-10">
                 <input
-                  type="email"
-                  onChange={this.onEmailChange}
-                  value={this.state.email}
+                  type="text"
+                  onChange={this.onUsernameChange}
+                  value={this.state.username}
                   className="form-control"
-                  id="email"
-                  placeholder="webdev@gmail.com"
+                  placeholder="webdev"
                   autoComplete="on"/>
               </div>
             </div>
