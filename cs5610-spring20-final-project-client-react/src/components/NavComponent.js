@@ -25,6 +25,11 @@ class NavComponent extends React.Component {
         this.clearInputField()
     };
 
+    logout = () => {
+        //todo: to implement
+      alert("You've logged out.")
+    };
+
     handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             this.performSearch();
@@ -49,6 +54,10 @@ class NavComponent extends React.Component {
                         {/*TODO: Hide this tab when user has logged in*/}
                         <li className="nav-item d-flex ml-2 align-items-center">
                             <Link className="nav-link p-0" to="/login">Login</Link>
+                        </li>
+                        <li className="nav-item d-flex ml-2 align-items-center">
+                            <a className="nav-link p-0"
+                            onClick={this.logout}>Logout</a>
                         </li>
                     </ul>
 

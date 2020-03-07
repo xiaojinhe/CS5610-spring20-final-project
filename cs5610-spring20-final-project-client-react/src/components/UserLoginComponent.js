@@ -77,11 +77,12 @@ class UserLoginComponent extends React.Component {
                 onClick={this.userLogin}>
                 Sign in
               </button>
-              <button
+              <Link
                 id="cancel_btn"
+                to="/"
                 className="btn btn-danger btn-block">
                 Cancel
-              </button>
+              </Link>
               <div className="row">
                 <div className="col-6">
                 </div>

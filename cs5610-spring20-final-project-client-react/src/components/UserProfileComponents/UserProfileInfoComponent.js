@@ -33,7 +33,6 @@ class UserProfileInfoComponent extends React.Component {
   };
 
   render() {
-    console.log(this.state.user)
     return (
       <div className="m-3">
         {/*//todo: show this when user save profile success*/}
@@ -111,12 +110,9 @@ class UserProfileInfoComponent extends React.Component {
         <div className="form-group row">
           <button className="btn btn-info btn-block"
                   onClick={() => {
-                    this.props.updateUser(this.state.user.id, this.state.user)
+                    this.props.updateUser(this.state.user.uid, this.state.user)
                   }}>
             Update
-          </button>
-          <button className="btn btn-danger btn-block">
-            Logout
           </button>
         </div>
       </div>
