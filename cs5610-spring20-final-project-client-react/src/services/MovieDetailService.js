@@ -12,7 +12,7 @@ export const findMovieById = async (movieId) => {
   response.credits.crew.forEach(entry => {
     if (entry.job === 'Director') {
       directors.push(entry.name);
-    } else if (entry.job === 'Novel' || entry.job === 'Screenplay') {
+    } else if (entry.job === 'Novel' || entry.job === 'Screenplay' || entry.job === 'Writer') {
       writers.push(entry.name);
     }
   });
