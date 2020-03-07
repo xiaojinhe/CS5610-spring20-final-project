@@ -3,6 +3,7 @@ import UserProfileInfoComponent from "./UserProfileInfoComponent";
 import MovieItemComponent from "../SearchResultComponents/MovieItemComponent";
 import MovieCommentItemComponent from "../MovieCommentItemComponent";
 import UserItemComponent from "./UserItemComponent";
+import MovieReviewItemComponent from "../MovieReviewItemComponent";
 
 const UserProfileTabComponent = ({user, updateUser}) =>
   <div className="mt-5">
@@ -77,7 +78,12 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         )}
       </div>
       <div className="tab-pane fade show" id="nav-reviews" role="tabpanel">
-        Reviews
+        {user.reviews && user.reviews.map(review =>
+          <MovieReviewItemComponent
+            isInProfile={true}
+            review={review}
+            key={review.rid}/>
+        )}
       </div>
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
         Liked Reviews
