@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
-module.exports = function() {
-  const ratingAndCommentAndReviewSchema = mongoose.Schema(
-    {
+const ratingAndCommentAndReviewSchema = mongoose.Schema(
+  {
       tmdbId: String,
       movieName: String,
       moviePosterURL: String,
@@ -14,5 +13,6 @@ module.exports = function() {
       content: String,
       likes: Number,
       dislike: Number
-    }, {collection: 'ratings-comments-reviews'});
-};
+  }, {collection: 'ratings_comments_reviews'});
+
+module.exports = ratingAndCommentAndReviewSchema;
