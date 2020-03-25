@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ratingAndCommentAndReviewSchema = mongoose.Schema(
+const ratingAndCommentAndReviewSchema = new mongoose.Schema(
   {
       tmdbId: String,
       movieName: String,
@@ -12,7 +12,7 @@ const ratingAndCommentAndReviewSchema = mongoose.Schema(
       title: String,
       content: String,
       likes: Number,
-      dislike: Number
+      dislikes: Number
   }, {collection: 'ratings_comments_reviews'});
 
 module.exports = ratingAndCommentAndReviewSchema;

@@ -22,7 +22,7 @@ updateRatingAndCommentOrReview = (id, title, rating, content) => {
 
 //TODO: need to use middleware to remove record in user model in the server side
 deleteRatingAndCommentOrReview = (id) => {
-  return ratingAndCommentOrReviewModel.deleteOne({_id: id});
+  return ratingAndCommentOrReviewModel.remove({_id: id});
 };
 
 updateLikes = (id, likes) => {
