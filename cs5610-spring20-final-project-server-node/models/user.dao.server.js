@@ -1,103 +1,99 @@
 const mongoose = require('mongoose');
 const userSchema = require('./user.schema.server');
 
-const userModel = mongoose.model('userModel', userSchema);
+const userModel = mongoose.model('UserModel', userSchema);
 
-const findUserByCredentials = (credentials) => {
+findUserByCredentials = (credentials) => {
   return userModel.findOne(credentials);
 };
 
-const findUserById = (userId) => {
+findUserById = (userId) => {
   return userModel.findById(userId);
 };
 
-const findAllUsers = () => {
+findAllUsers = () => {
   return userModel.find();
 };
 
-const createUser = (user) => {
+createUser = (user) => {
   return userModel.create(user);
 };
 
-const updateUser = (userId, user) => {
+updateUser = (userId, user) => {
   return userModel.updateOne({_id: userId}, user);
 };
 
-const findByUsername = (username) => {
+findByUsername = (username) => {
   return userModel.findOne({username: username});
 };
 
-const updateUsername = (userId, username) => {
-  return userModel.update({_id: userId}, {$set: {username: username}});
-};
-
-const updateUserPhone = (userId, phone) => {
+updateUserPhone = (userId, phone) => {
   return userModel.update({_id: userId}, {$set: {phone: phone}});
 };
 
-const updateUserEmail = (userId, email) => {
+updateUserEmail = (userId, email) => {
   return userModel.update({_id: userId}, {$set: {email: email}});
 };
 
-const updateUserAvatarURL = (userId, avatarURL) => {
+updateUserAvatarURL = (userId, avatarURL) => {
   return userModel.update({_id: userId}, {$set: {avatarURL: avatarURL}});
 };
 
-const findAllRatingAndCommentsOrReviewsForUser = (userId) => {
+findAllRatingAndCommentsOrReviewsForUser = (userId) => {
   return userModel
     .findOne({_id: userId}, {ratingAndCommentsOrReviews: 1})
     .populate('ratingAndCommentsOrReviews')
     .exec();
 };
 
-const updateUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
+updateUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
   return userModel.update({_id: userId}, {$push: {ratingAndCommentsOrReviews: reviewOrCommentId}})
 };
 
-const deleteUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
+deleteUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
   return userModel.update({_id: userId}, {$pull: {ratingAndCommentsOrReviews: reviewOrCommentId}})
 };
 
-const findAllFavoriteMoviesForUser = (userId) => {
+findAllFavoriteMoviesForUser = (userId) => {
   return userModel.findOne({_id: userId}, {favoriteMovies: 1});
 };
 
-const updateUserFavoriteMovie = (userId, movie) => {
+updateUserFavoriteMovie = (userId, movie) => {
   return userModel.update({_id: userId}, {$push: {favoriteMovies: movie}});
 };
 
-const deleteUserFavoriteMovie = (userId, movie) => {
+deleteUserFavoriteMovie = (userId, movie) => {
   return userModel.update({_id: userId}, {$pull: {favoriteMovies: movie}});
 };
 
-const findAllLikedReviewsForUser = (userId) => {
+findAllLikedReviewsForUser = (userId) => {
   return userModel
     .findOne({_id: userId}, {likedReviews: 1})
     .populate('likedReviews')
     .exec();
 };
 
-const updateUserLikedReview = (userId, reviewId) => {
+updateUserLikedReview = (userId, reviewId) => {
   return userModel.update({_id: userId}, {$push: {likedReviews: reviewId}});
 };
 
-const deleteUserLikedReview = (userId, reviewId) => {
+deleteUserLikedReview = (userId, reviewId) => {
   return userModel.update({_id: userId}, {$pull: {likedReviews: reviewId}});
 };
 
-const updateUserFollows = (userId, userInfo) => {
+updateUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {follows: userInfo}});
 };
 
-const deleteUserFollows = (userId, userInfo) => {
+deleteUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$pull: {follows: userInfo}});
 };
 
-const updateUserFollowedBy = (userId, userInfo) => {
+updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});
 };
 
-const deleteUserFollowedBy = (userId, userInfo) => {
+deleteUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$pull: {followedBy: userInfo}});
 };
 
@@ -108,7 +104,6 @@ module.exports = {
   findAllUsers,
   createUser,
   updateUser,
-  updateUsername,
   updateUserPhone,
   updateUserEmail,
   updateUserAvatarURL,

@@ -19,7 +19,7 @@ module.exports = function() {
       avatarURL: String,
       ratingAndCommentsOrReviews: [
         {
-          type: mongoose.Schema.Types.ObjectId, ref: 'ReviewOrCommentModel'
+          type: mongoose.Schema.Types.ObjectId, ref: 'RatingAndCommentOrReviewModel'
         }
       ],
       favoriteMovies: [
@@ -32,7 +32,7 @@ module.exports = function() {
       ],
       likedReviews: [
         {
-          type: mongoose.Schema.Types.ObjectId, ref: 'ReviewOrCommentModel'
+          type: mongoose.Schema.Types.ObjectId, ref: 'RatingAndCommentOrReviewModel'
         }
       ],
       follows: [
