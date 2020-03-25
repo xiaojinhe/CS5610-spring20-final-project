@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ratingAndCommentAndReviewSchema = new mongoose.Schema(
+const ratingAndCommentAndReviewSchema = mongoose.Schema(
   {
       tmdbId: String,
       movieName: String,
