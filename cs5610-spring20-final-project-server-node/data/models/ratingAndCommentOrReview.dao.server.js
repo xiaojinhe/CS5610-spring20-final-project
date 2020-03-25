@@ -20,7 +20,7 @@ updateRatingAndCommentOrReview = (id, title, rating, content) => {
     .update({_id: id}, {$set: {title: title, rating: rating, content: content}});
 };
 
-//TODO: need to use middleware to remove record in user model
+//TODO: need to use middleware to remove record in user model in the server side
 deleteRatingAndCommentOrReview = (id) => {
   return ratingAndCommentOrReviewModel.deleteOne({_id: id});
 };
