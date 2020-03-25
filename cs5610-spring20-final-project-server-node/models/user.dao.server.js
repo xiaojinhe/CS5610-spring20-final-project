@@ -43,18 +43,18 @@ const updateUserAvatarURL = (userId, avatarURL) => {
   return userModel.update({_id: userId}, {$set: {avatarURL: avatarURL}});
 };
 
-const findAllRatingAndReviewsOrCommentsForUser = (userId) => {
+const findAllRatingAndCommentsOrReviewsForUser = (userId) => {
   return userModel
     .findOne({_id: userId}, {ratingAndCommentsOrReviews: 1})
     .populate('ratingAndCommentsOrReviews')
     .exec();
 };
 
-const updateUserRatingAndReviewOrComment = (userId, reviewOrCommentId) => {
+const updateUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
   return userModel.update({_id: userId}, {$push: {ratingAndCommentsOrReviews: reviewOrCommentId}})
 };
 
-const deleteUserRatingAndReviewOrComment = (userId, reviewOrCommentId) => {
+const deleteUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
   return userModel.update({_id: userId}, {$pull: {ratingAndCommentsOrReviews: reviewOrCommentId}})
 };
 
@@ -112,9 +112,9 @@ module.exports = {
   updateUserPhone,
   updateUserEmail,
   updateUserAvatarURL,
-  findAllRatingAndReviewsOrCommentsForUser,
-  updateUserRatingAndReviewOrComment,
-  deleteUserRatingAndReviewOrComment,
+  findAllRatingAndCommentsOrReviewsForUser,
+  updateUserRatingAndCommentOrReview,
+  deleteUserRatingAndCommentOrReview,
   findAllFavoriteMoviesForUser,
   updateUserFavoriteMovie,
   deleteUserFavoriteMovie,
