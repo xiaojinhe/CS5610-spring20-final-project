@@ -8,7 +8,7 @@ findUserByCredentials = (credentials) => {
 };
 
 findUserById = (userId) => {
-  return userModel.find({_id: userId});
+  return userModel.findById(userId);
 };
 
 findAllUsers = () => {
