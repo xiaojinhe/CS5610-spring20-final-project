@@ -1,4 +1,5 @@
 const userDao = require('../data/models/user.dao.server');
+const RCRDao = require('../data/models/ratingAndCommentOrReview.dao.server');
 
 module.exports = function (app) {
 
@@ -24,7 +25,7 @@ module.exports = function (app) {
     })
 
     /* ========= FOLLOWS ======== */
-    // TODO: GET all follows/followedBys
+    // TODO: GET all follows/followedBys, do we have separate api for followedBy?
     app.get('/api/users/:uid/follows', (req, res) => {
         const uid = req.params['uid'];
 
@@ -59,14 +60,14 @@ module.exports = function (app) {
     app.get('/api/users/:uid/favorites', (req, res) => {
         const uid = req.params['uid'];
         userDao.findAllFavoriteMoviesForUser(uid)
-            .then(users => res.json(users))
+            .then(movies => res.json(movies))
     })
 
     // TODO: add a favorite
     app.post('/api/users/:uid/favorites', (req, res) => {
         const uid = req.params['uid'];
         userDao.updateUserFavoriteMovie(uid, req.body)
-            .then(user => res.json(user))
+            .then(movie => res.json(movie))
 
     })
 
@@ -74,7 +75,7 @@ module.exports = function (app) {
     app.delete('/api/users/:uid/favorites', (req, res) => {
         const uid = req.params['uid'];
         userDao.deleteUserFavoriteMovie(uid, req.body)
-            .then(user => res.json(user))
+            .then(movie => res.json(movie))
 
     })
 
@@ -83,17 +84,16 @@ module.exports = function (app) {
     // get comments of the regular user
     app.get('/api/users/:uid/comments', (req, res) => {
         const uid = req.params['uid'];
-        userDao.findAllRatingAndCommentsOrReviewsForUser(uid)
+        RCRDao.findAllRatingAndCommentOrReviewsForUser(uid)
             .then(comments => res.json(comments))
     })
 
     // get reviews of the critic
     app.get('/api/users/:uid/reviews', (req, res) => {
         const uid = req.params['uid'];
-        userDao.findAllRatingAndCommentsOrReviewsForUser(uid)
+        RCRDao.findAllRatingAndCommentOrReviewsForUser(uid)
             .then(reviews => res.json(reviews))
     })
-
 
     /* ========= LIKED REVIEWS ======== */
     // get likedReviews
