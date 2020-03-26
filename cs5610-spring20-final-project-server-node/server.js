@@ -16,8 +16,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-require('data/db')
-require('controllers/user.controller.server')(app)
-require('controllers/rating-comment-review.controller.server')(app)
+require('./data/db')()
+require('./controllers/user.controller.server')(app)
+require('./controllers/rating-comment-review.controller.server')(app)
 
 app.listen(process.env.PORT || 3000);
