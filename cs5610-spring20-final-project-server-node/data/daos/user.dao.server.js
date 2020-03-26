@@ -78,6 +78,10 @@ deleteUserLikedReview = (userId, reviewId) => {
   return userModel.update({_id: userId}, {$pull: {likedReviews: reviewId}});
 };
 
+findAllFollowsForUser = (userId) =>{
+  return userModel.find({_id: userId}, 'follows')
+}
+
 updateUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {follows: userInfo}});
 };
@@ -85,6 +89,10 @@ updateUserFollows = (userId, userInfo) => {
 deleteUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$pull: {follows: userInfo}});
 };
+
+findAllFansForUser = (userId) =>{
+  return userModel.find({_id: userId}, 'followedBy')
+}
 
 updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});
@@ -113,8 +121,10 @@ module.exports = {
   findAllLikedReviewsForUser,
   updateUserLikedReview,
   deleteUserLikedReview,
+  findAllFollowsForUser,
   updateUserFollows,
   deleteUserFollows,
+  findAllFansForUser,
   updateUserFollowedBy,
   deleteUserFollowedBy
 };
