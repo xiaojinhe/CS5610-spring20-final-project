@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ratingAndCommentAndReviewSchema = new mongoose.Schema(
+const ratingAndCommentAndReviewSchema = mongoose.Schema(
   {
       tmdbId: String,
       movieName: String,
@@ -8,7 +8,13 @@ const ratingAndCommentAndReviewSchema = new mongoose.Schema(
       rating: Number,
       userId: String,
       username: String,
-      type: String,
+      type: {
+            type: String,
+            enum: [
+                  'COMMENT',
+                  'REVIEW'
+            ]
+      },
       title: String,
       content: String,
       likes: Number,

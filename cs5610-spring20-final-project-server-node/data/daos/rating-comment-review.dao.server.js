@@ -1,7 +1,4 @@
-const mongoose = require('mongoose');
-const ratingAndCommentAndReviewSchema = require('./ratingAndCommentOrReview.schema.server');
-
-const ratingAndCommentOrReviewModel = mongoose.model('RatingAndCommentOrReviewModel', ratingAndCommentAndReviewSchema);
+const ratingAndCommentOrReviewModel = require('../models/rating-comment-review/rating-comment-review.model.server');
 
 findRatingAndCommentOrReviewById = (id) => {
   return ratingAndCommentOrReviewModel.findById(id);
@@ -37,6 +34,14 @@ findAllRatingAndCommentOrReviewsForMovie = (tmdbId) => {
   return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId});
 };
 
+findAllReviewsForMovie = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'REVIEW'});
+};
+
+findAllCommentsForMovie = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'COMMENT'});
+};
+
 findAllRatingAndCommentOrReviewsForUser = (userId) => {
   return ratingAndCommentOrReviewModel.find({userId: userId});
 };
@@ -50,6 +55,8 @@ module.exports = {
   updateLikes,
   updateDislikes,
   findAllRatingAndCommentOrReviewsForMovie,
+  findAllReviewsForMovie,
+  findAllCommentsForMovie,
   findAllRatingAndCommentOrReviewsForUser
 };
 

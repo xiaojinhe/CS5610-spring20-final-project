@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema(
+const userSchema = mongoose.Schema(
   {
     username: String,
     password: String,
@@ -14,7 +14,13 @@ const userSchema = new mongoose.Schema(
     },
     phone: String,
     email: String,
-    role: String,
+    role: {
+      type: String,
+      enum: [
+        'REGULAR',
+        'CRITIC'
+      ]
+    },
     avatarURL: String,
     ratingAndCommentsOrReviews: [
       {
