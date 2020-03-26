@@ -11,5 +11,6 @@ userDao.findAllFavoriteMoviesForUser('5e7ad2ba396cf661b0963cf1').then(movies => 
 
 const reviewDao = require('./daos/rating-comment-review.dao.server');
 // reviewDao.deleteRatingAndCommentOrReview('5e7ad458146d6961c47ed2fa').then(res => console.log(res));
-reviewDao.findAllRatingAndCommentOrReviews().then(records => console.log(records));
-reviewDao.findAllReviewsForMovie('2').then(records => console.log(records));
+// reviewDao.findAllRatingAndCommentOrReviews().then(records => console.log(records));
+// reviewDao.updateLikes("5e7ad1325a49b8b4733d4a4a", 10).then(status => console.log(status));
+reviewDao.findAllReviewsForMovieSortedByLikes("2").then(records => console.log(records));

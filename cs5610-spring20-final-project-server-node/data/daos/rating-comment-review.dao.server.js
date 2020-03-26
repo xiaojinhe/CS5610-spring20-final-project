@@ -34,16 +34,24 @@ findAllRatingAndCommentOrReviewsForMovie = (tmdbId) => {
   return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId});
 };
 
-findAllReviewsForMovie = (tmdbId) => {
-  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'REVIEW'});
+findAllRatingAndCommentOrReviewsForMovieSortedByDate = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId}).sort({date: -1});
 };
 
-findAllCommentsForMovie = (tmdbId) => {
-  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'COMMENT'});
+findAllReviewsForMovieSortedByDate = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'REVIEW'}).sort({date: -1});
+};
+
+findAllReviewsForMovieSortedByLikes = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'REVIEW'}).sort({likes: -1});
+};
+
+findAllCommentsForMovieSortedByDate = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'COMMENT'}).sort({date: -1});
 };
 
 findAllRatingAndCommentOrReviewsForUser = (userId) => {
-  return ratingAndCommentOrReviewModel.find({userId: userId});
+  return ratingAndCommentOrReviewModel.find({userId: userId}).sort({date: -1});
 };
 
 module.exports = {
@@ -55,8 +63,10 @@ module.exports = {
   updateLikes,
   updateDislikes,
   findAllRatingAndCommentOrReviewsForMovie,
-  findAllReviewsForMovie,
-  findAllCommentsForMovie,
+  findAllRatingAndCommentOrReviewsForMovieSortedByDate,
+  findAllReviewsForMovieSortedByDate,
+  findAllReviewsForMovieSortedByLikes,
+  findAllCommentsForMovieSortedByDate,
   findAllRatingAndCommentOrReviewsForUser
 };
 

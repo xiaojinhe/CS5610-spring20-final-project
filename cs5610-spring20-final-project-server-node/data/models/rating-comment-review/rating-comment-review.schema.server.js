@@ -18,7 +18,8 @@ const ratingAndCommentAndReviewSchema = mongoose.Schema(
       title: String,
       content: String,
       likes: Number,
-      dislikes: Number
+      dislikes: Number,
+      date: Date
   }, {collection: 'ratings_comments_reviews'});
 
 module.exports = ratingAndCommentAndReviewSchema;
