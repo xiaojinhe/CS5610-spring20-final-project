@@ -14,6 +14,10 @@ module.exports = function (app) {
     app.post('/api/movies/:mid/reviews', createReview);
     app.delete('/api/reviews/:rid', deleteReview);
     // TODO: like/dislike a review
+    app.post('/api/reviews/:rid/likes', likeReview);
+    app.delete('/api/reviews/:rid/likes', unlikeReview);
+    app.post('/api/reviews/:rid/dislikes', dislikeReview);
+    app.delete('/api/reviews/:rid/dislikes', unDislikeReview);
 
     function findReviewsForMovie(req, res) {
         const tmdbId = req.params['mid'];
@@ -46,6 +50,22 @@ module.exports = function (app) {
                     res.sendStatus(200)
                 }
             })
+    }
+
+    function likeReview(req, res) {
+
+    }
+
+    function unlikeReview(req, res) {
+
+    }
+
+    function dislikeReview(req, res) {
+
+    }
+
+    function unDislikeReview(req, res) {
+
     }
 
     /* ========= COMMENTS ======== */

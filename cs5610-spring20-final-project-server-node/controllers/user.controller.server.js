@@ -106,7 +106,6 @@ module.exports = function (app) {
 
     /* ========= FAVORITES ======== */
     app.get('/api/users/:uid/favorites', getAllFavorites);
-    // TODO: how to get uid? use'/api/users/:uid/favorites' ?
     app.post('/api/movies/:mid/favorites', addFavorite);
     app.delete('/api/movies/:mid/favorites', removeFavorite);
 
