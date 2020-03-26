@@ -14,7 +14,13 @@ const userSchema = mongoose.Schema(
     },
     phone: String,
     email: String,
-    role: String,
+    role: {
+      type: String,
+      enum: [
+        'REGULAR',
+        'CRITIC'
+      ]
+    },
     avatarURL: String,
     ratingAndCommentsOrReviews: [
       {

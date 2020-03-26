@@ -10,5 +10,6 @@ userDao.findAllFavoriteMoviesForUser('5e7ad2ba396cf661b0963cf1').then(movies => 
 //                    favoriteMovies: [{tmdbId: "1", movieName: "lalala", rating: 9.0}]});
 
 const reviewDao = require('./models/ratingAndCommentOrReview/ratingAndCommentOrReview.dao.server');
-reviewDao.deleteRatingAndCommentOrReview('5e7ad458146d6961c47ed2fa').then(res => console.log(res));
+// reviewDao.deleteRatingAndCommentOrReview('5e7ad458146d6961c47ed2fa').then(res => console.log(res));
 reviewDao.findAllRatingAndCommentOrReviews().then(records => console.log(records));
+reviewDao.findAllReviewsForMovie('2').then(records => console.log(records));

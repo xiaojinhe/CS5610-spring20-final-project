@@ -8,7 +8,13 @@ const ratingAndCommentAndReviewSchema = mongoose.Schema(
       rating: Number,
       userId: String,
       username: String,
-      type: String,
+      type: {
+            type: String,
+            enum: [
+                  'COMMENT',
+                  'REVIEW'
+            ]
+      },
       title: String,
       content: String,
       likes: Number,

@@ -37,6 +37,14 @@ findAllRatingAndCommentOrReviewsForMovie = (tmdbId) => {
   return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId});
 };
 
+findAllReviewsForMovie = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'REVIEW'});
+};
+
+findAllCommentsForMovie = (tmdbId) => {
+  return ratingAndCommentOrReviewModel.find({tmdbId: tmdbId, type: 'COMMENT'});
+};
+
 findAllRatingAndCommentOrReviewsForUser = (userId) => {
   return ratingAndCommentOrReviewModel.find({userId: userId});
 };
@@ -50,6 +58,8 @@ module.exports = {
   updateLikes,
   updateDislikes,
   findAllRatingAndCommentOrReviewsForMovie,
+  findAllReviewsForMovie,
+  findAllCommentsForMovie,
   findAllRatingAndCommentOrReviewsForUser
 };
 
