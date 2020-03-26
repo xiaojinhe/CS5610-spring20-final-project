@@ -10,15 +10,18 @@ module.exports = function (app) {
     });
 
     /* ========= REVIEWS ======== */
-    // get reviews of a movie
-    app.get('/api/movies/:mid/reviews', (req, res) => {
+    app.get('/api/movies/:mid/reviews', findReviewsForMovie);
+    app.post('/api/movies/:mid/reviews', createReview);
+    app.delete('/api/reviews/:rid', deleteReview);
+    // TODO: like/dislike a review
+
+    function findReviewsForMovie(req, res) {
         const tmdbId = req.params['mid'];
         RCRDao.findAllRatingAndCommentOrReviewsForMovie(tmdbId)
             .then(reviews => res.json(reviews))
-    });
+    }
 
-    // create a new review
-    app.post('/api/movies/:mid/reviews', (req, res) => {
+    function createReview(req, res) {
         const tmdbId = req.params['mid'];
         RCRDao.createRatingAndCommentOrReview(req.body)
             .then(review => {
@@ -27,22 +30,31 @@ module.exports = function (app) {
                     res.json(review)
                 }
             })
-    });
+    }
 
-    // TODO: DELETE a review
-    // TODO: like/dislike a review
+    function deleteReview(req, res) {
+        const rid = req.params['rid'];
+        RCRDao.deleteRatingAndCommentOrReview(rid)
+            .then(review => {
+                if (review) {
+                    userDao.deleteUserRatingAndCommentOrReview(review.userId, review._id)
+                    res.json(review)
+                }
+            })
+    }
 
     /* ========= COMMENTS ======== */
-    // get comments of a movie
-    app.get('/api/movies/:mid/comments', (req, res) => {
+    app.get('/api/movies/:mid/comments', findCommentsForMovie);
+    app.post('/api/movies/:mid/comments', createComment);
+    app.delete('/api/comments/:cid', deleteComment);
+
+    function findCommentsForMovie(req, res) {
         const tmdbId = req.params['mid'];
         RCRDao.findAllRatingAndCommentOrReviewsForMovie(tmdbId)
             .then(comments => res.json(comments))
-    });
+    }
 
-    // create a new comment
-    app.post('/api/movies/:mid/comments', (req, res) => {
-        const tmdbId = req.params['mid'];
+    function createComment(req, res) {
         RCRDao.createRatingAndCommentOrReview(req.body)
             .then(comment => {
                 if (comment) {
@@ -50,7 +62,16 @@ module.exports = function (app) {
                     res.json(comment)
                 }
             })
-    });
+    }
 
-    // TODO: DELETE a comment
+    function deleteComment(req, res) {
+        const cid = req.params['cid'];
+        RCRDao.deleteRatingAndCommentOrReview(cid)
+            .then(comment => {
+                if (comment) {
+                    userDao.deleteUserRatingAndCommentOrReview(comment.userId, comment._id)
+                    res.json(comment)
+                }
+            })
+    }
 }
