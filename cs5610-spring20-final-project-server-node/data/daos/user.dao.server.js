@@ -79,7 +79,7 @@ deleteUserLikedReview = (userId, reviewId) => {
 };
 
 findAllFollowsForUser = (userId) =>{
-  return userModel.find({_id: userId}, 'follows')
+  return userModel.findOne({_id: userId}, 'follows')
 }
 
 updateUserFollows = (userId, userInfo) => {
@@ -91,7 +91,7 @@ deleteUserFollows = (userId, userInfo) => {
 };
 
 findAllFansForUser = (userId) =>{
-  return userModel.find({_id: userId}, 'followedBy')
+  return userModel.findOne({_id: userId}, 'followedBy')
 }
 
 updateUserFollowedBy = (userId, userInfo) => {
