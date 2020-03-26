@@ -1,7 +1,4 @@
-const mongoose = require('mongoose');
-const ratingAndCommentAndReviewSchema = require('./ratingAndCommentOrReview.schema.server');
-
-const ratingAndCommentOrReviewModel = mongoose.model('RatingAndCommentOrReviewModel', ratingAndCommentAndReviewSchema);
+const ratingAndCommentOrReviewModel = require('../models/rating-comment-review/rating-comment-review.model.server');
 
 findRatingAndCommentOrReviewById = (id) => {
   return ratingAndCommentOrReviewModel.findById(id);
