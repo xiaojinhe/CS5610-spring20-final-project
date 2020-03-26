@@ -16,7 +16,6 @@ class UserProfileComponent extends React.Component {
     }
   }
 
-
   render() {
     return (
       <div>

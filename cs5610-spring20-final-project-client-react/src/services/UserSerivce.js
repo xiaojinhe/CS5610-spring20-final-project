@@ -42,6 +42,24 @@ export const findAllFollowersByUserId = (uid) =>
   fetch(`${USER_API_URL}/${uid}/followers`)
     .then(response => response.json());
 
+//todo：uid should be the id of the target user? or current user?
+export const followUser = (uid, userInfo) =>
+  fetch(`${USER_API_URL}/${uid}/follows`,{
+    method: "POST",
+    body: JSON.stringify(userInfo),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json())
+
+export const unfollowerUser = (uid, userInfo) =>
+  fetch(`${USER_API_URL}/${uid}/follows`,{
+    method: "DELETE",
+    body: JSON.stringify(userInfo),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json())
 
 /* ======= FAVORITES ========= */
 //add movie to favorites
@@ -74,5 +92,7 @@ export default {
   findAllFollowsByUserId,
   findAllFollowersByUserId,
   addMovieToFavorites,
-  removeMovieFromFavorites
+  removeMovieFromFavorites,
+  followUser,
+  unfollowerUser
 }

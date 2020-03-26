@@ -9,18 +9,17 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   render() {
-    console.log(this.props.review)
     return (
       <div className="p-2 mt-2 row">
-        {this.props.review.multimedia && this.props.review.multimedia.src &&
+        {this.props.review.moviePosterURL &&
         <div className="col-2">
           {
             this.props.isInProfile ?
-              <Link to={`/details/${this.props.review.mid}`}>
-                <img className="img-thumbnail" src={this.props.review.multimedia.src} alt=""/>
+              <Link to={`/details/${this.props.review.tmdbId}`}>
+                <img className="img-thumbnail" src={this.props.review.moviePosterURL} alt=""/>
               </Link>
               :
-              <img className="img-thumbnail" src={this.props.review.multimedia.src} alt=""/>
+              <img className="img-thumbnail" src={this.props.review.moviePosterURL} alt=""/>
           }
         </div>
         }
@@ -33,12 +32,12 @@ class MovieReviewItemComponent extends React.Component {
           {
             this.props.isInProfile ?
               <small>Review for&nbsp;
-                <Link to={`/details/${this.props.review.mid}`}>
-                  {this.props.review.display_title}
+                <Link to={`/details/${this.props.review.tmdbId}`}>
+                  {this.props.review.movieName}
                 </Link>
               </small>
               :
-              <small>Review for {this.props.review.display_title}</small>
+              <small>Review for {this.props.review.movieName}</small>
           }
           <div>
             {/*//todo: change to actual rating */}
@@ -50,9 +49,10 @@ class MovieReviewItemComponent extends React.Component {
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <span className="ml-2">Published at {this.props.review.publication_date}</span>
+            <span className="ml-2">Published at {this.props.review.date}</span>
           </div>
-          <div>{this.props.review.summary_short}</div>
+          {/*//TODO: truncate the content*/}
+          <div>{this.props.review.content}</div>
           <div>
             {/*//todo: change to actual rating */}
             <button className="btn"

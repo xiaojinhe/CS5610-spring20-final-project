@@ -9,13 +9,12 @@ const stateToPropertyMapper = (state) => ({
 
 const dispatchToPropertyMapper = (dispatch) => ({
   findUserById: (userId) => {
-    const user = UserService.findUserById(userId);
-    dispatch(findUserByIdAction(user))
+    UserService.findUserById(userId)
+      .then(user => dispatch(findUserByIdAction(user)));
   },
   updateUser: (userId, user) => {
-    //todo: call service api to update user
-    UserService.findUserById(userId);
-    dispatch(updateUserAction(user))
+    UserService.updateUser(userId, user)
+      .dispatch(updateUserAction(user));
   }
 });
 

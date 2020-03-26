@@ -1,4 +1,4 @@
-//TODO: may change due to server change and createComment?
+//TODO: may change due to server change because createReview and createComment may share same url?
 export const createReview = (userId, review) =>
   fetch("", {
     method: "POST",
@@ -40,7 +40,7 @@ export const findAllCommentsByUserId = (userId) =>
   fetch(`${USER_API_URL}/${userId}/reviews`)
     .then(response => response.json());
 
-export const findAllLikedRevewsForUser = (userId) =>
+export const findAllLikedReviewsForUser = (userId) =>
   fetch(`${USER_API_URL}/${userId}/likedReviews`)
     .then(response => response.json());
 
@@ -58,6 +58,6 @@ export default {
   findAllCommentsByMovieId,
   findAllReviewsByUserId,
   findAllCommentsByUserId,
-  findAllLikedRevewsForUser,
+  findAllLikedReviewsForUser,
   likeReview
 }

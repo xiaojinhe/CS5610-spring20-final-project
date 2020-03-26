@@ -15,22 +15,22 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-favorites" role="tab">
           Favorites
         </a>
-        {user.role === "regular" &&
+        {user.role === "REGULAR" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-following" role="tab">
           Following
         </a>
         }
-        {user.role === "critic" &&
+        {user.role === "CRITIC" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-followers" role="tab">
           Followers
         </a>
         }
-        {user.role === "regular" &&
+        {user.role === "REGULAR" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-comments" role="tab">
           Comments
         </a>
         }
-        {user.role === "critic" &&
+        {user.role === "CRITIC" &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-reviews" role="tab">
           Reviews
         </a>
@@ -44,7 +44,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
       <div className="tab-pane fade show active" id="nav-profile" role="tabpanel">
         <UserProfileInfoComponent
           user={user}
-        updateUser={updateUser}/>
+          updateUser={updateUser}/>
       </div>
       <div className="tab-pane fade show" id="nav-favorites" role="tabpanel">
         {user.favorites && user.favorites.map(movie =>
@@ -54,39 +54,46 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         )}
       </div>
       <div className="tab-pane fade show" id="nav-following" role="tabpanel">
-        {user.following && user.following.map(f =>
+        {user.follows && user.follows.map(follow =>
           <UserItemComponent
-            user={f}
-            key={f.uid}
+            user={follow}
+            key={follow.userId}
           />
         )}
       </div>
       <div className="tab-pane fade show" id="nav-followers" role="tabpanel">
-        {user.followers && user.followers.map(f =>
+        {user.followedBy && user.followedBy.map(follower =>
           <UserItemComponent
-            user={f}
-            key={f.uid}
+            user={follower}
+            key={follower.userId}
           />
         )}
       </div>
       <div className="tab-pane fade show" id="nav-comments" role="tabpanel">
-        {user.comments && user.comments.map(comment =>
+        {user.ratingAndCommentsOrReviews && user.ratingAndCommentsOrReviews.map(comment =>
           <MovieCommentItemComponent
             isInProfile={true}
             comment={comment}
-            key={comment.cid}/>
+            key={comment._id}/>
         )}
       </div>
+
       <div className="tab-pane fade show" id="nav-reviews" role="tabpanel">
-        {user.reviews && user.reviews.map(review =>
+        {user.ratingAndCommentsOrReviews && user.ratingAndCommentsOrReviews.map(review =>
           <MovieReviewItemComponent
             isInProfile={true}
             review={review}
-            key={review.rid}/>
+            key={review._id}/>
         )}
       </div>
+
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
-        Liked Reviews
+        {user.likedReviews && user.likedReviews.map(review =>
+          <MovieReviewItemComponent
+            isInProfile={true}
+            review={review}
+            key={review._id}/>
+        )}
       </div>
     </div>
   </div>

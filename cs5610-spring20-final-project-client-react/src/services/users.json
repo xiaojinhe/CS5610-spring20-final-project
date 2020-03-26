@@ -5,7 +5,7 @@
     "password": "***",
     "phone": "1234567890",
     "email": "abc@abc.com",
-    "role": "regular",
+    "role": "REGULAR",
     "favorites": [
       {
         "id": "769",
@@ -27,11 +27,11 @@
     "following": [
       {
         "uid": "2",
-        "username": "webdev_critic"
+        "username": "webdev_CRITIC"
       },
       {
         "uid": "3",
-        "username": "critic_5566"
+        "username": "CRITIC_5566"
       }
     ],
     "comments": [
@@ -59,11 +59,11 @@
   },
   {
     "uid": "2",
-    "username": "webdev_critic",
+    "username": "webdev_CRITIC",
     "password": "***",
     "phone": "1234567890",
     "email": "abc@abc.com",
-    "role": "critic",
+    "role": "CRITIC",
     "favorites": [],
     "followers": [
       {
@@ -104,11 +104,11 @@
   },
   {
     "uid": "3",
-    "username": "critic_5566",
+    "username": "CRITIC_5566",
     "password": "***",
     "phone": "1234567890",
     "email": "abc@abc.com",
-    "role": "critic",
+    "role": "CRITIC",
     "favorites": [],
     "followers": [
       {
