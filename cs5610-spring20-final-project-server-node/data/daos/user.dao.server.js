@@ -78,6 +78,10 @@ deleteUserLikedReview = (userId, reviewId) => {
   return userModel.update({_id: userId}, {$pull: {likedReviews: reviewId}});
 };
 
+deleteLikedReviewById = (reviewId) => {
+  return userModel.deleteMany({likedReviews: reviewId});
+};
+
 findAllFollowsForUser = (userId) =>{
   return userModel.findOne({_id: userId}, 'follows')
 }
@@ -121,6 +125,7 @@ module.exports = {
   findAllLikedReviewsForUser,
   updateUserLikedReview,
   deleteUserLikedReview,
+  deleteLikedReviewById,
   findAllFollowsForUser,
   updateUserFollows,
   deleteUserFollows,

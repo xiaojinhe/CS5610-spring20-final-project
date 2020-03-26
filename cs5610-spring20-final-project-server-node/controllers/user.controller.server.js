@@ -35,7 +35,7 @@ module.exports = function (app) {
     function updateUser(req, res) {
         const uid = req.params['uid'];
         userDao.updateUser(uid, req.body)
-            .then(user => res.json(user))
+            .then(result => res.json(result))
     }
 
     /* ========= FOLLOWS ======== */
@@ -70,10 +70,10 @@ module.exports = function (app) {
         }
 
         userDao.updateUserFollows(user1Info.userId, user2Info)
-            .then(user => {
-                if (user) {
+            .then(result => {
+                if (result) {
                     userDao.updateUserFollowedBy(user2Info.userId, user1Info)
-                        .then(user => res.sendStatus(user ? 200 : 404))
+                        .then(result => res.sendStatus(result ? 200 : 404))
                 } else {
                     res.sendStatus(404);
                 }
@@ -94,10 +94,10 @@ module.exports = function (app) {
         }
 
         userDao.deleteUserFollows(user1Info.userId, user2Info)
-            .then(user => {
-                if (user) {
+            .then(result => {
+                if (result.n === 1) {
                     userDao.deleteUserFollowedBy(user2Info.userId, user1Info)
-                        .then(user => res.sendStatus(user ? 200 : 404))
+                        .then(result2 => res.sendStatus(result2 === 1 ? 200 : 404))
                 } else {
                     res.sendStatus(404);
                 }

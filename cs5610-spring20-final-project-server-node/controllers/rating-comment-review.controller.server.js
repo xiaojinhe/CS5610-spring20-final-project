@@ -33,12 +33,17 @@ module.exports = function (app) {
     }
 
     function deleteReview(req, res) {
+        // TODO: get current user id
+        const uid = req.session['uid'];
         const rid = req.params['rid'];
         RCRDao.deleteRatingAndCommentOrReview(rid)
-            .then(review => {
-                if (review) {
-                    userDao.deleteUserRatingAndCommentOrReview(review.userId, review._id)
-                    res.json(review)
+            .then(result => {
+                if (result === 1) {
+                    // delete from author review list
+                    userDao.deleteUserRatingAndCommentOrReview(uid, rid);
+                    // delete from liked list
+                    userDao.deleteLikedReviewById(rid);
+                    res.sendStatus(200)
                 }
             })
     }
@@ -65,12 +70,15 @@ module.exports = function (app) {
     }
 
     function deleteComment(req, res) {
+        // TODO: get current user id
+        const uid = req.session['uid'];
         const cid = req.params['cid'];
         RCRDao.deleteRatingAndCommentOrReview(cid)
-            .then(comment => {
-                if (comment) {
-                    userDao.deleteUserRatingAndCommentOrReview(comment.userId, comment._id)
-                    res.json(comment)
+            .then(result => {
+                if (result === 1) {
+                    // delete from author comment list
+                    userDao.deleteUserRatingAndCommentOrReview(uid, cid);
+                    res.sendStatus(200)
                 }
             })
     }
