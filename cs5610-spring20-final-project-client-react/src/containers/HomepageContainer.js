@@ -1,9 +1,9 @@
 import React from 'react'
-import TMDbService from "../services/TMDbService";
 import MovieCardComponent from "../components/MovieCardComponent";
 import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import movieReviewService from "../services/MovieReviewService";
+import MovieService from "../services/MovieService";
 
 const topRatedMoviesDisplayNum = 18;
 const nowPlayingMoviesDisplayNum = 18;
@@ -18,7 +18,7 @@ class HomepageContainer extends React.Component {
     };
 
     componentDidMount() {
-        Promise.all([TMDbService.findTopRatedMovies(), TMDbService.findNowPlayingMovies(), movieReviewService.findCriticPickedMovieReviews()])
+        Promise.all([MovieService.findTopRatedMovies(), MovieService.findNowPlayingMovies(), movieReviewService.findCriticPickedMovieReviews()])
             .then(([topRatedMovies, nowPlayingMovies, pickedReviews]) => {
                 this.setState(
                     {

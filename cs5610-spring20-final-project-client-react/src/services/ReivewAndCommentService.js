@@ -1,33 +1,44 @@
+import {MOVIE_API_URL, USER_API_URL} from "../common/constants";
+
 //TODO: may change due to server change because createReview and createComment may share same url?
-export const createReview = (userId, review) =>
-  fetch("", {
+export const createReview = (movieId, review) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/reviews`, {
     method: "POST",
-    body: JSON.stringify(user),
+    body: JSON.stringify(review),
     headers: {
       'content-type': 'application/json'
     }
   }).then(response => response.json());
 
-export const deleteReview = (userId, reviewId) =>
-  fetch("", {
+
+export const createComment = (movieId, comment) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/comments`, {
+    method: "POST",
+    body: JSON.stringify(comment),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json());
+
+export const deleteReview = (movieId, reviewId) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/reviews`, {
     method: "DELETE"
   }).then(response => response.json());
 
-export const deleteComment = (userId, commentId) =>
-  fetch("", {
+export const deleteComment = (movieId, commentId) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/comments`, {
     method: "DELETE"
   }).then(response => response.json());
 
 
 /* ============ Find by Movie ============= */
-import {USER_API_URL} from "../common/constants";
 
-export const findAllReviewsByMovieId = (tmbdId) =>
-  fetch("")
+export const findAllReviewsByMovieId = (movieId) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/reviews`)
     .then(response => response.json());
 
-export const findAllCommentsByMovieId = (tmdbId) =>
-  fetch("")
+export const findAllCommentsByMovieId = (movieId) =>
+  fetch(`${MOVIE_API_URL}/${movieId}/comments`)
     .then(response => response.json());
 
 /* ============ Find by User ============= */
@@ -53,7 +64,10 @@ export const likeReview = (userId, reviewId) =>
   }).then(response => response.json());
 
 export default {
-  findCommentsOrReviewsByUserId,
+  createReview,
+  createComment,
+  deleteReview,
+  deleteComment,
   findAllReviewsByMovieId,
   findAllCommentsByMovieId,
   findAllReviewsByUserId,

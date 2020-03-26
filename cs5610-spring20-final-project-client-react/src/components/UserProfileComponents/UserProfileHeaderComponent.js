@@ -4,7 +4,7 @@ import "./userProfile.css"
 import {Link} from "react-router-dom";
 
 const enableEditProfile = true;
-const UserProfileHeaderComponent = ({user}) =>
+const UserProfileHeaderComponent = ({user, followUser}) =>
 
   <div className="card bg-light mt-5">
     <div className="card-body">

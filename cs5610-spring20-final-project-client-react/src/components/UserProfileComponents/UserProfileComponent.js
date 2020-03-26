@@ -26,7 +26,8 @@ class UserProfileComponent extends React.Component {
             this.props.user &&
             <div>
               <UserProfileHeaderComponent user={this.props.user}
-                                          isLoggedInUser={this.props.isLoggedInUser}/>
+                                          isLoggedInUser={this.props.isLoggedInUser}
+                                          followUser = {this.props.followUser}/>
               <UserProfileTabComponent user={this.props.user}
                                        updateUser={this.props.updateUser}/>
             </div>

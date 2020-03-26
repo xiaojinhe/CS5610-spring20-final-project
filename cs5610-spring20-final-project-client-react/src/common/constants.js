@@ -45,6 +45,7 @@ export const MOVIE_REVIEWS_API_URL =
 const BASE_API_URL = "http://localhost:3000"
 
 export const USER_API_URL = `${BASE_API_URL}/api/users`
+export const MOVIE_API_URL = `${BASE_API_URL}/api/movies`
 
 export const FIND_MOVIE_BY_ID = "FIND_MOVIE_BY_ID";
 export const FIND_REVIEWS_FOR_MOVIE = "FIND_REVIEWS_FOR_MOVIE";

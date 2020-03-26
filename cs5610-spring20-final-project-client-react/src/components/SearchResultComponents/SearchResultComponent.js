@@ -1,7 +1,7 @@
 import React from 'react'
-import {searchMovies} from "../../services/TMDbService";
 import MovieItemComponent from "./MovieItemComponent";
 import NavComponent from "../NavComponent";
+import MovieService from "../../services/MovieService";
 
 class SearchResultComponent extends React.Component {
     state = {
@@ -9,7 +9,7 @@ class SearchResultComponent extends React.Component {
     };
 
     componentDidMount() {
-        searchMovies(this.props.criteria)
+        MovieService.searchMovies(this.props.criteria)
             .then(response =>
                 this.setState({
                     results: response.results

@@ -114,7 +114,7 @@ class MovieDetailComponent extends React.Component {
            </div>
           }
 
-          {this.props.reviews && this.props.reviews.results &&
+          {this.props.reviews &&
            <div className="movie-review m-1 mt-3">
             <div className="row">
               <div className="col-9">
@@ -127,7 +127,7 @@ class MovieDetailComponent extends React.Component {
               </div>
             </div>
             <MovieReviewListComponent
-              pickedReviews={this.props.reviews.results.slice(0, pickedReviewDisplayNum)}/>
+              pickedReviews={this.props.reviews.slice(0, pickedReviewDisplayNum)}/>
           </div>}
 
           {this.props.movie.similar.results &&

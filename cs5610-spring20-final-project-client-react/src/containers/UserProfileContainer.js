@@ -15,6 +15,9 @@ const dispatchToPropertyMapper = (dispatch) => ({
   updateUser: (userId, user) => {
     UserService.updateUser(userId, user)
       .dispatch(updateUserAction(user));
+  },
+  followUser: (userId, user) => {
+    //TODO: call service and implement reducer
   }
 });
 
