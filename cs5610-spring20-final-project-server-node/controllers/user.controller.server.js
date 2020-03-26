@@ -1,5 +1,5 @@
 const userDao = require('../data/models/user.dao.server');
-const RCRDao = require('../data/models/ratingAndCommentOrReview.dao.server');
+const RCRDao = require('../data/models/rating-comment-review.dao.server');
 
 module.exports = function (app) {
 
@@ -64,7 +64,7 @@ module.exports = function (app) {
     })
 
     // TODO: add a favorite
-    app.post('/api/users/:uid/favorites', (req, res) => {
+    app.post('/api/movies/:mid/favorites', (req, res) => {
         const uid = req.params['uid'];
         userDao.updateUserFavoriteMovie(uid, req.body)
             .then(movie => res.json(movie))

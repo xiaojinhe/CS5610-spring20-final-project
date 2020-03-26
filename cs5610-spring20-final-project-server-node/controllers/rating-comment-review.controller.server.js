@@ -1,5 +1,5 @@
 const userDao = require('../data/models/user.dao.server');
-const RCRDao = require('../data/models/ratingAndCommentOrReview.dao.server');
+const RCRDao = require('../data/models/rating-comment-review.dao.server');
 
 module.exports = function (app) {
     /* ========= REVIEWS ======== */
