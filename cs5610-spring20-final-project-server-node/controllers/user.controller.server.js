@@ -1,9 +1,14 @@
-const userDao = require('../data/models/user.dao.server');
-const RCRDao = require('../data/models/rating-comment-review.dao.server');
+const userDao = require('../data/daos/user.dao.server');
+const RCRDao = require('../data/daos/rating-comment-review.dao.server');
 
 module.exports = function (app) {
 
     /* ========= USERS ======== */
+    app.get('/api/users', (req, res) => {
+        userDao.findAllUsers()
+            .then(users => res.json(users))
+    });
+
     // get a user by id
     app.get('/api/users/:uid', (req, res) => {
         const uid = req.params['uid'];
@@ -12,9 +17,16 @@ module.exports = function (app) {
     });
 
     // create a new user
+    // TODO: use '/api/register' ?
     app.post('/api/users', (req, res) => {
         userDao.createUser(req.body)
-            .then(user => res.json(user))
+            .then((user) => {
+                      if (user) {
+                          // req.login(user)
+                          res.json(user)
+                      }
+                  }
+            )
     })
 
     // update
@@ -25,34 +37,65 @@ module.exports = function (app) {
     })
 
     /* ========= FOLLOWS ======== */
-    // TODO: GET all follows/followedBys, do we have separate api for followedBy?
+    // get all follows
     app.get('/api/users/:uid/follows', (req, res) => {
         const uid = req.params['uid'];
+        userDao.findAllFollowsForUser(uid)
+            .then(follows => res.json(follows))
+    })
 
+    // get all fans
+    app.get('/api/users/:uid/fans', (req, res) => {
+        const uid = req.params['uid'];
+        userDao.findAllFansForUser(uid)
+            .then(followers => res.json(followers))
     })
 
     // follow
     app.post('/api/users/:uid/follows', (req, res) => {
-        const user1Id = req.params['uid'];
-        userDao.updateUserFollows(user1Id, req.body)
-            .then(user => res.json(user))
+        // TODO: Get logged in user
+        const user1 = req.session['currentUser']
+        const user1Info = {
+            userId: user1._id,
+            username: user1.username
+        }
 
-        // TODO: updateUserFollowedBy
-        // const user2Id = req.body['_id']
-        // const user2Info = {} ???
-        // userDao.updateUserFollowedBy(user2Id, user2Info)
+        const user2Info = {
+            userId: req.body['_id'],
+            username: req.body['username']
+        }
+
+        // TODO: check both user exist
+        userDao.updateUserFollows(user1Info.userId, user2Info)
+            .then(user => {
+                if (user) {
+                    userDao.updateUserFollowedBy(user2Info.userId, user1Info)
+                }
+            })
+
     })
 
     // unfollow
     app.delete('/api/users/:uid/follows', (req, res) => {
-        const user1Id = req.params['uid'];
-        userDao.deleteUserFollows(user1Id, req.body)
-            .then(user => res.json(user))
+        // TODO: Get logged in user
+        const user1 = req.session['currentUser']
+        const user1Info = {
+            userId: user1._id,
+            username: user1.username
+        }
 
-        // TODO: deleteUserFollowedBy
-        // const user2Id = req.body['_id']
-        // const user2Info = {} ???
-        // userDao.deleteUserFollowedBy(user2Id, user2Info)
+        const user2Info = {
+            userId: req.body['_id'],
+            username: req.body['username']
+        }
+
+        // TODO: check both user exist
+        userDao.deleteUserFollows(user1Info.userId, user2Info)
+            .then(user => {
+                if (user) {
+                    userDao.deleteUserFollowedBy(user2Info.userId, user1Info)
+                }
+            })
     })
 
     /* ========= FAVORITES ======== */
@@ -60,27 +103,29 @@ module.exports = function (app) {
     app.get('/api/users/:uid/favorites', (req, res) => {
         const uid = req.params['uid'];
         userDao.findAllFavoriteMoviesForUser(uid)
-            .then(movies => res.json(movies))
+            .then(favorites => res.json(favorites))
     })
 
-    // TODO: add a favorite
+    // add a favorite
+    // TODO: API Design and how to get uid
     app.post('/api/movies/:mid/favorites', (req, res) => {
-        const uid = req.params['uid'];
+        const user = req.session['currentUser'];
+        const uid = user._id;
         userDao.updateUserFavoriteMovie(uid, req.body)
             .then(movie => res.json(movie))
 
     })
 
     // TODO: remove a favorite
-    app.delete('/api/users/:uid/favorites', (req, res) => {
-        const uid = req.params['uid'];
+    app.delete('/api/movies/:mid/favorites', (req, res) => {
+        const user = req.session['currentUser'];
+        const uid = user._id;
         userDao.deleteUserFavoriteMovie(uid, req.body)
             .then(movie => res.json(movie))
 
     })
 
     /* ========= RATINGS AND COMMENTS/REVIEWS ======== */
-    // TODO: SAME API?
     // get comments of the regular user
     app.get('/api/users/:uid/comments', (req, res) => {
         const uid = req.params['uid'];
@@ -100,9 +145,7 @@ module.exports = function (app) {
     app.get('/api/users/:uid/likedReviews', (req, res) => {
         const uid = req.params['uid'];
         userDao.findAllLikedReviewsForUser(uid)
-            .then(reviews => res.json(reviews))
+            .then(likedReviews => res.json(likedReviews))
     })
-
-    // TODO: user likes or dislikes a review
 
 }
