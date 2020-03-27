@@ -71,4 +71,5 @@ export const UPDATE_USER = "UPDATE_USER"
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 
-
+export const CRITIC_USER = "CRITIC"
+export const REGULAR_USER = "REGULAR"

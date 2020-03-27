@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './register.style.client.css';
+import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
 
 class RegisterComponent extends React.Component {
 
@@ -127,10 +128,10 @@ class RegisterComponent extends React.Component {
                       onChange={(event) => {
                         this.setState({role: event.target.value});
                       }}>
-                <option value="REGULAR">
+                <option value={REGULAR_USER}>
                   Regular User
                 </option>
-                <option value="CRITIC">
+                <option value={CRITIC_USER}>
                   Critic
                 </option>
               </select>
