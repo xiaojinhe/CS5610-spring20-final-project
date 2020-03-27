@@ -7,15 +7,18 @@ import UserProfileTabComponent from "./UserProfileTabComponent";
 //todo: need to separate the condition, when user is viewing his own profile
 class UserProfileComponent extends React.Component {
   componentDidMount() {
-    this.props.findUserById(this.props.userId)
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.userId !== prevProps.userId) {
+    if (this.props.userId) {
       this.props.findUserById(this.props.userId)
+    } else {
+      this.props.getCurrentUser()
     }
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.userId && this.props.userId !== prevProps.userId) {
+      this.props.findUserById(this.props.userId)
+    }
+  }
 
   render() {
     return (
@@ -27,7 +30,8 @@ class UserProfileComponent extends React.Component {
             this.props.user &&
             <div>
               <UserProfileHeaderComponent user={this.props.user}
-                                          isLoggedInUser={this.props.isLoggedInUser}/>
+                                          isLoggedInUser={this.props.isLoggedInUser}
+                                          followUser = {this.props.followUser}/>
               <UserProfileTabComponent user={this.props.user}
                                        updateUser={this.props.updateUser}/>
             </div>

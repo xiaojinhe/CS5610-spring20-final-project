@@ -9,8 +9,8 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
       {
         isInProfile &&
         <div className="col-1 pr-0 ml-1">
-          <Link to={`/details/${comment.movie.mid}`}>
-            <img src={TMDB_IMAGE_URL(200, comment.movie.poster_path)}
+          <Link to={`/details/${comment.tmdbId}`}>
+            <img src={TMDB_IMAGE_URL(200, comment.movie.moviePosterURL)}
                  alt="Poster"
                  className="img-thumbnail"
                  height="120"
@@ -25,15 +25,15 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
           {
             isInProfile ?
               <div>
-                <Link to={`/details/${comment.movie.mid}`}
+                <Link to={`/details/${comment.tmdbId}`}
                       className="font-weight-bold pr-2">
-                  {comment.movie.title}
+                  {comment.movieName}
                 </Link>
               </div>
               :
-              <Link to={`/profile/${comment.author}`}
+              <Link to={`/profile/${comment.username}`}
                     className="font-weight-bold pr-2">
-                {comment.author}
+                {comment.username}
               </Link>
           }
           {/*TODO: Need to change to actual comment rating and date*/}

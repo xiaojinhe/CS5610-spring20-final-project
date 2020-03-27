@@ -22,7 +22,7 @@ export const findAllMovieInfoById = (movie, comments, reviews) => ({
   type:FIND_ALL_MOVIE_INFO_BY_ID
 });
 
-export const findCommentsByID = (comments) => ({
+export const findCommentsForMovie = (comments) => ({
   comments: comments,
   type: FIND_COMMENTS_FOR_MOVIE
 });
