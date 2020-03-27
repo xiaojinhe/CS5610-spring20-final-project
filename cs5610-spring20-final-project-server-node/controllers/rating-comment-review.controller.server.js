@@ -19,8 +19,9 @@ module.exports = function (app) {
 
     /* ========= REVIEWS ======== */
     app.get('/api/movies/:mid/reviews', findReviewsForMovie);
-    app.post('/api/movies/:mid/reviews', authorized, createReview);
     app.get('/api/reviews/:rid', findReviewById);
+    app.post('/api/movies/:mid/reviews', authorized, createReview);
+    app.put('/api/reviews/:rid', authorized, updateReview);
     app.delete('/api/reviews/:rid', authorized, deleteReview);
     app.post('/api/reviews/:rid/likes', authorized, likeReview);
     app.delete('/api/reviews/:rid/likes', authorized, unlikeReview);
@@ -29,6 +30,12 @@ module.exports = function (app) {
         const tmdbId = req.params['mid'];
         RCRDao.findAllReviewsForMovieSortedByLikes(tmdbId)
             .then(reviews => res.json(reviews))
+    }
+
+    function findReviewById(req, res) {
+        const rid = req.params["rid"];
+        RCRDao.findRatingAndCommentOrReviewById(rid)
+            .then(review => res.json(review))
     }
 
     function createReview(req, res) {
@@ -53,10 +60,13 @@ module.exports = function (app) {
             })
     }
 
-    function findReviewById(req, res) {
-        const rid = req.params["rid"];
-        RCRDao.findRatingAndCommentOrReviewById(rid)
-            .then(review => res.json(review))
+    function updateReview(req, res) {
+        const rid = req.params['rid'];
+        const title = req.body['title'];
+        const rating = req.body['rating'];
+        const content = req.body['content'];
+        RCRDao.updateRatingAndCommentOrReview(rid, title, rating, content)
+            .then(result => res.json(result))
     }
 
     function deleteReview(req, res) {
@@ -133,8 +143,8 @@ module.exports = function (app) {
 
     /* ========= COMMENTS ======== */
     app.get('/api/movies/:mid/comments', findCommentsForMovie);
-    app.post('/api/movies/:mid/comments', createComment);
-    app.delete('/api/comments/:cid', deleteComment);
+    app.post('/api/movies/:mid/comments', authorized, createComment);
+    app.delete('/api/comments/:cid', authorized, deleteComment);
 
     function findCommentsForMovie(req, res) {
         const tmdbId = req.params['mid'];
@@ -143,26 +153,39 @@ module.exports = function (app) {
     }
 
     function createComment(req, res) {
-        RCRDao.createRatingAndCommentOrReview(req.body)
-            .then(comment => {
+        const tmdbId = req.params['mid'];
+        const user = req.user;
+
+        // TODO: a user can only write one comment for a movie?
+        // check if already written a comment for that movie
+        RCRDao.findRatingAndCommentOrReviewByUserAndMovie(user._id, tmdbId)
+            .then((comment) => {
                 if (comment) {
-                    userDao.updateUserRatingAndCommentOrReview(comment.userId, comment._id)
                     res.json(comment)
+                } else {
+                    // if not, create comment
+                    RCRDao.createRatingAndCommentOrReview(req.body)
+                        .then(comment => {
+                            if (comment) {
+                                userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
+                                res.json(comment)
+                            }
+                        })
                 }
             })
     }
 
     function deleteComment(req, res) {
-        // TODO: get current user id
-        const uid = req.user._id;
+        const user = req.user;
+        const uid = user._id;
         const cid = req.params['cid'];
         RCRDao.deleteRatingAndCommentOrReview(cid)
             .then(result => {
-                if (result === 1) {
+                if (result.deletedCount === 1) {
                     // delete from author comment list
                     userDao.deleteUserRatingAndCommentOrReview(uid, cid);
-                    res.sendStatus(200)
                 }
+                res.sendStatus(200)
             })
     }
 }
