@@ -20,11 +20,14 @@ app.use(passport.session());
 
 // Configure CORS
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", '*');
+    //change 'http://localhost:3001' to where your client is running
+    res.header("Access-Control-Allow-Origin", 'http://localhost:3001');
     res.header("Access-Control-Allow-Headers",
                "Content-Type, X-Requested-With, Origin");
     res.header("Access-Control-Allow-Methods",
                "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header('Access-Control-Allow-Credentials',
+        'true');
     next();
 });
 
