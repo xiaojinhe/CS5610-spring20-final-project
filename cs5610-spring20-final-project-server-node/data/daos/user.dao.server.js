@@ -59,8 +59,8 @@ updateUserFavoriteMovie = (userId, movie) => {
   return userModel.update({_id: userId}, {$push: {favoriteMovies: movie}});
 };
 
-deleteUserFavoriteMovie = (userId, movie) => {
-  return userModel.update({_id: userId}, {$pull: {favoriteMovies: movie}});
+deleteUserFavoriteMovie = (userId, mid) => {
+  return userModel.update({_id: userId}, {$pull: {favoriteMovies: { tmdbId: mid}}});
 };
 
 findAllLikedReviewsForUser = (userId) => {

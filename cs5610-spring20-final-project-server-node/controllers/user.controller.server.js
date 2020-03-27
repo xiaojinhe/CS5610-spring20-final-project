@@ -175,8 +175,8 @@ module.exports = function (app) {
 
     /* ========= FAVORITES ======== */
     app.get('/api/users/:uid/favorites', getAllFavorites);
-    app.post('/api/movies/:mid/favorites', addFavorite);
-    app.delete('/api/movies/:mid/favorites', removeFavorite);
+    app.post('/api/movies/:mid/favorites', authorized, addFavorite);
+    app.delete('/api/movies/:mid/favorites', authorized, removeFavorite);
 
     function getAllFavorites(req, res) {
         const uid = req.params['uid'];
@@ -185,26 +185,43 @@ module.exports = function (app) {
     }
 
     function addFavorite(req, res) {
-        // TODO: get uid for logged in user
-        // const user = req.session['currentUser'];
-        // const uid = user._id;
-        const uid = req.body['uid'];
+        const user = req.user;
+        const uid = user._id;
         const movie = {
             tmdbId: req.body['tmdbId'],
             movieName: req.body['movieName'],
             moviePosterURL: req.body['moviePosterURL'],
             rating: req.body['rating']
         }
+
+        // check if in favorite list
+        let m = user.favoriteMovies.find(m => m.tmdbId === movie.tmdbId)
+        if (m) {
+            return res.sendStatus(200);
+        }
+
         userDao.updateUserFavoriteMovie(uid, movie)
-            .then((result) => res.json(result))
+            .then((result) => {
+                if (result.n === 1) {
+                    res.sendStatus(200)
+                } else {
+                    res.sendStatus(400)
+                }
+            })
     }
 
     function removeFavorite(req, res) {
-        // TODO: get uid for logged in user
-        const user = req.session['currentUser'];
+        const user = req.user;
         const uid = user._id;
-        userDao.deleteUserFavoriteMovie(uid, req.body)
-            .then((result) => res.json(result))
+        const mid = req.params['mid']
+
+        // check if in favorite list
+        let m = user.favoriteMovies.find(m => m.tmdbId === mid)
+        if (!m) {
+            return res.sendStatus(200);
+        }
+        userDao.deleteUserFavoriteMovie(uid, mid)
+            .then((result) => res.sendStatus(200))
     }
 
     /* ========= RATINGS AND COMMENTS/REVIEWS ======== */
