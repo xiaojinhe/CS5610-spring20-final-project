@@ -146,11 +146,17 @@ module.exports = function (app) {
 
         userDao.updateUserFollows(user1Info.userId, user2Info)
             .then(result => {
-                if (result.n === 1) {
+                if (result.nModified === 1) {
                     userDao.updateUserFollowedBy(user2Info.userId, user1Info)
-                        .then(result => res.sendStatus(result.n === 1 ? 200 : 400))
+                        .then(result => {
+                            if(result.nModified === 1){
+                                res.sendStatus(200);
+                            }else{
+                                res.status(500).send("updateUserFollowedBy failed");
+                            }
+                        })
                 } else {
-                    res.sendStatus(400);
+                    res.status(500).send("updateUserFollows failed");
                 }
             })
     }
@@ -202,10 +208,10 @@ module.exports = function (app) {
 
         userDao.updateUserFavoriteMovie(uid, movie)
             .then((result) => {
-                if (result.n === 1) {
+                if (result.nModified === 1) {
                     res.sendStatus(200)
                 } else {
-                    res.sendStatus(400)
+                    res.status(500).send("updateUserFavoriteMovie failed");
                 }
             })
     }
