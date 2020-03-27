@@ -6,10 +6,10 @@ import UserLoginComponent from "../components/UserLoginComponent";
 const stateToPropertyMapper = (state) => ({});
 
 const dispatchToPropertyMapper = (dispatch) => ({
-  userLogin: (username, password) => {
-    //todo: implement the actual user login
-    const user = UserService.userLogin(username, password);
-    dispatch(loginUserAction(user))
+  login: (user) => {
+    //todo: may change reducer behavior
+    UserService.login(user)
+      .then(dispatch(loginUserAction(user)));
   }
 });
 

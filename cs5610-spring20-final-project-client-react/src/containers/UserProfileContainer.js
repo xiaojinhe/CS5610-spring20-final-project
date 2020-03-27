@@ -18,6 +18,10 @@ const dispatchToPropertyMapper = (dispatch) => ({
   },
   followUser: (userId, user) => {
     //TODO: call service and implement reducer
+  },
+  getCurrentUser:() => {
+    UserService.getCurrentUser()
+      .then(user => dispatch(findUserByIdAction(user)))
   }
 });
 

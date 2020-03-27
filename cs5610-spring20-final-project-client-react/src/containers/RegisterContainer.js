@@ -28,7 +28,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
       };
       //TODO: handle when username is duplicate
       //TODO: should not add user to redux state, but call server for current user
-      UserSerivce.registerUser(newUser)
+      UserSerivce.register(newUser)
         .then(user => dispatch(registerUser(user)));
       return true;
     }

@@ -20,10 +20,13 @@ class UserLoginComponent extends React.Component {
     })
   };
 
-  userLogin = () => {
-    this.props.userLogin(this.state.username, this.state.password);
-    //todo: change the /profile/:id to /profile after implemented the user login logic
-    this.props.history.push("/profile/1")
+  login = () => {
+    this.props.login({
+      username: this.state.username,
+      password: this.state.password
+    });
+    //todo: handle when login fails
+    this.props.history.push("/profile")
   };
 
   render() {
@@ -35,12 +38,13 @@ class UserLoginComponent extends React.Component {
 
           <div>
             <div className="form-group row">
-              <label htmlFor="email"
+              <label htmlFor="username"
                      className="col-sm-2 col-form-label">
-                Email
+                Username
               </label>
               <div className="col-sm-10">
                 <input
+                  id="username"
                   type="text"
                   onChange={this.onUsernameChange}
                   value={this.state.username}
@@ -74,7 +78,7 @@ class UserLoginComponent extends React.Component {
               <button
                 id="signIn_btn"
                 className="btn btn-primary btn-block"
-                onClick={this.userLogin}>
+                onClick={this.login}>
                 Sign in
               </button>
               <Link

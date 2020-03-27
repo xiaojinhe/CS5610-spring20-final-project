@@ -1,33 +1,41 @@
-import {USER_API_URL} from "../common/constants";
+import {MOVIE_TIME_BASE_URL, USER_API_URL} from "../common/constants";
 
 /* ====== for user authentication====== */
-export const registerUser = (user) =>
-  fetch(USER_API_URL, {
+export const register = (user) =>
+  fetch(`${MOVIE_TIME_BASE_URL}/api/register`, {
     method: "POST",
     body: JSON.stringify(user),
-    credentials: 'include',
+    credentials: "include",
     headers: {
       'content-type': 'application/json'
     }
   }).then(response => response.json());
 
-//TODO: use actual url
-export const userLogin = (username, password) =>
-  fetch("", {
+export const login = (user) =>
+  fetch(`${MOVIE_TIME_BASE_URL}/api/login`, {
     method: "POST",
-    body: JSON.stringify({
-      username: username,
-      password: password
-    }),
-    credentials: 'include',
+    body: JSON.stringify(user),
+    credentials: "include",
     headers: {
       'content-type': 'application/json'
     }
   }).then(response => response.json());
 
-//TODO: use actual url
+export const logout = () =>
+  fetch(`${MOVIE_TIME_BASE_URL}/api/logout`, {
+    method: "POST",
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json());
+
 export const getCurrentUser = () =>
-  fetch("")
+  fetch(`${MOVIE_TIME_BASE_URL}/api/currentUser`, {
+    credentials: "include"
+  }).then(response => response.json());
+
+export const getAllUsers = () =>
+  fetch(USER_API_URL)
     .then(response => response.json());
 
 export const findUserById = (uid) =>
@@ -81,10 +89,12 @@ export const getLikedReviewsForUser = (uid) =>
 
 export default {
   findUserById,
-  userLogin,
-  registerUser,
-  updateUser,
+  register,
+  login,
+  logout,
   getCurrentUser,
+  getAllUsers,
+  updateUser,
   findAllFollowsByUserId,
   findAllFollowersByUserId,
   followUser,

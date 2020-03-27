@@ -34,7 +34,7 @@ export const MOVIE_TRAILER_API_URL =
   (key) => `https://www.youtube.com/embed/${key}`;
 
 /* =========== API for MovieTime Service ========= */
-const MOVIE_TIME_BASE_URL = "http://localhost:3000"
+export const MOVIE_TIME_BASE_URL = "http://localhost:3000"
 
 export const USER_API_URL = `${MOVIE_TIME_BASE_URL}/api/users`
 export const MOVIE_API_URL = `${MOVIE_TIME_BASE_URL}/api/movies`
@@ -42,16 +42,16 @@ export const REVIEW_API_URL = `${MOVIE_TIME_BASE_URL}/api/reviews`
 export const COMMENT_API_URL = `${MOVIE_TIME_BASE_URL}/api/comments`
 
 export const USER_COMMENTS_API_URL =
-  (userId) => `${MOVIE_TIME_BASE_URL}/users/${userId}/comments`
+  (userId) => `${MOVIE_TIME_BASE_URL}/api/users/${userId}/comments`
 
 export const USER_REVIEWS_API_URL =
-  (userId) => `${MOVIE_TIME_BASE_URL}/users/${userId}/reviews`
+  (userId) => `${MOVIE_TIME_BASE_URL}/api/users/${userId}/reviews`
 
 export const MOVIE_COMMENTS_API_URL =
-  (movieId) => `${MOVIE_TIME_BASE_URL}/movies/${movieId}/comments`
+  (movieId) => `${MOVIE_TIME_BASE_URL}/api/movies/${movieId}/comments`
 
 export const MOVIE_REVIEWS_API_URL =
-  (movieId) => `${MOVIE_TIME_BASE_URL}/movies/${movieId}/reviews`
+  (movieId) => `${MOVIE_TIME_BASE_URL}/api/movies/${movieId}/reviews`
 
 
 /* =========== Redux action type =========*/
