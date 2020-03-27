@@ -102,8 +102,8 @@ updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});
 };
 
-deleteUserFollowedBy = (userId, criticId) => {
-  return userModel.update({_id: userId}, {$pull: {followedBy: {userId: criticId}}});
+deleteUserFollowedBy = (userId, fanId) => {
+  return userModel.update({_id: userId}, {$pull: {followedBy: {userId: fanId}}});
 };
 
 module.exports = {
