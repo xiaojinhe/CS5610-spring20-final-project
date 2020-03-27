@@ -111,8 +111,8 @@ module.exports = function (app) {
     /* ========= FOLLOWS ======== */
     app.get('/api/users/:uid/follows', getAllFollows);
     app.get('/api/users/:uid/fans', getAllFans);
-    app.post('/api/users/:uid/follows', follow);
-    app.delete('/api/users/:uid/follows', unFollow);
+    app.post('/api/users/:uid/follows', authorized, follow);
+    app.delete('/api/users/:uid/follows/:criticId', authorized, unFollow);
 
     function getAllFollows(req, res) {
         const uid = req.params['uid'];
@@ -127,7 +127,6 @@ module.exports = function (app) {
     }
 
     function follow(req, res) {
-        // TODO: Get logged in user
         const user1 = req.user
         const user1Info = {
             userId: user1._id,
@@ -139,38 +138,38 @@ module.exports = function (app) {
             username: req.body['username']
         }
 
+        // check if already followed
+        let u = user1.follows.find(user => user.userId === user2Info.userId)
+        if (u) {
+            return res.sendStatus(200);
+        }
+
         userDao.updateUserFollows(user1Info.userId, user2Info)
             .then(result => {
-                if (result) {
+                if (result.n === 1) {
                     userDao.updateUserFollowedBy(user2Info.userId, user1Info)
-                        .then(result => res.sendStatus(result ? 200 : 404))
+                        .then(result => res.sendStatus(result.n === 1 ? 200 : 400))
                 } else {
-                    res.sendStatus(404);
+                    res.sendStatus(400);
                 }
             })
     }
 
     function unFollow(req, res) {
-        // TODO: Get logged in user
-        const user1 = req.user
-        const user1Info = {
-            userId: user1._id,
-            username: user1.username
+        const user1 = req.user;
+        const user1Id = user1._id;
+        const user2Id = req.params['criticId'];
+
+        // check if followed, if not, return
+        let u = user1.follows.find(user => user.userId === user2Id)
+        if (!u) {
+            return res.sendStatus(200);
         }
 
-        const user2Info = {
-            userId: req.body['_id'],
-            username: req.body['username']
-        }
-
-        userDao.deleteUserFollows(user1Info.userId, user2Info)
+        userDao.deleteUserFollows(user1Id, user2Id)
             .then(result => {
-                if (result.n === 1) {
-                    userDao.deleteUserFollowedBy(user2Info.userId, user1Info)
-                        .then(result2 => res.sendStatus(result2 === 1 ? 200 : 404))
-                } else {
-                    res.sendStatus(404);
-                }
+                userDao.deleteUserFollowedBy(user2Id, user1Id)
+                    .then(result1 => res.sendStatus(200))
             })
     }
 

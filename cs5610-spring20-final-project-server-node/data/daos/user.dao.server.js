@@ -90,8 +90,8 @@ updateUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {follows: userInfo}});
 };
 
-deleteUserFollows = (userId, userInfo) => {
-  return userModel.update({_id: userId}, {$pull: {follows: userInfo}});
+deleteUserFollows = (userId, criticId) => {
+  return userModel.update({_id: userId}, {$pull: {follows: {userId: criticId}}});
 };
 
 findAllFansForUser = (userId) =>{
@@ -102,8 +102,8 @@ updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});
 };
 
-deleteUserFollowedBy = (userId, userInfo) => {
-  return userModel.update({_id: userId}, {$pull: {followedBy: userInfo}});
+deleteUserFollowedBy = (userId, criticId) => {
+  return userModel.update({_id: userId}, {$pull: {followedBy: {userId: criticId}}});
 };
 
 module.exports = {
