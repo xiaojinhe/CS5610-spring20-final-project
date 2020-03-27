@@ -4,6 +4,7 @@ import MovieItemComponent from "../SearchResultComponents/MovieItemComponent";
 import MovieCommentItemComponent from "../MovieCommentItemComponent";
 import UserItemComponent from "./UserItemComponent";
 import MovieReviewItemComponent from "../MovieReviewItemComponent";
+import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
 
 const UserProfileTabComponent = ({user, updateUser}) =>
   <div className="mt-5">
@@ -15,12 +16,12 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-favorites" role="tab">
           Favorites
         </a>
-        {user.role === "REGULAR" &&
+        {user.role === REGULAR_USER &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-following" role="tab">
           Following
         </a>
         }
-        {user.role === "CRITIC" &&
+        {user.role === CRITIC_USER &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-followers" role="tab">
           Followers
         </a>
@@ -30,7 +31,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
           Comments
         </a>
         }
-        {user.role === "CRITIC" &&
+        {user.role === CRITIC_USER &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-reviews" role="tab">
           Reviews
         </a>

@@ -1,5 +1,5 @@
 import React from 'react'
-import {USER_ICON_PATH} from "../../common/constants";
+import {CRITIC_USER, REGULAR_USER, USER_ICON_PATH} from "../../common/constants";
 import "./userProfile.css"
 import {Link} from "react-router-dom";
 
@@ -13,12 +13,12 @@ const UserProfileHeaderComponent = ({user, followUser}) =>
            alt="user icon"/>
       <div className="row mt-3">
         <h4
-          className={`my-auto ${user.role === "CRITIC" || enableEditProfile ? "ml-auto" : "mx-auto"}`}>{user.username}</h4>
+          className={`my-auto ${user.role === CRITIC_USER || enableEditProfile ? "ml-auto" : "mx-auto"}`}>{user.username}</h4>
         {/*//todo: hide the follow button for three situation:
         (1) the logged in user is viewing his own profile
         (2) if the profile belongs to a regular user
         (3) if the profile is viewing by anonymous user*/}
-        {user.role === "CRITIC" &&
+        {user.role === CRITIC_USER &&
         <button className="ml-2 btn btn-info mr-auto my-auto">
           Follow <i className="fa fa-plus"/>
         </button>
@@ -26,14 +26,14 @@ const UserProfileHeaderComponent = ({user, followUser}) =>
         {/*//todo: show this button only when user,
         right now just assume the regular user is logged in user to make UI consistent*/}
         {
-          user.role === "REGULAR" && enableEditProfile &&
+          user.role === REGULAR_USER && enableEditProfile &&
           <Link to="/profile/edit" className="ml-2 btn btn-info mr-auto my-auto">
             Edit <i className="fa fa-pencil-alt"/>
           </Link>
         }
       </div>
       <div className="mt-3">
-        {user.role === "REGULAR" &&
+        {user.role === REGULAR_USER &&
         <div className="row">
           <div className="col-6">
             <div>
@@ -49,7 +49,7 @@ const UserProfileHeaderComponent = ({user, followUser}) =>
           </div>
         </div>
         }
-        {user.role === "CRITIC" &&
+        {user.role === CRITIC_USER &&
         <div className="row">
           <div className="col-xs-12 col-sm-6">
             <div>
