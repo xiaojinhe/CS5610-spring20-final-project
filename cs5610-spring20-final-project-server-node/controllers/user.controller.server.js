@@ -1,3 +1,6 @@
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+
 const userDao = require('../data/daos/user.dao.server');
 const RCRDao = require('../data/daos/rating-comment-review.dao.server');
 
@@ -6,7 +9,7 @@ module.exports = function (app) {
     /* ========= USERS ======== */
     app.get('/api/users', getAllUsers);
     app.get('/api/users/:uid', getUserById);
-    app.post('/api/users', register);  // TODO: use '/api/register' ?
+    app.post('/api/register', register);
     app.put('/api/users/:uid', updateUser);
 
     function getAllUsers(req, res) {
@@ -21,12 +24,28 @@ module.exports = function (app) {
     }
 
     function register(req, res) {
-        userDao.createUser(req.body)
+        const newUser = req.body;
+        // first check if the username has been used
+        userDao.findByUsername(newUser.username)
             .then((user) => {
                       if (user) {
-                          // TODO: login after register
-                          // req.login(user)
-                          res.json(user)
+                          // TODO: what if username exist
+                          res.sendStatus(400)
+                      } else {
+                          userDao.createUser(newUser);
+                      }
+                  }
+            )
+            .then((user) => {
+                      if (user) {
+                          // login after register
+                          req.login(user, (err) => {
+                              if(err){
+                                  res.status(400).send(err);
+                              }else{
+                                  res.json(user)
+                              }
+                          });
                       }
                   }
             )
