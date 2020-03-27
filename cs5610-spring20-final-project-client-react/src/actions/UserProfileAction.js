@@ -10,9 +10,9 @@ export const loginUserAction = (user) => ({
   loggedInUser: user
 });
 
-export const registerUser = (username, password, role, email, phone) => ({
+export const registerUser = (user) => ({
   type: REGISTER,
-  registerUser: {username, password, role, email, phone}
+  registerUser: user
 });
 
 export const updateUserAction = (user) => ({

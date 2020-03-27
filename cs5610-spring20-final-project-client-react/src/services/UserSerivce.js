@@ -1,23 +1,37 @@
-import users from './users.json'
 import {USER_API_URL} from "../common/constants";
 
-//todo: fill in all the request url
-
+/* ====== for user authentication====== */
 export const registerUser = (user) =>
   fetch(USER_API_URL, {
     method: "POST",
     body: JSON.stringify(user),
+    credentials: 'include',
     headers: {
       'content-type': 'application/json'
     }
   }).then(response => response.json());
 
-//TODO: replace with login
+//TODO: use actual url
 export const userLogin = (username, password) =>
-  users.find(user => user.uid === "1");
+  fetch("", {
+    method: "POST",
+    body: JSON.stringify({
+      username: username,
+      password: password
+    }),
+    credentials: 'include',
+    headers: {
+      'content-type': 'application/json'
+    }
+  }).then(response => response.json());
+
+//TODO: use actual url
+export const getCurrentUser = () =>
+  fetch("")
+    .then(response => response.json());
 
 export const findUserById = (uid) =>
-  fetch(USER_API_URL)
+  fetch(`${USER_API_URL}/${uid}`)
     .then(response => response.json());
 
 export const updateUser = (uid, user) =>
@@ -29,59 +43,40 @@ export const updateUser = (uid, user) =>
     }
   }).then(response => response.json());
 
-/* ======== FOLLOWS ======== */
-
 //get all follows
 export const findAllFollowsByUserId = (uid) =>
   fetch(`${USER_API_URL}/${uid}/follows`)
     .then(response => response.json());
 
-
-//get all followers
+//get all fans
 export const findAllFollowersByUserId = (uid) =>
-  fetch(`${USER_API_URL}/${uid}/followers`)
+  fetch(`${USER_API_URL}/${uid}/fans`)
     .then(response => response.json());
 
-//todo：uid should be the id of the target user? or current user?
-export const followUser = (uid, userInfo) =>
-  fetch(`${USER_API_URL}/${uid}/follows`,{
+export const followUser = (uid, user) =>
+  fetch(`${USER_API_URL}/${uid}/follows`, {
     method: "POST",
-    body: JSON.stringify(userInfo),
+    body: JSON.stringify(user),
     headers: {
       'content-type': 'application/json'
     }
   }).then(response => response.json())
 
-export const unfollowerUser = (uid, userInfo) =>
-  fetch(`${USER_API_URL}/${uid}/follows`,{
-    method: "DELETE",
-    body: JSON.stringify(userInfo),
-    headers: {
-      'content-type': 'application/json'
-    }
+export const unfollowUser = (uid, criticId) =>
+  fetch(`${USER_API_URL}/${uid}/follows/${criticId}`, {
+    method: "DELETE"
   }).then(response => response.json())
 
-/* ======= FAVORITES ========= */
-//add movie to favorites
 
-//TODO: change url based on server change
-export const addMovieToFavorites = (uid, movie) =>
-  fetch("", {
-    method: "POST",
-    body: JSON.stringify(movie),
-    headers: {
-      'content-type': 'application/json'
-    }
-  }).then(response => response.json());
+//get user's favorite movies
+export const getFavoriteMoviesForUser = (uid) =>
+  fetch(`${USER_API_URL}/${uid}/favorites`)
+    .then(response => response.json())
 
-export const removeMovieFromFavorites = (uid, movie) =>
-  fetch(USER_API_URL, {
-    method: "DELETE",
-    body: JSON.stringify(movie),
-    headers: {
-      'content-type': 'application/json'
-    }
-  }).then(response => response.json());
+//get user's liked reviews
+export const getLikedReviewsForUser = (uid) =>
+  fetch(`${USER_API_URL}/${uid}/likedReviews`)
+    .then(response => response.json());
 
 
 export default {
@@ -89,10 +84,11 @@ export default {
   userLogin,
   registerUser,
   updateUser,
+  getCurrentUser,
   findAllFollowsByUserId,
   findAllFollowersByUserId,
-  addMovieToFavorites,
-  removeMovieFromFavorites,
   followUser,
-  unfollowerUser
+  unfollowUser,
+  getFavoriteMoviesForUser,
+  getLikedReviewsForUser
 }

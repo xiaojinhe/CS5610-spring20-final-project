@@ -7,8 +7,9 @@ import {
 } from "../actions/MovieDetailActions";
 import MovieDetailComponent from "../components/MovieDetailComponents/MovieDetailComponent";
 import {connect} from "react-redux";
-import ReviewAndCommentService from "../services/ReivewAndCommentService";
 import MovieService from "../services/MovieService";
+import ReviewService from "../services/ReviewService";
+import CommentService from "../services/CommentService";
 
 const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
@@ -24,20 +25,20 @@ const dispatchToPropertyMapper = (dispatch) => {
       dispatch(findMovieById(movie));
     },
     findReviewsForMovie: async (movieId) => {
-      const reviews = await ReviewAndCommentService.findAllReviewsByMovieId(movieId)
+      const reviews = await ReviewService.findAllReviewsByMovieId(movieId)
         .then(response => response.results);
       dispatch(findReviewsForMovie(reviews));
     },
     findAllMovieInfoById: async (movieId) => {
       const movie = await MovieService.findMovieById(movieId);
       //TODO: switch to use our own api's reviews
-      const reviews = await ReviewAndCommentService.findAllReviewsByMovieId(movieId);
+      const reviews = await ReviewService.findAllReviewsByMovieId(movieId);
       //TODO: need to add comments fetch from our own api
-      const comments = await ReviewAndCommentService.findAllCommentsByMovieId(movieId);
+      const comments = await CommentService.findAllCommentsByMovieId(movieId);
       dispatch(findAllMovieInfoById(movie, comments, reviews));
     },
     findCommentsForMovie: async (movieId) => {
-      const comments = await ReviewAndCommentService.findAllCommentsByMovieId(movieId);
+      const comments = await CommentService.findAllCommentsByMovieId(movieId);
       dispatch(findCommentsForMovie(comments));
     },
     toggleFavorite: () => {

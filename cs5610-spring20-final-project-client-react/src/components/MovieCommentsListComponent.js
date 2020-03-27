@@ -8,7 +8,7 @@ const MovieCommentsListComponent = ({comments}) =>
         comments.map(comment =>
           <MovieCommentItemComponent
             comment={comment}
-            key={comment.id}/>
+            key={comment._id}/>
         )
       }
     </div>

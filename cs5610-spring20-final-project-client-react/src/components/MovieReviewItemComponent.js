@@ -26,8 +26,8 @@ class MovieReviewItemComponent extends React.Component {
         <div className="col-10">
           <div>
             {/*//todo: change a to the link to */}
-            <a href={this.props.review.link.url}
-               className="font-weight-bold pr-2">{this.props.review.headline}</a>
+            <a href={this.props.review.title}
+               className="font-weight-bold pr-2">{this.props.review.title}</a>
           </div>
           {
             this.props.isInProfile ?
