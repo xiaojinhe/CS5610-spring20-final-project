@@ -144,6 +144,7 @@ module.exports = function (app) {
     /* ========= COMMENTS ======== */
     app.get('/api/movies/:mid/comments', findCommentsForMovie);
     app.post('/api/movies/:mid/comments', authorized, createComment);
+    app.put('/api/comments/:cid', authorized, updateComment);
     app.delete('/api/comments/:cid', authorized, deleteComment);
 
     function findCommentsForMovie(req, res) {
@@ -173,6 +174,15 @@ module.exports = function (app) {
                         })
                 }
             })
+    }
+
+    function updateComment(req, res) {
+        const cid = req.params['cid'];
+        const title = req.body['title'];
+        const rating = req.body['rating'];
+        const content = req.body['content'];
+        RCRDao.updateRatingAndCommentOrReview(cid, title, rating, content)
+            .then(result => res.json(result))
     }
 
     function deleteComment(req, res) {
