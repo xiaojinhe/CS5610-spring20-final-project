@@ -59,8 +59,8 @@ updateUserFavoriteMovie = (userId, movie) => {
   return userModel.update({_id: userId}, {$push: {favoriteMovies: movie}});
 };
 
-deleteUserFavoriteMovie = (userId, movie) => {
-  return userModel.update({_id: userId}, {$pull: {favoriteMovies: movie}});
+deleteUserFavoriteMovie = (userId, mid) => {
+  return userModel.update({_id: userId}, {$pull: {favoriteMovies: { tmdbId: mid}}});
 };
 
 findAllLikedReviewsForUser = (userId) => {
@@ -78,20 +78,32 @@ deleteUserLikedReview = (userId, reviewId) => {
   return userModel.update({_id: userId}, {$pull: {likedReviews: reviewId}});
 };
 
+deleteLikedReviewById = (reviewId) => {
+  return userModel.deleteMany({likedReviews: reviewId});
+};
+
+findAllFollowsForUser = (userId) =>{
+  return userModel.findOne({_id: userId}, 'follows')
+}
+
 updateUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {follows: userInfo}});
 };
 
-deleteUserFollows = (userId, userInfo) => {
-  return userModel.update({_id: userId}, {$pull: {follows: userInfo}});
+deleteUserFollows = (userId, criticId) => {
+  return userModel.update({_id: userId}, {$pull: {follows: {userId: criticId}}});
 };
+
+findAllFansForUser = (userId) =>{
+  return userModel.findOne({_id: userId}, 'followedBy')
+}
 
 updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});
 };
 
-deleteUserFollowedBy = (userId, userInfo) => {
-  return userModel.update({_id: userId}, {$pull: {followedBy: userInfo}});
+deleteUserFollowedBy = (userId, fanId) => {
+  return userModel.update({_id: userId}, {$pull: {followedBy: {userId: fanId}}});
 };
 
 module.exports = {
@@ -113,8 +125,11 @@ module.exports = {
   findAllLikedReviewsForUser,
   updateUserLikedReview,
   deleteUserLikedReview,
+  deleteLikedReviewById,
+  findAllFollowsForUser,
   updateUserFollows,
   deleteUserFollows,
+  findAllFansForUser,
   updateUserFollowedBy,
   deleteUserFollowedBy
 };
