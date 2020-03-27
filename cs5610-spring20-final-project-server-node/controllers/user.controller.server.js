@@ -6,11 +6,41 @@ const RCRDao = require('../data/daos/rating-comment-review.dao.server');
 
 module.exports = function (app) {
 
+    passport.use(new LocalStrategy(localStrategy));
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    function localStrategy(username, password, done) {
+        userDao.findUserByCredentials({username: username, password: password})
+            .then((user) => user ? done(null, user) : done(null, false),
+                  (err) => {
+                      if (err) {
+                          return done(err)
+                      }
+                  }
+            )
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userDao.findUserById(user._id)
+            .then((user) => done(null, user),
+                  (err) => done(err, null)
+            )
+    }
+
     /* ========= USERS ======== */
+    app.post('/api/register', register);
+    app.post('/api/login', passport.authenticate('local'), login);
+    app.post('/api/logout', logout);
+    app.get('/api/currentUser', authorized, getCurrentUser);
+
     app.get('/api/users', getAllUsers);
     app.get('/api/users/:uid', getUserById);
-    app.post('/api/register', register);
-    app.put('/api/users/:uid', updateUser);
+    app.put('/api/users/:uid', authorized, updateUser);
 
     function getAllUsers(req, res) {
         userDao.findAllUsers()
@@ -30,9 +60,9 @@ module.exports = function (app) {
             .then((user) => {
                       if (user) {
                           // TODO: what if username exist
-                          res.sendStatus(400)
+                          res.status(400).send("User already exists");
                       } else {
-                          userDao.createUser(newUser);
+                          return userDao.createUser(newUser);
                       }
                   }
             )
@@ -40,15 +70,36 @@ module.exports = function (app) {
                       if (user) {
                           // login after register
                           req.login(user, (err) => {
-                              if(err){
+                              if (err) {
                                   res.status(400).send(err);
-                              }else{
+                              } else {
                                   res.json(user)
                               }
                           });
                       }
                   }
             )
+    }
+
+    function login(req, res) {
+        res.json(req.user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.sendStatus(200);
+    }
+
+    function getCurrentUser(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
+    }
+
+    function authorized(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.sendStatus(401);
+        } else {
+            next();
+        }
     }
 
     function updateUser(req, res) {
@@ -77,7 +128,7 @@ module.exports = function (app) {
 
     function follow(req, res) {
         // TODO: Get logged in user
-        const user1 = req.session['currentUser']
+        const user1 = req.user
         const user1Info = {
             userId: user1._id,
             username: user1.username
@@ -101,7 +152,7 @@ module.exports = function (app) {
 
     function unFollow(req, res) {
         // TODO: Get logged in user
-        const user1 = req.session['currentUser']
+        const user1 = req.user
         const user1Info = {
             userId: user1._id,
             username: user1.username
