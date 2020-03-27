@@ -45,6 +45,7 @@ export const addMovieToUserFavorites = (movieId, movie) =>
   fetch(`${MOVIE_API_URL}/${movieId}/favorites`, {
     method: "POST",
     body: JSON.stringify(movie),
+    credentials:"include",
     headers: {
       'content-type': 'application/json'
     }
@@ -52,12 +53,14 @@ export const addMovieToUserFavorites = (movieId, movie) =>
 
 export const removeMovieFromUserFavorites = (movieId) =>
   fetch(`${MOVIE_API_URL}/${movieId}/favorites`, {
-    method: "DELETE"
+    method: "DELETE",
+    credentials:"include",
   }).then(response => response.json());
 
 export const rateMovie = (movieId, rating) =>
   fetch(`${MOVIE_API_URL}/${movieId}/ratings`, {
     method: "POST",
+    credentials:"include",
     body: JSON.stringify(rating),
     headers: {
       'content-type': 'application/json'

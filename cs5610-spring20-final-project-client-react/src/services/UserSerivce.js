@@ -24,6 +24,7 @@ export const login = (user) =>
 export const logout = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/logout`, {
     method: "POST",
+    credentials:"include",
     headers: {
       'content-type': 'application/json'
     }
@@ -45,6 +46,7 @@ export const findUserById = (uid) =>
 export const updateUser = (uid, user) =>
   fetch(`${USER_API_URL}/${uid}`, {
     method: "PUT",
+    credentials:"include",
     body: JSON.stringify(user),
     headers: {
       'content-type': 'application/json'
@@ -64,6 +66,7 @@ export const findAllFollowersByUserId = (uid) =>
 export const followUser = (uid, user) =>
   fetch(`${USER_API_URL}/${uid}/follows`, {
     method: "POST",
+    credentials:"include",
     body: JSON.stringify(user),
     headers: {
       'content-type': 'application/json'
@@ -72,7 +75,8 @@ export const followUser = (uid, user) =>
 
 export const unfollowUser = (uid, criticId) =>
   fetch(`${USER_API_URL}/${uid}/follows/${criticId}`, {
-    method: "DELETE"
+    method: "DELETE",
+    credentials:"include",
   }).then(response => response.json())
 
 

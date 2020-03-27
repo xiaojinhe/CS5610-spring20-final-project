@@ -31,11 +31,11 @@ class MovieDetailComponent extends React.Component {
             src={MOVIE_TRAILER_API_URL(video.key)}
             frameBorder="0"
             allow="autoplay; encrypted-media"
-            allowFullScreen />;
+            allowFullScreen/>;
 
   render() {
     if (this.props.movie) {
-      return(
+      return (
         <div className="container-fluid movie-detail-container">
           <NavComponent history={this.props.history}
                         enableSearch={true}/>
@@ -56,10 +56,19 @@ class MovieDetailComponent extends React.Component {
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
-                <Link to={{pathname: `/movies/${this.props.movieId}/new_comment`, state: {movieTitle: this.props.movie.title}}}>
+                <Link to={{
+                  pathname: `/movies/${this.props.movieId}/new_comment`, state: {
+                    movieName: this.props.movie.title
+                  }
+                }}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
-                <Link to={{pathname: `/movies/${this.props.movieId}/new_review`, state: {movieTitle: this.props.movie.title}}}>
+                <Link to={{
+                  pathname: `/movies/${this.props.movieId}/new_review`,
+                  state: {
+                    movieName: this.props.movie.title
+                  }
+                }}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
               </div>
@@ -74,54 +83,60 @@ class MovieDetailComponent extends React.Component {
             <h3 className="movie-header">Major Cast</h3>
             <div className="row">
               {this.props.movie.stars.map((star, index) =>
-                                            <CastCardComponent
-                                              key={index}
-                                              object={star}/>)}
+                <CastCardComponent
+                  key={index}
+                  object={star}/>)}
             </div>
           </div>
           {this.props.movie.videos &&
-           <div className="movie-trailer ml-1 mt-3">
-             {this.props.movie.videos.results.length > 1 &&
-              <div>
-                <h3 className="movie-header">Trailers</h3>
-                <div className="justify-content-center">
-                  {this.props.movie.videos.results.slice(0, 2).map((video, index) => this.renderTrailer(video, index))}
-                </div>
+          <div className="movie-trailer ml-1 mt-3">
+            {this.props.movie.videos.results.length > 1 &&
+            <div>
+              <h3 className="movie-header">Trailers</h3>
+              <div className="justify-content-center">
+                {this.props.movie.videos.results.slice(0, 2).map((video, index) => this.renderTrailer(video, index))}
               </div>
-             }
-             {this.props.movie.videos.results.length === 1 &&
-              <div>
-                <h3 className="movie-header">Trailer</h3>
-                {this.renderTrailer(this.props.movie.videos.results[0])}
-              </div>
-             }
-           </div>
+            </div>
+            }
+            {this.props.movie.videos.results.length === 1 &&
+            <div>
+              <h3 className="movie-header">Trailer</h3>
+              {this.renderTrailer(this.props.movie.videos.results[0])}
+            </div>
+            }
+          </div>
           }
 
           {this.props.comments &&
-           <div className="movie-comment m-1 mt-3">
-             <div className="row">
-               <div className="col-9">
-                 <h3 className="movie-header">Movie Comments</h3>
-               </div>
-               <div className="col-3 pt-2 pr-2 text-center">
-                 <Link to={{pathname: `/movies/${this.props.movieId}/new_comment`, state: {movieTitle: this.props.movie.title}}}>
-                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
-                 </Link>
-               </div>
-             </div>
-             <MovieCommentsListComponent comments={this.props.comments}/>
-           </div>
+          <div className="movie-comment m-1 mt-3">
+            <div className="row">
+              <div className="col-9">
+                <h3 className="movie-header">Movie Comments</h3>
+              </div>
+              <div className="col-3 pt-2 pr-2 text-center">
+                <Link to={{
+                  pathname: `/movies/${this.props.movieId}/new_comment`,
+                  state: {movieTitle: this.props.movie.title}
+                }}>
+                  <h6><i className="far fa-comment-alt"/> Write Comment</h6>
+                </Link>
+              </div>
+            </div>
+            <MovieCommentsListComponent comments={this.props.comments}/>
+          </div>
           }
 
           {this.props.reviews &&
-           <div className="movie-review m-1 mt-3">
+          <div className="movie-review m-1 mt-3">
             <div className="row">
               <div className="col-9">
                 <h3 className="movie-header">Movie Reviews</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={{pathname: `/movies/${this.props.movieId}/new_review`, state: {movieTitle: this.props.movie.title}}}>
+                <Link to={{
+                  pathname: `/movies/${this.props.movieId}/new_review`,
+                  state: {movieTitle: this.props.movie.title}
+                }}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
               </div>
@@ -131,17 +146,17 @@ class MovieDetailComponent extends React.Component {
           </div>}
 
           {this.props.movie.similar.results &&
-           <div className="similar-movie m-1 mt-3">
-             <h3 className="movie-header">Similar Movies</h3>
-             <div className="row">
-               {this.props.movie.similar.results.slice(0, 6).map(
-                 function (movie) {
-                   return <MovieCardComponent movie={movie}
-                                              key={movie.id}/>
-                 })
-               }
-             </div>
-           </div>}
+          <div className="similar-movie m-1 mt-3">
+            <h3 className="movie-header">Similar Movies</h3>
+            <div className="row">
+              {this.props.movie.similar.results.slice(0, 6).map(
+                function (movie) {
+                  return <MovieCardComponent movie={movie}
+                                             key={movie.id}/>
+                })
+              }
+            </div>
+          </div>}
 
         </div>
       )

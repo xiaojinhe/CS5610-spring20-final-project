@@ -8,6 +8,7 @@ export const createComment = (movieId, comment) =>
   fetch(MOVIE_COMMENTS_API_URL(movieId), {
     method: "POST",
     body: JSON.stringify(comment),
+    credentials:"include",
     headers: {
       'content-type': 'application/json'
     }
@@ -15,12 +16,14 @@ export const createComment = (movieId, comment) =>
 
 export const deleteComment = (commentId) =>
   fetch(`${COMMENT_API_URL}/${commentId}`, {
-    method: "DELETE"
+    method: "DELETE",
+    credentials:"include",
   }).then(response => response.json());
 
 export const updateComment = (commentId, comment) =>
   fetch(`${COMMENT_API_URL}/${commentId}`, {
     method: "PUT",
+    credentials:"include",
     body: JSON.stringify(comment),
     headers: {
       'content-type': 'application/json'

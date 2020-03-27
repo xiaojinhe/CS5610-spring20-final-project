@@ -8,6 +8,7 @@ export const createReview = (movieId, review) =>
   fetch(MOVIE_REVIEWS_API_URL(movieId), {
     method: "POST",
     body: JSON.stringify(review),
+    credentials:"include",
     headers: {
       'content-type': 'application/json'
     }
@@ -19,12 +20,14 @@ export const getReviewById = (reviewId) =>
 
 export const deleteReview = (reviewId) =>
   fetch(`${REVIEW_API_URL}/${reviewId}`, {
-    method: "DELETE"
+    method: "DELETE",
+    credentials:"include",
   }).then(response => response.json());
 
 export const updateReivew = (reviewId, review) =>
   fetch(`${REVIEW_API_URL}/${reviewId}`, {
     method: "PUT",
+    credentials:"include",
     body: JSON.stringify(review),
     headers: {
       'content-type': 'application/json'
@@ -43,6 +46,7 @@ export const findAllReviewsByUserId = (userId) =>
 export const likeReview = (reviewId) =>
   fetch(`${REVIEW_API_URL}/${reviewId}/likes`, {
     method: "POST",
+    credentials:"include",
     headers: {
       'content-type': 'application/json'
     }
@@ -50,7 +54,8 @@ export const likeReview = (reviewId) =>
 
 export const cancelLikeReview = (reviewId) =>
   fetch(`${REVIEW_API_URL}/${reviewId}/likes`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    credentials:"include",
   }).then(response => response.json());
 
 
