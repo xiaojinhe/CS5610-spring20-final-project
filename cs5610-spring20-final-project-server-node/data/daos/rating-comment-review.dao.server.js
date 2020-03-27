@@ -22,12 +22,12 @@ deleteRatingAndCommentOrReview = (id) => {
   return ratingAndCommentOrReviewModel.remove({_id: id});
 };
 
-updateLikes = (id, likes) => {
-  return ratingAndCommentOrReviewModel.update({_id: id}, {$set: {likes: likes}});
+addLikes = (id) => {
+  return ratingAndCommentOrReviewModel.update({_id: id}, {$inc: {likes: 1}});
 };
 
-updateDislikes = (id, dislikes) => {
-  return ratingAndCommentOrReviewModel.update({_id: id}, {$set: {dislikes: dislikes}});
+removeLikes = (id) => {
+  return ratingAndCommentOrReviewModel.update({_id: id}, {$inc: {likes: -1}});
 };
 
 findAllRatingAndCommentOrReviewsForMovie = (tmdbId) => {
@@ -54,20 +54,25 @@ findAllRatingAndCommentOrReviewsForUser = (userId) => {
   return ratingAndCommentOrReviewModel.find({userId: userId}).sort({date: -1});
 };
 
+findRatingAndCommentOrReviewByUserAndMovie = (userId, tmdbId) => {
+  return ratingAndCommentOrReviewModel.findOne({userId: userId, tmdbId: tmdbId});
+}
+
 module.exports = {
   findRatingAndCommentOrReviewById,
   findAllRatingAndCommentOrReviews,
   createRatingAndCommentOrReview,
   updateRatingAndCommentOrReview,
   deleteRatingAndCommentOrReview,
-  updateLikes,
-  updateDislikes,
+  addLikes,
+  removeLikes,
   findAllRatingAndCommentOrReviewsForMovie,
   findAllRatingAndCommentOrReviewsForMovieSortedByDate,
   findAllReviewsForMovieSortedByDate,
   findAllReviewsForMovieSortedByLikes,
   findAllCommentsForMovieSortedByDate,
-  findAllRatingAndCommentOrReviewsForUser
+  findAllRatingAndCommentOrReviewsForUser,
+  findRatingAndCommentOrReviewByUserAndMovie
 };
 
 
