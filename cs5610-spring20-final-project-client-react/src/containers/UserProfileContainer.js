@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import UserProfileComponent from "../components/UserProfileComponents/UserProfileComponent";
 import UserService from "../services/UserSerivce";
-import {findUserByIdAction, getCurrentUserAction, updateUserAction} from "../actions/UserProfileAction";
+import {findUserByIdAction, updateUserAction} from "../actions/UserProfileAction";
 
 const stateToPropertyMapper = (state) => ({
   user: state.userProfile.user
