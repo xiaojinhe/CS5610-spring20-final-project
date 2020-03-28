@@ -31,7 +31,6 @@ class NavComponent extends React.Component {
         UserSerivce.logout()
           .then(response => {
               if (response.status === 200) {
-                  alert("Log out successfully");
                   store.remove('currUser');
                   this.props.history.push('/');
               }
