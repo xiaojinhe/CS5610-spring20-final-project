@@ -40,26 +40,16 @@ module.exports = function (app) {
     }
 
     function createReview(req, res) {
-        const tmdbId = req.params['mid'];
         const user = req.user;
+        const review = req.body;
+        review.userId = user._id;
+        review.username = user.username;
 
-        // check if already written a review for that movie
-        RCRDao.findRatingAndCommentOrReviewByUserAndMovie(user._id, tmdbId)
-            .then((review) => {
+        RCRDao.createRatingAndCommentOrReview(review)
+            .then(review => {
                 if (review) {
+                    userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
                     res.json(review)
-                } else {
-                    // if not, create review
-                    const review = req.body;
-                    review.userId = user._id;
-                    review.username = user.username;
-                    RCRDao.createRatingAndCommentOrReview(review)
-                        .then(review => {
-                            if (review) {
-                                userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
-                                res.json(review)
-                            }
-                        })
                 }
             })
     }
@@ -163,27 +153,16 @@ module.exports = function (app) {
     }
 
     function createComment(req, res) {
-        const tmdbId = req.params['mid'];
         const user = req.user;
+        const comment = req.body;
+        comment.userId = user._id;
+        comment.username = user.username;
 
-        // TODO: a user can only write one comment for a movie?
-        // check if already written a comment for that movie
-        RCRDao.findRatingAndCommentOrReviewByUserAndMovie(user._id, tmdbId)
-            .then((comment) => {
+        RCRDao.createRatingAndCommentOrReview(comment)
+            .then(comment => {
                 if (comment) {
+                    userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
                     res.json(comment)
-                } else {
-                    // if not, create comment
-                    const comment = req.body;
-                    comment.userId = user._id;
-                    comment.username = user.username;
-                    RCRDao.createRatingAndCommentOrReview(comment)
-                        .then(comment => {
-                            if (comment) {
-                                userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
-                                res.json(comment)
-                            }
-                        })
                 }
             })
     }
