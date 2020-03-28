@@ -25,6 +25,7 @@ module.exports = function (app) {
     app.delete('/api/reviews/:rid', authorized, deleteReview);
     app.post('/api/reviews/:rid/likes', authorized, likeReview);
     app.delete('/api/reviews/:rid/likes', authorized, unlikeReview);
+    app.get('/api/mostLikedReviews', findMostLikedReviews);
 
     function findReviewsForMovie(req, res) {
         const tmdbId = req.params['mid'];
@@ -139,6 +140,11 @@ module.exports = function (app) {
                     res.status(500).send("deleteUserLikedReview failed")
                 }
             })
+    }
+
+    function findMostLikedReviews(req, res) {
+        RCRDao.findAllReviewsSortedByLikes()
+            .then(reviews => res.json(reviews))
     }
 
     /* ========= COMMENTS ======== */
