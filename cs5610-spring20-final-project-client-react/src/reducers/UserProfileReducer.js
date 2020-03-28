@@ -1,4 +1,4 @@
-import {FIND_USER_BY_ID, REGISTER, L, LOGIN, UPDATE_USER} from "../common/constants";
+import {FIND_USER_BY_ID, REGISTER, L, LOGIN, UPDATE_USER, GET_CURRENT_USER} from "../common/constants";
 
 const userProfileReducer = (state = {user: "", registerUser: ""}, action) => {
   switch (action.type) {
@@ -19,6 +19,11 @@ const userProfileReducer = (state = {user: "", registerUser: ""}, action) => {
         user: state.user,
         registerUser: action.registerUser
       };
+    case GET_CURRENT_USER:
+      return {
+        ...state,
+        currentUser: action.user
+      }
     case UPDATE_USER:
       return {
         ...state,

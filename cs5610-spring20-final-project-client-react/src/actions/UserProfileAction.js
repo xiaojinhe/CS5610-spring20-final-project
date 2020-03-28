@@ -1,7 +1,12 @@
-import {FIND_USER_BY_ID, REGISTER, LOGIN, UPDATE_USER} from "../common/constants";
+import {FIND_USER_BY_ID, REGISTER, LOGIN, UPDATE_USER, GET_CURRENT_USER} from "../common/constants";
 
 export const findUserByIdAction = (user) => ({
   type: FIND_USER_BY_ID,
+  user: user
+});
+
+export const getCurrentUserAction = (user) => ({
+  type: GET_CURRENT_USER,
   user: user
 });
 
