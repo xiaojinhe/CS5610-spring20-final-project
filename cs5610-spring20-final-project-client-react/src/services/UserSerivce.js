@@ -28,7 +28,7 @@ export const logout = () =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export const getCurrentUser = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/currentUser`, {

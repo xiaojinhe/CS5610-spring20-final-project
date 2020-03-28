@@ -88,6 +88,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         )}
       </div>
 
+      {/*//TODO: need to fetch the likedReviews for user, for the user object only has the id*/}
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
         {user.likedReviews && user.likedReviews.map(review =>
           <MovieReviewItemComponent

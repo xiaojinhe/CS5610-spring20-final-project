@@ -1,5 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import UserSerivce from "../services/UserSerivce";
 
 class NavComponent extends React.Component {
     state = {
@@ -26,8 +27,12 @@ class NavComponent extends React.Component {
     };
 
     logout = () => {
-        //todo: to implement
-      alert("You've logged out.")
+        UserSerivce.logout()
+          .then(response => {
+              if (response.status === 200) {
+                  alert("Log out successfully")
+              }
+          })
     };
 
     handleKeyDown = (event) => {

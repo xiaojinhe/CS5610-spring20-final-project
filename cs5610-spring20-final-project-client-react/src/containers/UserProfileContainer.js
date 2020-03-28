@@ -17,7 +17,12 @@ const dispatchToPropertyMapper = (dispatch) => ({
       .dispatch(updateUserAction(user));
   },
   followUser: (userId, user) => {
-    //TODO: call service and implement reducer
+    //TODO: call with current userId and target user,change UI based on server result
+    UserService.followUser(userId, user);
+  },
+  unfollowUser: (userId, criticId) => {
+    //TODO: call this and change UI based on server result
+    UserService.unfollowUser(userId, criticId);
   },
   getCurrentUser:() => {
     UserService.getCurrentUser()

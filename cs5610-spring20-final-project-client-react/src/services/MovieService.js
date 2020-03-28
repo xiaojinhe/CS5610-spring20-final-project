@@ -49,13 +49,13 @@ export const addMovieToUserFavorites = (movieId, movie) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export const removeMovieFromUserFavorites = (movieId) =>
   fetch(`${MOVIE_API_URL}/${movieId}/favorites`, {
     method: "DELETE",
     credentials:"include",
-  }).then(response => response.json());
+  });
 
 export const rateMovie = (movieId, rating) =>
   fetch(`${MOVIE_API_URL}/${movieId}/ratings`, {
@@ -65,7 +65,7 @@ export const rateMovie = (movieId, rating) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export default {
   findTopRatedMovies,

@@ -1,12 +1,42 @@
 import React from "react";
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
+import ReviewService, {cancelLikeReview} from "../services/ReviewService";
 
+//TODO: show whether current user has liked this review and toggle between like and cancel like
 class MovieReviewItemComponent extends React.Component {
+
   state = {
-    likes: 0,
-    dislikes: 0
+    likes: this.props.review.likes ? this.props.review.likes : 0
   };
+
+  likeReview = (reviewId) => {
+    ReviewService.likeReview(reviewId)
+      .then(
+        response => {
+          if (response.status === 200) {
+            this.setState((prevState) => {
+              return {likes: prevState.likes + 1}
+            })
+          } else {
+            alert(response.status + " : " + response.statusText)
+          }
+        })
+  };
+
+  cancelLikeReview = (reviewId) => {
+    ReviewService.cancelLikeReview(reviewId)
+      .then(response => {
+        if (response.status === 200) {
+          this.setState((prevState) => {
+            return {likes: prevState.likes - 1}
+          })
+        } else {
+          alert(response.status + " : " + response.statusText)
+        }
+      })
+  };
+
 
   render() {
     return (
@@ -49,7 +79,7 @@ class MovieReviewItemComponent extends React.Component {
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <span className="ml-2">Published at {this.props.review.date}</span>
+            <span className="ml-2">Published at {this.props.review.date.substring(0,10)}</span>
           </div>
           {/*//TODO: truncate the content*/}
           <div>{this.props.review.content}</div>
@@ -57,21 +87,10 @@ class MovieReviewItemComponent extends React.Component {
             {/*//todo: change to actual rating */}
             <button className="btn"
                     onClick={() => {
-                      this.setState((prevState) => {
-                        return {likes: prevState.likes + 1}
-                      })
+                      this.likeReview(this.props.review._id);
                     }}>
               <i className="far fa-thumbs-up fa-lg pr-2"/>
               {this.state.likes}
-            </button>
-            <button className="btn ml-4"
-                    onClick={() => {
-                      this.setState((prevState) => {
-                        return {dislikes: prevState.dislikes + 1}
-                      })
-                    }}>
-              <i className="far fa-thumbs-down fa-lg pr-2"/>
-              {this.state.dislikes}
             </button>
           </div>
         </div>

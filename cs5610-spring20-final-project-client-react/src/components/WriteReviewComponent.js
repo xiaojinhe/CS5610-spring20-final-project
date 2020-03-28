@@ -58,7 +58,7 @@ class WriteReviewComponent extends React.Component {
         date: new Date(),
         type: "REVIEW"
       })
-  }
+  };
 
   render() {
     let title, textArea;

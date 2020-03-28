@@ -2,8 +2,8 @@ import React from 'react'
 import MovieCardComponent from "../components/MovieCardComponent";
 import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
-import movieReviewService from "../services/MovieReviewService";
 import MovieService from "../services/MovieService";
+import ReviewService from "../services/ReviewService";
 
 const topRatedMoviesDisplayNum = 18;
 const nowPlayingMoviesDisplayNum = 18;
@@ -18,7 +18,7 @@ class HomepageContainer extends React.Component {
     };
 
     componentDidMount() {
-        Promise.all([MovieService.findTopRatedMovies(), MovieService.findNowPlayingMovies(), movieReviewService.findCriticPickedMovieReviews()])
+        Promise.all([MovieService.findTopRatedMovies(), MovieService.findNowPlayingMovies(), ReviewService.findMostLikedReview()])
             .then(([topRatedMovies, nowPlayingMovies, pickedReviews]) => {
                 this.setState(
                     {
@@ -26,7 +26,7 @@ class HomepageContainer extends React.Component {
                             topRatedMovies.results.slice(0, topRatedMoviesDisplayNum),
                         nowPlayingMovies:
                             nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum),
-                        pickedReviews: pickedReviews.results.slice(0, pickedReviewDisplayNum)
+                        pickedReviews: pickedReviews.slice(0, pickedReviewDisplayNum)
                     })
             })
     }
