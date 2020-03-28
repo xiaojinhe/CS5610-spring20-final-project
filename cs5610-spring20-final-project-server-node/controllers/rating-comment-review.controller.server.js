@@ -50,7 +50,10 @@ module.exports = function (app) {
                     res.json(review)
                 } else {
                     // if not, create review
-                    RCRDao.createRatingAndCommentOrReview(req.body)
+                    const review = req.body;
+                    review.userId = user._id;
+                    review.username = user.username;
+                    RCRDao.createRatingAndCommentOrReview(review)
                         .then(review => {
                             if (review) {
                                 userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
@@ -171,7 +174,10 @@ module.exports = function (app) {
                     res.json(comment)
                 } else {
                     // if not, create comment
-                    RCRDao.createRatingAndCommentOrReview(req.body)
+                    const comment = req.body;
+                    comment.userId = user._id;
+                    comment.username = user.username;
+                    RCRDao.createRatingAndCommentOrReview(comment)
                         .then(comment => {
                             if (comment) {
                                 userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
