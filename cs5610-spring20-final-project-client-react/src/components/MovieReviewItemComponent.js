@@ -79,7 +79,7 @@ class MovieReviewItemComponent extends React.Component {
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <span className="ml-2">Published at {this.props.review.date.substring(0,10)}</span>
+            <span className="ml-2">Published at {this.props.review.date && this.props.review.date.substring(0,10)}</span>
           </div>
           {/*//TODO: truncate the content*/}
           <div>{this.props.review.content}</div>

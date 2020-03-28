@@ -4,7 +4,7 @@ import RegisterComponent from "../components/register/RegisterComponent";
 import UserSerivce from "../services/UserSerivce";
 
 const stateToPropertyMapper = (state) => ({
-  registerUser: state.userProfile.registerUser
+  registerUser: state.userAuthentication.currUser
 });
 
 const dispatchToPropertyMapper = (dispatch) => ({

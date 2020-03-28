@@ -43,7 +43,7 @@ const UserProfileHeaderComponent = ({user, followUser}) =>
           </div>
           <div className="col-6">
             <div className="">
-              <h2 className="text-center font-weight-bold">{user.follows.length}</h2>
+              <h2 className="text-center font-weight-bold">{user.ratingAndCommentsOrReviews.length}</h2>
               <div className="text-center">Comments</div>
             </div>
           </div>

@@ -8,9 +8,9 @@ import UserProfileTabComponent from "./UserProfileTabComponent";
 class UserProfileComponent extends React.Component {
   componentDidMount() {
     if (this.props.userId) {
-      this.props.findUserById(this.props.userId)
+      this.props.findUserById(this.props.userId);
     } else {
-      this.props.getCurrentUser()
+      this.props.getCurrentUser();
     }
   }
 
@@ -38,7 +38,6 @@ class UserProfileComponent extends React.Component {
           }
         </div>
       </div>
-
     );
   }
 }

@@ -5,14 +5,17 @@ import MovieCommentItemComponent from "../MovieCommentItemComponent";
 import UserItemComponent from "./UserItemComponent";
 import MovieReviewItemComponent from "../MovieReviewItemComponent";
 import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
+const store = require('store');
 
 const UserProfileTabComponent = ({user, updateUser}) =>
   <div className="mt-5">
     <nav>
       <div className="nav nav-tabs" id="nav-tab" role="tablist">
-        <a className="nav-item nav-link active" data-toggle="tab" href="#nav-profile" role="tab">
+        {store.get('currUser')._id === user._id &&
+         <a className="nav-item nav-link active" data-toggle="tab" href="#nav-profile" role="tab">
           Profile
         </a>
+        }
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-favorites" role="tab">
           Favorites
         </a>

@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import UserSerivce from "../services/UserSerivce";
+const store = require('store');
 
 class NavComponent extends React.Component {
     state = {
@@ -30,7 +31,8 @@ class NavComponent extends React.Component {
         UserSerivce.logout()
           .then(response => {
               if (response.status === 200) {
-                  alert("Log out successfully")
+                  store.remove('currUser');
+                  this.props.history.push('/');
               }
           })
     };
@@ -52,17 +54,23 @@ class NavComponent extends React.Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto pl-2">
-                        <li className="nav-item">
-                            <Link className="nav-link p-0" to="/profile"><i className="far fa-user-circle fa-2x pt-1"/></Link>
-                        </li>
-                        {/*TODO: Hide this tab when user has logged in*/}
-                        <li className="nav-item d-flex ml-2 align-items-center">
-                            <Link className="nav-link p-0" to="/login">Login</Link>
-                        </li>
-                        <li className="nav-item d-flex ml-2 align-items-center">
-                            <a className="nav-link p-0"
-                            onClick={this.logout}>Logout</a>
-                        </li>
+                        {store.get('currUser') &&
+                            <li className="nav-item">
+                                <Link className="nav-link p-0" to="/profile"><i className="far fa-user-circle fa-2x pt-1"/></Link>
+                            </li>
+                        }
+                        {store.get('currUser') &&
+                            <li className="nav-item d-flex ml-3 align-items-center">
+                                <a className="nav-link p-0"
+                                   onClick={this.logout}>Logout</a>
+                            </li>
+                        }
+                        {!store.get('currUser') &&
+                            <li className="nav-item d-flex ml-3 align-items-center">
+                                <Link className="nav-link p-0" to="/login">Login</Link>
+                            </li>
+                        }
+
                     </ul>
 
                     {this.props.enableSearch &&

@@ -11,10 +11,9 @@ const UserItemComponent = ({user}) =>
            alt="user icon"/>
     </div>
     <div className="col-11 pt-2">
-      <a href={`/profile/${user.uid}`}
+      <a href={`/profile/${user.userId}`}
          className="font-weight-bold">{user.username}</a>
     </div>
-  </div>
+  </div>;
 
-
-export default UserItemComponent
+export default UserItemComponent;

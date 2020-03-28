@@ -3,13 +3,17 @@ import UserService from "../services/UserSerivce";
 import {loginUserAction} from "../actions/UserProfileAction";
 import UserLoginComponent from "../components/UserLoginComponent";
 
-const stateToPropertyMapper = (state) => ({});
+const stateToPropertyMapper = (state) => ({
+  user: state.userAuthentication.currUser
+});
 
 const dispatchToPropertyMapper = (dispatch) => ({
   login: (user) => {
     //todo: may change reducer behavior
-    UserService.login(user)
-      .then(dispatch(loginUserAction(user)));
+    return UserService.login(user);
+  },
+  updateUserState: (user) => {
+    dispatch(loginUserAction(user));
   }
 });
 
