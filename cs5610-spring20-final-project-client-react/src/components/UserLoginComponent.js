@@ -24,9 +24,13 @@ class UserLoginComponent extends React.Component {
     this.props.login({
       username: this.state.username,
       password: this.state.password
+    }).then(response => {
+      console.log(response);
+      if (response) {
+        this.props.updateUserState(response);
+        this.props.history.push('/profile');
+      }
     });
-    //todo: handle when login fails
-    this.props.history.push("/profile")
   };
 
   render() {

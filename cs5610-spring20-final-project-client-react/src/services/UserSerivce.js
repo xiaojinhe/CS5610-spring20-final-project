@@ -1,4 +1,5 @@
 import {MOVIE_TIME_BASE_URL, USER_API_URL} from "../common/constants";
+import {loginUserAction} from "../actions/UserProfileAction";
 
 /* ====== for user authentication====== */
 export const register = (user) =>
@@ -19,7 +20,14 @@ export const login = (user) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  }).then(response => {
+    if (response.status === 401) {
+      alert("Invalid username or password");
+      return null;
+    } else {
+      return response.json()
+    }
+  });
 
 export const logout = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/logout`, {

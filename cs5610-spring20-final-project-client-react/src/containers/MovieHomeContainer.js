@@ -13,10 +13,12 @@ import UserLoginContainer from "./UserLoginContainer";
 import WriteCommentComponent from "../components/WriteCommentComponent";
 import WriteReviewComponent from "../components/WriteReviewComponent";
 import RegisterContainer from "./RegisterContainer";
+import userAuthenticationReducer from "../reducers/UserAuthenticationReducer";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
-  userProfile: userProfileReducer
+  userProfile: userProfileReducer,
+  userAuthentication: userAuthenticationReducer
 });
 
 const store = createStore(reducers);
