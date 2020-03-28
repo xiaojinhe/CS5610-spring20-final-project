@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import UserProfileComponent from "../components/UserProfileComponents/UserProfileComponent";
 import UserService from "../services/UserSerivce";
-import {findUserByIdAction, updateUserAction} from "../actions/UserProfileAction";
+import {findUserByIdAction, getCurrentUserAction, updateUserAction} from "../actions/UserProfileAction";
 
 const stateToPropertyMapper = (state) => ({
   user: state.userProfile.user
@@ -14,7 +14,12 @@ const dispatchToPropertyMapper = (dispatch) => ({
   },
   updateUser: (userId, user) => {
     UserService.updateUser(userId, user)
-      .dispatch(updateUserAction(user));
+      .then(response => {
+        if (response.status === 200) {
+          alert("Successully update your profile!");
+          dispatch(updateUserAction(user));
+        }
+      })
   },
   followUser: (userId, user) => {
     //TODO: call with current userId and target user,change UI based on server result
@@ -24,7 +29,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
     //TODO: call this and change UI based on server result
     UserService.unfollowUser(userId, criticId);
   },
-  getCurrentUser:() => {
+  getCurrentUser: () => {
     UserService.getCurrentUser()
       .then(user => dispatch(findUserByIdAction(user)))
   }

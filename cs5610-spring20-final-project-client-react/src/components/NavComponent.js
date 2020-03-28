@@ -53,8 +53,7 @@ class NavComponent extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto pl-2">
                         <li className="nav-item">
-                            {/*TODO: change to real link*/}
-                            <Link className="nav-link p-0" to="/profile/1"><i className="far fa-user-circle fa-2x pt-1"/></Link>
+                            <Link className="nav-link p-0" to="/profile"><i className="far fa-user-circle fa-2x pt-1"/></Link>
                         </li>
                         {/*TODO: Hide this tab when user has logged in*/}
                         <li className="nav-item d-flex ml-2 align-items-center">
