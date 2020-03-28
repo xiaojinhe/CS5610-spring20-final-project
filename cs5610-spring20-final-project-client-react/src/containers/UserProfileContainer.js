@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import UserProfileComponent from "../components/UserProfileComponents/UserProfileComponent";
 import UserService from "../services/UserSerivce";
 import {findUserByIdAction, updateUserAction} from "../actions/UserProfileAction";
+const store = require('store');
 
 const stateToPropertyMapper = (state) => ({
   user: state.userProfile.user
@@ -30,8 +31,8 @@ const dispatchToPropertyMapper = (dispatch) => ({
     UserService.unfollowUser(userId, criticId);
   },
   getCurrentUser: () => {
-    UserService.getCurrentUser()
-      .then(user => dispatch(findUserByIdAction(user)))
+    console.log(store.get('currUser'));
+    dispatch(findUserByIdAction(store.get('currUser')))
   }
 });
 

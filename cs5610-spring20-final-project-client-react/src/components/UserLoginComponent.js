@@ -1,6 +1,7 @@
 import React from 'react'
 import NavComponent from "./NavComponent";
 import {Link} from "react-router-dom";
+const store = require('store');
 
 class UserLoginComponent extends React.Component {
   state = {
@@ -28,6 +29,7 @@ class UserLoginComponent extends React.Component {
       console.log(response);
       if (response) {
         this.props.updateUserState(response);
+        store.set('currUser', response);
         this.props.history.push('/profile');
       }
     });
