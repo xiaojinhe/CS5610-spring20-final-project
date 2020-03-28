@@ -18,7 +18,7 @@ export const deleteComment = (commentId) =>
   fetch(`${COMMENT_API_URL}/${commentId}`, {
     method: "DELETE",
     credentials:"include",
-  }).then(response => response.json());
+  });
 
 export const updateComment = (commentId, comment) =>
   fetch(`${COMMENT_API_URL}/${commentId}`, {
@@ -28,7 +28,7 @@ export const updateComment = (commentId, comment) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export const findAllCommentsByMovieId = (movieId) =>
   fetch(MOVIE_COMMENTS_API_URL(movieId))

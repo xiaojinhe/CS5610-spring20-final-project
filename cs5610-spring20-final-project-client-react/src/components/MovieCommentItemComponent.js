@@ -45,7 +45,7 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
                   readonly={true}
                   fullSymbol={<i className="fas fa-star"/>}
                   emptySymbol={<i className="far fa-star"/>}/>
-          <span className="pl-2">{comment.date ? comment.date : "2020-03-05"}</span>
+          <span className="pl-2">{comment.date.substring(0,10)}</span>
         </div>
         <div>{comment.content}</div>
       </div>

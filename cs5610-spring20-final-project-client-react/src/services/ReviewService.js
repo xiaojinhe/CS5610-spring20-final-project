@@ -1,5 +1,5 @@
 import {
-  MOVIE_REVIEWS_API_URL,
+  MOVIE_REVIEWS_API_URL, MOVIE_TIME_BASE_URL,
   REVIEW_API_URL,
   USER_REVIEWS_API_URL
 } from "../common/constants";
@@ -22,7 +22,7 @@ export const deleteReview = (reviewId) =>
   fetch(`${REVIEW_API_URL}/${reviewId}`, {
     method: "DELETE",
     credentials:"include",
-  }).then(response => response.json());
+  });
 
 export const updateReivew = (reviewId, review) =>
   fetch(`${REVIEW_API_URL}/${reviewId}`, {
@@ -32,7 +32,7 @@ export const updateReivew = (reviewId, review) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export const findAllReviewsByMovieId = (movieId) =>
   fetch(MOVIE_REVIEWS_API_URL(movieId))
@@ -50,14 +50,17 @@ export const likeReview = (reviewId) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json())
+  });
 
 export const cancelLikeReview = (reviewId) =>
   fetch(`${REVIEW_API_URL}/${reviewId}/likes`, {
     method: 'DELETE',
     credentials:"include",
-  }).then(response => response.json());
+  });
 
+export const findMostLikedReview = () =>
+  fetch(`${MOVIE_TIME_BASE_URL}/api/mostLikedReviews`)
+    .then(response => response.json());
 
 export default {
   createReview,
@@ -67,5 +70,6 @@ export default {
   findAllReviewsByMovieId,
   findAllReviewsByUserId,
   likeReview,
-  cancelLikeReview
+  cancelLikeReview,
+  findMostLikedReview
 }
