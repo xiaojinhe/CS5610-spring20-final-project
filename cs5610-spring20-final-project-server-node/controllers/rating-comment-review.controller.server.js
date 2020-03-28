@@ -25,6 +25,7 @@ module.exports = function (app) {
     app.delete('/api/reviews/:rid', authorized, deleteReview);
     app.post('/api/reviews/:rid/likes', authorized, likeReview);
     app.delete('/api/reviews/:rid/likes', authorized, unlikeReview);
+    app.get('/api/mostLikedReviews', findMostLikedReviews);
 
     function findReviewsForMovie(req, res) {
         const tmdbId = req.params['mid'];
@@ -49,7 +50,10 @@ module.exports = function (app) {
                     res.json(review)
                 } else {
                     // if not, create review
-                    RCRDao.createRatingAndCommentOrReview(req.body)
+                    const review = req.body;
+                    review.userId = user._id;
+                    review.username = user.username;
+                    RCRDao.createRatingAndCommentOrReview(review)
                         .then(review => {
                             if (review) {
                                 userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
@@ -141,6 +145,11 @@ module.exports = function (app) {
             })
     }
 
+    function findMostLikedReviews(req, res) {
+        RCRDao.findTopTenLikedReviews()
+            .then(reviews => res.json(reviews))
+    }
+
     /* ========= COMMENTS ======== */
     app.get('/api/movies/:mid/comments', findCommentsForMovie);
     app.post('/api/movies/:mid/comments', authorized, createComment);
@@ -165,7 +174,10 @@ module.exports = function (app) {
                     res.json(comment)
                 } else {
                     // if not, create comment
-                    RCRDao.createRatingAndCommentOrReview(req.body)
+                    const comment = req.body;
+                    comment.userId = user._id;
+                    comment.username = user.username;
+                    RCRDao.createRatingAndCommentOrReview(comment)
                         .then(comment => {
                             if (comment) {
                                 userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
