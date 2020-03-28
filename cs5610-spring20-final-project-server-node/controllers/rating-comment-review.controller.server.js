@@ -143,7 +143,7 @@ module.exports = function (app) {
     }
 
     function findMostLikedReviews(req, res) {
-        RCRDao.findAllReviewsSortedByLikes()
+        RCRDao.findTopTenLikedReviews()
             .then(reviews => res.json(reviews))
     }
 

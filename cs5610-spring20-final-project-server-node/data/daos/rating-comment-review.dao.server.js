@@ -58,7 +58,7 @@ findRatingAndCommentOrReviewByUserAndMovie = (userId, tmdbId) => {
   return ratingAndCommentOrReviewModel.findOne({userId: userId, tmdbId: tmdbId});
 }
 
-findAllReviewsSortedByLikes = () => {
+findTopTenLikedReviews = () => {
   return ratingAndCommentOrReviewModel.find({type: 'REVIEW'}).sort({likes: -1}).limit(10);
 };
 
@@ -77,7 +77,7 @@ module.exports = {
   findAllCommentsForMovieSortedByDate,
   findAllRatingAndCommentOrReviewsForUser,
   findRatingAndCommentOrReviewByUserAndMovie,
-  findAllReviewsSortedByLikes
+  findTopTenLikedReviews
 };
 
 
