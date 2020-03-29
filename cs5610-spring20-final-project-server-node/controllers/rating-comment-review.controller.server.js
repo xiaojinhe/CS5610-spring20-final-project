@@ -72,7 +72,7 @@ module.exports = function (app) {
                 if (result.deletedCount === 1) {
                     // delete from author review list
                     userDao.deleteUserRatingAndCommentOrReview(uid, rid)
-                      .then(userDao.deleteLikedReviewById(rid).exec());
+                      .then(userDao.deleteLikedReviewById(rid));
                 }
                 res.sendStatus(200);
             })
