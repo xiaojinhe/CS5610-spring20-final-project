@@ -45,11 +45,13 @@ const UserProfileTabComponent = ({user, updateUser}) =>
       </div>
     </nav>
     <div className="tab-content" id="nav-tabContent">
-      <div className="tab-pane fade show active" id="nav-profile" role="tabpanel">
-        <UserProfileInfoComponent
-          user={user}
-          updateUser={updateUser}/>
-      </div>
+      {store.get('currUser')._id === user._id &&
+       <div className="tab-pane fade show active" id="nav-profile" role="tabpanel">
+         <UserProfileInfoComponent
+           user={user}
+           updateUser={updateUser}/>
+       </div>
+      }
       <div className="tab-pane fade show" id="nav-favorites" role="tabpanel">
         {user.favorites && user.favorites.map(movie =>
           <MovieItemComponent
@@ -101,7 +103,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         )}
       </div>
     </div>
-  </div>
+  </div>;
 
 
 export default UserProfileTabComponent

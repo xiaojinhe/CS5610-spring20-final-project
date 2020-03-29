@@ -17,6 +17,8 @@ class UserProfileComponent extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.userId && this.props.userId !== prevProps.userId) {
       this.props.findUserById(this.props.userId)
+    } else if (this.props.userId !== prevProps.userId) {
+      this.props.getCurrentUser();
     }
   }
 
@@ -42,4 +44,4 @@ class UserProfileComponent extends React.Component {
   }
 }
 
-export default UserProfileComponent
+export default UserProfileComponent;
