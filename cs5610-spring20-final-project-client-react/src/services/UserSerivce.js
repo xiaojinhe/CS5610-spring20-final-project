@@ -1,5 +1,4 @@
 import {MOVIE_TIME_BASE_URL, USER_API_URL} from "../common/constants";
-import {loginUserAction} from "../actions/UserProfileAction";
 
 /* ====== for user authentication====== */
 export const register = (user) =>

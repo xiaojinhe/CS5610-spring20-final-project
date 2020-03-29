@@ -11,7 +11,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
   <div className="mt-5">
     <nav>
       <div className="nav nav-tabs" id="nav-tab" role="tablist">
-        {store.get('currUser')._id === user._id &&
+        {store.get('currUser') && store.get('currUser')._id === user._id &&
          <a className="nav-item nav-link active" data-toggle="tab" href="#nav-profile" role="tab">
           Profile
         </a>
@@ -45,7 +45,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
       </div>
     </nav>
     <div className="tab-content" id="nav-tabContent">
-      {store.get('currUser')._id === user._id &&
+      {store.get('currUser') && store.get('currUser')._id === user._id &&
        <div className="tab-pane fade show active" id="nav-profile" role="tabpanel">
          <UserProfileInfoComponent
            user={user}

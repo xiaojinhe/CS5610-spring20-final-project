@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './register.style.client.css';
 import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
+const store = require('store');
 
 class RegisterComponent extends React.Component {
 
