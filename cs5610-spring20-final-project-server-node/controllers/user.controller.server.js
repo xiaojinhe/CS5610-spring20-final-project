@@ -50,7 +50,7 @@ module.exports = function (app) {
     function getUserById(req, res) {
         const uid = req.params['uid'];
         userDao.findUserById(uid)
-            .then(user => res.json(user))
+            .then(user => res.json(user));
     }
 
     function register(req, res) {
@@ -127,19 +127,19 @@ module.exports = function (app) {
     }
 
     function follow(req, res) {
-        const user1 = req.user
+        const user1 = req.user;
         const user1Info = {
             userId: user1._id,
             username: user1.username
-        }
+        };
 
         const user2Info = {
             userId: req.body['_id'],
             username: req.body['username']
-        }
+        };
 
         // check if already followed
-        let u = user1.follows.find(user => user.userId === user2Info.userId)
+        let u = user1.follows.find(user => user.userId === user2Info.userId);
         if (u) {
             return res.sendStatus(200);
         }
@@ -167,7 +167,7 @@ module.exports = function (app) {
         const user2Id = req.params['criticId'];
 
         // check if followed, if not, return
-        let u = user1.follows.find(user => user.userId === user2Id)
+        let u = user1.follows.find(user => user.userId === user2Id);
         if (!u) {
             return res.sendStatus(200);
         }
@@ -198,10 +198,10 @@ module.exports = function (app) {
             movieName: req.body['movieName'],
             moviePosterURL: req.body['moviePosterURL'],
             rating: req.body['rating']
-        }
+        };
 
         // check if in favorite list
-        let m = user.favoriteMovies.find(m => m.tmdbId === movie.tmdbId)
+        let m = user.favoriteMovies.find(m => m.tmdbId === movie.tmdbId);
         if (m) {
             return res.sendStatus(200);
         }
@@ -219,10 +219,10 @@ module.exports = function (app) {
     function removeFavorite(req, res) {
         const user = req.user;
         const uid = user._id;
-        const mid = req.params['mid']
+        const mid = req.params['mid'];
 
         // check if in favorite list
-        let m = user.favoriteMovies.find(m => m.tmdbId === mid)
+        let m = user.favoriteMovies.find(m => m.tmdbId === mid);
         if (!m) {
             return res.sendStatus(200);
         }
@@ -231,8 +231,8 @@ module.exports = function (app) {
     }
 
     /* ========= RATINGS AND COMMENTS/REVIEWS ======== */
-    app.get('/api/users/:uid/comments', findCommentsForRegularUser)
-    app.get('/api/users/:uid/reviews', findReviewsForCritic)
+    app.get('/api/users/:uid/comments', findCommentsForRegularUser);
+    app.get('/api/users/:uid/reviews', findReviewsForCritic);
 
     function findCommentsForRegularUser(req, res) {
         const uid = req.params['uid'];
@@ -247,7 +247,7 @@ module.exports = function (app) {
     }
 
     /* ========= LIKED REVIEWS ======== */
-    app.get('/api/users/:uid/likedReviews', findLikedReviewsForUser)
+    app.get('/api/users/:uid/likedReviews', findLikedReviewsForUser);
 
     function findLikedReviewsForUser(req, res) {
         const uid = req.params['uid'];
@@ -255,4 +255,4 @@ module.exports = function (app) {
             .then(likedReviews => res.json(likedReviews))
     }
 
-}
+};

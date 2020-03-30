@@ -49,7 +49,7 @@ module.exports = function (app) {
             .then(review => {
                 if (review) {
                     userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
-                    res.json(review)
+                      .then(res.json(review))
                 }
             })
     }
@@ -71,11 +71,10 @@ module.exports = function (app) {
             .then(result => {
                 if (result.deletedCount === 1) {
                     // delete from author review list
-                    userDao.deleteUserRatingAndCommentOrReview(uid, rid);
-                    // delete from liked list
-                    userDao.deleteLikedReviewById(rid);
+                    userDao.deleteUserRatingAndCommentOrReview(uid, rid)
+                      .then(userDao.deleteLikedReviewById(rid));
                 }
-                res.sendStatus(200)
+                res.sendStatus(200);
             })
     }
 
@@ -137,7 +136,7 @@ module.exports = function (app) {
 
     function findMostLikedReviews(req, res) {
         RCRDao.findTopTenLikedReviews()
-            .then(reviews => res.json(reviews))
+            .then(reviews => res.json(reviews));
     }
 
     /* ========= COMMENTS ======== */
@@ -149,7 +148,7 @@ module.exports = function (app) {
     function findCommentsForMovie(req, res) {
         const tmdbId = req.params['mid'];
         RCRDao.findAllCommentsForMovieSortedByDate(tmdbId)
-            .then(comments => res.json(comments))
+            .then(comments => res.json(comments));
     }
 
     function createComment(req, res) {
@@ -162,7 +161,7 @@ module.exports = function (app) {
             .then(comment => {
                 if (comment) {
                     userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
-                    res.json(comment)
+                      .then(res.json(comment));
                 }
             })
     }
@@ -189,4 +188,4 @@ module.exports = function (app) {
                 res.sendStatus(200)
             })
     }
-}
+};

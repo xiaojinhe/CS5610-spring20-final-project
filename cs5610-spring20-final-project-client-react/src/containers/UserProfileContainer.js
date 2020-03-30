@@ -31,8 +31,8 @@ const dispatchToPropertyMapper = (dispatch) => ({
     UserService.unfollowUser(userId, criticId);
   },
   getCurrentUser: () => {
-    console.log(store.get('currUser'));
-    dispatch(findUserByIdAction(store.get('currUser')))
+    const user = store.get('currUser') ? store.get('currUser') : UserService.getCurrentUser();
+    dispatch(findUserByIdAction(user));
   }
 });
 
