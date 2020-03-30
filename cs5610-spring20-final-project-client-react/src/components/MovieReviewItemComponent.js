@@ -1,23 +1,27 @@
 import React from "react";
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
-import ReviewService, {cancelLikeReview} from "../services/ReviewService";
+import ReviewService from "../services/ReviewService";
+import UserSerivce from "../services/UserSerivce";
 
-//TODO: show whether current user has liked this review and toggle between like and cancel like
+const store = require('store');
+
 class MovieReviewItemComponent extends React.Component {
 
   state = {
-    likes: this.props.review.likes ? this.props.review.likes : 0
+    review: this.props.review
   };
 
   likeReview = (reviewId) => {
+    if (store.get('currUser') == null)  {
+      this.props.history.push('/login')
+      return
+    }
     ReviewService.likeReview(reviewId)
       .then(
         response => {
           if (response.status === 200) {
-            this.setState((prevState) => {
-              return {likes: prevState.likes + 1}
-            })
+            this.updateData(reviewId)
           } else {
             alert(response.status + " : " + response.statusText)
           }
@@ -25,49 +29,61 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   cancelLikeReview = (reviewId) => {
+
     ReviewService.cancelLikeReview(reviewId)
       .then(response => {
         if (response.status === 200) {
-          this.setState((prevState) => {
-            return {likes: prevState.likes - 1}
-          })
+          this.updateData(reviewId)
         } else {
           alert(response.status + " : " + response.statusText)
         }
       })
   };
 
+  //to get the updated current user and review
+  updateData = (reviewId) => {
+    UserSerivce.getCurrentUser().then(response => {
+      if (response) {
+        store.set('currUser', response);
+        ReviewService.getReviewById(reviewId)
+          .then(review => this.setState({
+            review: review
+          }))
+      }
+    })
+  };
 
   render() {
+    console.log(store.get("currUser"));
     return (
       <div className="p-2 mt-2 row">
-        {this.props.review.moviePosterURL &&
+        {this.state.review.moviePosterURL &&
         <div className="col-2">
           {
             this.props.isInProfile ?
-              <Link to={`/details/${this.props.review.tmdbId}`}>
-                <img className="img-thumbnail" src={this.props.review.moviePosterURL} alt=""/>
+              <Link to={`/details/${this.state.review.tmdbId}`}>
+                <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
               </Link>
               :
-              <img className="img-thumbnail" src={this.props.review.moviePosterURL} alt=""/>
+              <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
           }
         </div>
         }
         <div className="col-10">
           <div>
             {/*//todo: change a to the link to */}
-            <a href={this.props.review.title}
-               className="font-weight-bold pr-2">{this.props.review.title}</a>
+            <a href={this.state.review.title}
+               className="font-weight-bold pr-2">{this.state.review.title}</a>
           </div>
           {
             this.props.isInProfile ?
               <small>Review for&nbsp;
-                <Link to={`/details/${this.props.review.tmdbId}`}>
-                  {this.props.review.movieName}
+                <Link to={`/details/${this.state.review.tmdbId}`}>
+                  {this.state.review.movieName}
                 </Link>
               </small>
               :
-              <small>Review for {this.props.review.movieName}</small>
+              <small>Review for {this.state.review.movieName}</small>
           }
           <div>
             {/*//todo: change to actual rating */}
@@ -75,23 +91,35 @@ class MovieReviewItemComponent extends React.Component {
                     start={0}
                     stop={10}
                     step={2}
-                    initialRating={this.props.review.rating ? this.props.review.rating : 7}
+                    initialRating={this.state.review.rating ? this.state.review.rating : 7}
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <span className="ml-2">Published at {this.props.review.date && this.props.review.date.substring(0,10)}</span>
+            <span
+              className="ml-2">Published at {this.state.review.date && this.state.review.date.substring(0, 10)}</span>
           </div>
-          {/*//TODO: truncate the content*/}
-          <div>{this.props.review.content}</div>
+          <div>{this.state.review.content}</div>
           <div>
             {/*//todo: change to actual rating */}
+            {(!store.get("currUser") || (store.get("currUser") && !store.get("currUser").likedReviews.includes(this.state.review._id))) &&
             <button className="btn"
                     onClick={() => {
-                      this.likeReview(this.props.review._id);
+                      this.likeReview(this.state.review._id);
                     }}>
               <i className="far fa-thumbs-up fa-lg pr-2"/>
-              {this.state.likes}
+              {this.state.review.likes ? this.state.review.likes : 0}
             </button>
+            }
+
+            {store.get("currUser") && store.get("currUser").likedReviews.includes(this.state.review._id) &&
+            <button className="btn"
+                    onClick={() => {
+                      this.cancelLikeReview(this.state.review._id);
+                    }}>
+              <i className="fas fa-thumbs-up fa-lg pr-2"/>
+              {this.state.review.likes ? this.state.review.likes : 0}
+            </button>
+            }
           </div>
         </div>
       </div>

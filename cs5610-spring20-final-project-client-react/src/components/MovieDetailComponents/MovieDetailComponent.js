@@ -58,7 +58,8 @@ class MovieDetailComponent extends React.Component {
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_comment`, state: {
-                    movieName: this.props.movie.title
+                    movieName: this.props.movie.title,
+                    moviePosterUrl: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
                   }
                 }}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
@@ -66,7 +67,8 @@ class MovieDetailComponent extends React.Component {
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
-                    movieName: this.props.movie.title
+                    movieName: this.props.movie.title,
+                    moviePosterUrl: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
                   }
                 }}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
@@ -142,7 +144,8 @@ class MovieDetailComponent extends React.Component {
               </div>
             </div>
             <MovieReviewListComponent
-              pickedReviews={this.props.reviews.slice(0, pickedReviewDisplayNum)}/>
+              pickedReviews={this.props.reviews.slice(0, pickedReviewDisplayNum)}
+              history={this.props.history}/>
           </div>}
 
           {this.props.movie.similar.results &&

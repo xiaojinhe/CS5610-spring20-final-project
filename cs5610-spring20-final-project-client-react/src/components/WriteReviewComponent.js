@@ -19,8 +19,8 @@ class WriteReviewComponent extends React.Component {
   }
 
   componentDidMount() {
-    const {movieName} = this.props.location.state;
-    this.setState({movieName: movieName})
+    this.setState({movieName: this.props.location.movieName})
+    console.log(this.props.location.moviePosterUrl)
   }
 
   handleOnChange = (event) => {
@@ -51,13 +51,13 @@ class WriteReviewComponent extends React.Component {
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterUrl: this.state.url,
+        moviePosterUrl: this.state.url !== "" ? this.state.url : this.props.location.moviePosterUrl,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,
         date: new Date(),
         type: "REVIEW"
-      })
+      }).then(response => this.props.history.push(`/details/${this.props.movieId}`))
   };
 
   render() {
@@ -135,10 +135,10 @@ class WriteReviewComponent extends React.Component {
             {this.state.url && <h4>Image Preview</h4>}
             {
               this.state.url ?
-              <img src={this.state.url}
-                   className="image-fluid"
-                   alt=""/> :
-              ""
+                <img src={this.state.url}
+                     className="image-fluid"
+                     alt=""/> :
+                ""
             }
           </div>
           {/*TODO: SAVE THE REVIEW*/}
