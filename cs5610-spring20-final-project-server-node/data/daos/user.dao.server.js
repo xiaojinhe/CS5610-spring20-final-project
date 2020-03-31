@@ -69,7 +69,7 @@ updateUserFavoriteMovie = (userId, movie) => {
 };
 
 deleteUserFavoriteMovie = (userId, mid) => {
-  return userModel.update({_id: userId}, {$pull: {favoriteMovies: { tmdbId: mid}}});
+  return userModel.update({_id: userId}, {$pull: {favoriteMovies: { id: mid}}});
 };
 
 findAllLikedReviewsForUser = (userId) => {
@@ -93,7 +93,7 @@ deleteLikedReviewById = (reviewId) => {
 
 findAllFollowsForUser = (userId) =>{
   return userModel.findOne({_id: userId}, 'follows')
-}
+};
 
 updateUserFollows = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {follows: userInfo}});

@@ -29,10 +29,12 @@ const userSchema = mongoose.Schema(
     ],
     favoriteMovies: [
       {
-        tmdbId: String,
-        movieName: String,
-        moviePosterURL: String,
-        rating: Number
+        id: String,
+        title: String,
+        poster_path: String,
+        vote_average: Number,
+        release_date: String,
+        overview: String
       }
     ],
     likedReviews: [
