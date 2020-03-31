@@ -1,36 +1,53 @@
 import React from 'react'
 import {CRITIC_USER, REGULAR_USER, USER_ICON_PATH} from "../../common/constants";
 import "./userProfile.css"
-import {Link} from "react-router-dom";
 
-const enableEditProfile = true;
-const UserProfileHeaderComponent = ({user, followUser}) =>
+const UserProfileHeaderComponent = ({user, isCurrentUserProfile, isFollowedBy, followUser, unfollowUser}) =>
 
   <div className="card bg-light mt-5">
     <div className="card-body">
-      <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
-           className="rounded-circle user-icon mx-auto d-flex border p-3"
-           alt="user icon"/>
+      <div className="text-center">
+        <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
+             className="rounded-circle user-icon border p-3 ml-5"
+             alt="user icon"/>
+        <div className="d-inline-block position-relative px-2 py-1
+                        rounded text-capitalize text-white bg-success"
+             style={{left: "5px", top: "-50px"}}>
+          {user.role.toLowerCase()}
+        </div>
+      </div>
       <div className="row mt-3">
         <h4
-          className={`my-auto ${user.role === CRITIC_USER || enableEditProfile ? "ml-auto" : "mx-auto"}`}>{user.username}</h4>
+          className={`my-auto ${!isCurrentUserProfile && user.role === CRITIC_USER ? "ml-auto" : "mx-auto"}`}>
+          {user.username}
+        </h4>
         {/*//todo: hide the follow button for three situation:
-        (1) the logged in user is viewing his own profile
-        (2) if the profile belongs to a regular user
-        (3) if the profile is viewing by anonymous user*/}
-        {user.role === CRITIC_USER &&
-        <button className="ml-2 btn btn-info mr-auto my-auto">
-          Follow <i className="fa fa-plus"/>
-        </button>
+        (1) the logged in user is viewing his own profile -- checked
+        (2) if the profile belongs to a regular user -- checked
+        (3) if the profile is viewing by anonymous user -- checked
+        (4) TODO: do we have to hid the button if the current user is a critic?
+        */}
+        {!isCurrentUserProfile && user.role === CRITIC_USER &&
+        <div className="ml-2 mr-auto my-auto">
+          {isFollowedBy ?
+            <button className="btn btn-outline-secondary"
+                    onClick={unfollowUser}>
+              <i className="fa fa-check"/> Followed
+            </button> :
+
+            <button className="btn btn-info"
+                    onClick={followUser}>
+              <i className="fa fa-plus"/> Follow
+            </button>
+          }
+        </div>
         }
-        {/*//todo: show this button only when user,
-        right now just assume the regular user is logged in user to make UI consistent*/}
-        {
-          user.role === REGULAR_USER && enableEditProfile &&
-          <Link to="/profile/edit" className="ml-2 btn btn-info mr-auto my-auto">
-            Edit <i className="fa fa-pencil-alt"/>
-          </Link>
-        }
+        {/*{*/}
+        {/*  user.role === REGULAR_USER && enableEditProfile &&*/}
+        {/*  <Link to="/profile/edit" className="ml-2 btn btn-info mr-auto my-auto">*/}
+        {/*    Edit <i className="fa fa-pencil-alt"/>*/}
+        {/*  </Link>*/}
+        {/*}*/}
       </div>
       <div className="mt-3">
         {user.role === REGULAR_USER &&

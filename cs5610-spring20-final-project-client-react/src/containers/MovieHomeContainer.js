@@ -80,15 +80,13 @@ class MovieHomeContainer extends React.Component {
               render={(props) =>
                 <UserProfileContainer
                   {...props}
-                  userId={props.match.params.userId}
-                  isLoggedInUser={false}/>
+                  userId={props.match.params.userId}/>
               }/>
             <Route
             path="/profile"
             exact={true}
             render={(props) =>
-              <UserProfileContainer {...props}
-                                    isLoggedInUser={true}/>
+              <UserProfileContainer {...props}/>
             }/>
             <Route
               path="/register"
