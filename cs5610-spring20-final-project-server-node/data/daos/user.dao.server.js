@@ -1,11 +1,17 @@
 const userModel = require('../models/user/user.model.server');
 
 findUserByCredentials = (credentials) => {
-  return userModel.findOne(credentials);
+  return userModel.findOne(credentials)
+    .populate('ratingAndCommentsOrReviews')
+    .populate('likedReviews')
+    .exec();
 };
 
 findUserById = (userId) => {
-  return userModel.findById(userId);
+  return userModel.findById(userId)
+    .populate('ratingAndCommentsOrReviews')
+    .populate('likedReviews')
+    .exec();
 };
 
 findAllUsers = () => {
@@ -21,7 +27,10 @@ updateUser = (userId, user) => {
 };
 
 findByUsername = (username) => {
-  return userModel.findOne({username: username});
+  return userModel.findOne({username: username})
+    .populate('ratingAndCommentsOrReviews')
+    .populate('likedReviews')
+    .exec();
 };
 
 updateUserPhone = (userId, phone) => {
@@ -96,7 +105,7 @@ deleteUserFollows = (userId, criticId) => {
 
 findAllFansForUser = (userId) =>{
   return userModel.findOne({_id: userId}, 'followedBy')
-}
+};
 
 updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});

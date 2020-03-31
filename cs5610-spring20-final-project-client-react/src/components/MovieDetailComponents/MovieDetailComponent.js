@@ -54,6 +54,7 @@ class MovieDetailComponent extends React.Component {
               <div className="col-lg-3 col-md-3 col-sm-2 col-12 p-1">
                 {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
+                  history={this.props.history}
                   toggleFavorite={this.props.toggleFavorite}
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
@@ -62,7 +63,8 @@ class MovieDetailComponent extends React.Component {
                 {(!currUser || currUser.role === REGULAR_USER) &&
                 <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`, state: {
-                    movieName: this.props.movie.title
+                    movieName: this.props.movie.title,
+                    moviePosterURL: this.props.movie.poster_path
                   }
                 } : "/login"}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
@@ -74,7 +76,7 @@ class MovieDetailComponent extends React.Component {
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
                     movieName: this.props.movie.title,
-                    moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
+                    moviePosterURL: this.props.movie.poster_path
                   }
                 } : "/login"}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
@@ -127,7 +129,7 @@ class MovieDetailComponent extends React.Component {
                 {(!currUser || currUser.role === REGULAR_USER) &&
                 <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`,
-                  state: {movieTitle: this.props.movie.title}
+                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 } : "/login"}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
@@ -149,10 +151,7 @@ class MovieDetailComponent extends React.Component {
                 {(!currUser || currUser.role === CRITIC_USER) &&
                 < Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_review`,
-                  state: {
-                    movieName: this.props.movie.title,
-                    moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
-                  }
+                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 } : "/login"}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
@@ -176,7 +175,6 @@ class MovieDetailComponent extends React.Component {
               }
             </div>
           </div>}
-
         </div>
       )
     }

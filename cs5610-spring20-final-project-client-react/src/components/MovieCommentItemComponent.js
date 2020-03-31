@@ -10,7 +10,7 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
         isInProfile &&
         <div className="col-1 pr-0 ml-1">
           <Link to={`/details/${comment.tmdbId}`}>
-            <img src={TMDB_IMAGE_URL(200, comment.movie.moviePosterURL)}
+            <img src={TMDB_IMAGE_URL(200, comment.moviePosterURL)}
                  alt="Poster"
                  className="img-thumbnail"
                  height="120"
@@ -45,7 +45,7 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
                   readonly={true}
                   fullSymbol={<i className="fas fa-star"/>}
                   emptySymbol={<i className="far fa-star"/>}/>
-          <span className="pl-2">{comment.date.substring(0,10)}</span>
+          <span className="pl-2">{comment.date && comment.date.substring(0,10)}</span>
         </div>
         <div>{comment.content}</div>
       </div>

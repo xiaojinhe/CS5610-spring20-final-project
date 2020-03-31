@@ -31,6 +31,8 @@ class UserLoginComponent extends React.Component {
         this.props.updateUserState(response);
         store.set('currUser', response);
         this.props.history.push('/profile');
+      } else {
+        alert("Invalid username or password!");
       }
     });
   };

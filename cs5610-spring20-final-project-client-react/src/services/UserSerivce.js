@@ -1,5 +1,4 @@
 import {MOVIE_TIME_BASE_URL, USER_API_URL} from "../common/constants";
-import {loginUserAction} from "../actions/UserProfileAction";
 
 /* ====== for user authentication====== */
 export const register = (user) =>
@@ -22,7 +21,6 @@ export const login = (user) =>
     }
   }).then(response => {
     if (response.status === 401) {
-      alert("Invalid username or password");
       return null;
     } else {
       return response.json()
@@ -86,19 +84,19 @@ export const followUser = (uid, user) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json())
+  }).then(response => response.json());
 
 export const unfollowUser = (uid, criticId) =>
   fetch(`${USER_API_URL}/${uid}/follows/${criticId}`, {
     method: "DELETE",
     credentials:"include",
-  }).then(response => response.json())
+  }).then(response => response.json());
 
 
 //get user's favorite movies
 export const getFavoriteMoviesForUser = (uid) =>
   fetch(`${USER_API_URL}/${uid}/favorites`)
-    .then(response => response.json())
+    .then(response => response.json());
 
 //get user's liked reviews
 export const getLikedReviewsForUser = (uid) =>
