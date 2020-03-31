@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import {registerUser} from "../actions/UserProfileAction";
 import RegisterComponent from "../components/register/RegisterComponent";
 import UserSerivce from "../services/UserSerivce";
+
 const store = require('store');
 
 const stateToPropertyMapper = (state) => ({
@@ -10,34 +11,25 @@ const stateToPropertyMapper = (state) => ({
 
 const dispatchToPropertyMapper = (dispatch) => ({
   register: (username, password, verifyPassword, role, email, phone) => {
-    if (password !== verifyPassword) {
-      alert("Password does not match!");
-      return false;
-    } else if (!username || !password) {
-      alert("username and password must be provided!");
-      return false;
-    } else if (!email && !phone) {
-      alert("Email or phone must be provided!");
-      return false;
-    } else {
-      const newUser = {
-        username: username,
-        password: password,
-        role: role,
-        email: email,
-        phone: phone
-      };
-      //TODO: handle when username is duplicate
-      //TODO: should not add user to redux state, but call server for current user
-      UserSerivce.register(newUser)
-        .then(user => {
-          store.set('currUser', user);
+    const newUser = {
+      username: username,
+      password: password,
+      role: role,
+      email: email,
+      phone: phone
+    };
+    UserSerivce.register(newUser)
+      .then(response => {
+        if (response.status && response.status > 200) {
+          alert(response.error);
+        } else {
+          store.set('currUser', response);
           console.log(store.get('currUser'));
-          return dispatch(registerUser(user));
-        });
-      return true;
-    }
+          dispatch(registerUser(response))
+        }
+      });
   }
+
 });
 
 const RegisterContainer = connect(

@@ -53,7 +53,8 @@ class UserProfileComponent extends React.Component {
     if (!currentUser) {
       return false;
     }
-    return this.props.user.followedBy.find(fan => fan.userId === currentUser._id) != null
+    return this.props.user.followedBy &&
+      this.props.user.followedBy.find(fan => fan.userId === currentUser._id) != null
   }
 
   followUser = () => {
