@@ -1,9 +1,8 @@
 import {
-  toggleFavorite,
   findAllMovieInfoById,
   findMovieById,
   findReviewsForMovie,
-  findCommentsForMovie, setMovieAsFavorite, setMovieAsFavoriteAction, setMovieNotFavoriteAction
+  findCommentsForMovie, setMovieAsFavoriteAction, setMovieNotFavoriteAction
 } from "../actions/MovieDetailActions";
 import MovieDetailComponent from "../components/MovieDetailComponents/MovieDetailComponent";
 import {connect} from "react-redux";
