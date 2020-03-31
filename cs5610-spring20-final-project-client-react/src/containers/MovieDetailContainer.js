@@ -18,7 +18,8 @@ const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
   comments: state.movieDetail.comments,
   reviews: state.movieDetail.reviews,
-  favorite: state.movieDetail.favorite
+  favorite: state.movieDetail.favorite,
+  publicReviews: state.movieDetail.publicReviews
 });
 
 const dispatchToPropertyMapper = (dispatch) => {
@@ -34,11 +35,11 @@ const dispatchToPropertyMapper = (dispatch) => {
     },
     findAllMovieInfoById: async (movieId) => {
       const movie = await MovieService.findMovieById(movieId);
-      //TODO: switch to use our own api's reviews
       const reviews = await ReviewService.findAllReviewsByMovieId(movieId);
-      //TODO: need to add comments fetch from our own api
       const comments = await CommentService.findAllCommentsByMovieId(movieId);
-      dispatch(findAllMovieInfoById(movie, comments, reviews));
+      const publicReviews = await ReviewService.findPublicReviewsForMovie(movie.title);
+      console.log(publicReviews)
+      dispatch(findAllMovieInfoById(movie, comments, reviews, publicReviews.results));
     },
     findCommentsForMovie: async (movieId) => {
       const comments = await CommentService.findAllCommentsByMovieId(movieId);

@@ -15,10 +15,11 @@ export const findReviewsForMovie = (reviews) => ({
   type: FIND_REVIEWS_FOR_MOVIE
 });
 
-export const findAllMovieInfoById = (movie, comments, reviews) => ({
+export const findAllMovieInfoById = (movie, comments, reviews, publicReviews) => ({
   movie: movie,
   comments: comments,
   reviews: reviews,
+  publicReviews: publicReviews,
   type:FIND_ALL_MOVIE_INFO_BY_ID
 });
 

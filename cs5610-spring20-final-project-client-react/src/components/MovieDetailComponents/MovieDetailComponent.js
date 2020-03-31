@@ -8,14 +8,16 @@ import MovieCommentsListComponent from "../MovieCommentsListComponent";
 import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
 import NavComponent from "../NavComponent";
+import PublicMovieReviewListComponent from "./PublicMovieReviewListComponent";
 
-const pickedReviewDisplayNum = 5;
+const publicReviewDisplayNum = 5;
 const store = require("store");
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
     this.props.findAllMovieInfoById(this.props.movieId);
     this.setMovieFavoriteInitialState();
+
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -65,6 +67,7 @@ class MovieDetailComponent extends React.Component {
             allowFullScreen/>;
 
   render() {
+    console.log(this.props.publicReviews);
     const currUser = store.get("currUser");
     if (this.props.movie) {
       return (
@@ -190,7 +193,15 @@ class MovieDetailComponent extends React.Component {
               </div>
             </div>
             <MovieReviewListComponent
-              pickedReviews={this.props.reviews.slice(0, pickedReviewDisplayNum)}
+              pickedReviews={this.props.reviews}
+              history={this.props.history}/>
+          </div>}
+
+          {this.props.publicReviews &&
+          <div className="m-1 mt-3">
+            <h3 className="movie-header">Public Movie Reviews</h3>
+            <PublicMovieReviewListComponent
+              publicReviews={this.props.publicReviews.slice(0, publicReviewDisplayNum)}
               history={this.props.history}/>
           </div>}
 

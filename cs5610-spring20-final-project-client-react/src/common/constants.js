@@ -53,6 +53,9 @@ export const MOVIE_COMMENTS_API_URL =
 export const MOVIE_REVIEWS_API_URL =
   (movieId) => `${MOVIE_TIME_BASE_URL}/api/movies/${movieId}/reviews`
 
+export const NYTIMES_MOVIE_REVIEWS_API_URL =
+  (movieTitle) => `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${movieTitle}&api-key=${NYT_API_KEY}`;
+
 
 /* =========== Redux action type =========*/
 export const FIND_MOVIE_BY_ID = "FIND_MOVIE_BY_ID";
