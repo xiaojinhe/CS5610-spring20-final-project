@@ -134,7 +134,7 @@ module.exports = function (app) {
         };
 
         const user2Info = {
-            userId: req.body['_id'],
+            userId: req.body['userId'],
             username: req.body['username']
         };
 
@@ -236,13 +236,13 @@ module.exports = function (app) {
 
     function findCommentsForRegularUser(req, res) {
         const uid = req.params['uid'];
-        RCRDao.findAllRatingAndCommentOrReviewsForUser(uid)
+        userDao.findAllRatingAndCommentOrReviewsForUser(uid)
             .then(comments => res.json(comments))
     }
 
     function findReviewsForCritic(req, res) {
         const uid = req.params['uid'];
-        RCRDao.findAllRatingAndCommentOrReviewsForUser(uid)
+        userDao.findAllRatingAndCommentOrReviewsForUser(uid)
             .then(reviews => res.json(reviews))
     }
 
