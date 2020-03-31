@@ -70,6 +70,8 @@ export const SET_MOVIE_NOT_FAVORITE = "SET_MOVIE_NOT_FAVORITE";
 //action type for user profile
 export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
 export const UPDATE_USER = "UPDATE_USER";
+export const FOLLOW_USER = "FOLLOW_USER";
+export const UNFOLLOW_USER = "UNFOLLOW_USER";
 
 // action for login and register
 export const REGISTER = "REGISTER";

@@ -60,7 +60,7 @@ class NavComponent extends React.Component {
                             </li>
                         }
                         {store.get('currUser') &&
-                            <li className="nav-item d-flex ml-3 align-items-center">
+                            <li className="nav-item d-flex ml-lg-3 align-items-center">
                                 <a className="nav-link p-0"
                                    onClick={this.logout}>Logout</a>
                             </li>

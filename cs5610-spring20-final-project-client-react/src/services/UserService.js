@@ -30,7 +30,7 @@ export const login = (user) =>
 export const logout = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/logout`, {
     method: "POST",
-    credentials:"include",
+    credentials: "include",
     headers: {
       'content-type': 'application/json'
     }
@@ -59,12 +59,12 @@ export const findUserById = (uid) =>
 export const updateUser = (uid, user) =>
   fetch(`${USER_API_URL}/${uid}`, {
     method: "PUT",
-    credentials:"include",
+    credentials: "include",
     body: JSON.stringify(user),
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  })
 
 //get all follows
 export const findAllFollowsByUserId = (uid) =>
@@ -79,18 +79,18 @@ export const findAllFollowersByUserId = (uid) =>
 export const followUser = (uid, user) =>
   fetch(`${USER_API_URL}/${uid}/follows`, {
     method: "POST",
-    credentials:"include",
+    credentials: "include",
     body: JSON.stringify(user),
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  });
 
 export const unfollowUser = (uid, criticId) =>
   fetch(`${USER_API_URL}/${uid}/follows/${criticId}`, {
     method: "DELETE",
-    credentials:"include",
-  }).then(response => response.json());
+    credentials: "include",
+  });
 
 
 //get user's favorite movies

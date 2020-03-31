@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './register.style.client.css';
 import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
+
 const store = require('store');
 
 class RegisterComponent extends React.Component {
@@ -16,12 +17,39 @@ class RegisterComponent extends React.Component {
     registerWithEmail: true
   };
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (store.get('currUser')) {
+      alert("Successfully created account!");
+      //TODO: need to think about the route late
+      this.props.history.push("/profile")
+    }
+  }
+
   toggleRegisterWithEmail = () => {
     this.setState({registerWithEmail: !this.state.registerWithEmail});
   };
 
+  register = () => {
+    if (this.state.password !== this.state.verifyPassword) {
+      alert("Password does not match!");
+    } else if (!this.state.username || !this.state.password) {
+      alert("username and password must be provided!");
+    } else if (!this.state.email && !this.state.phone) {
+      alert("Email or phone must be provided!");
+    } else {
+      this.props.register(
+        this.state.username,
+        this.state.password,
+        this.state.verifyPassword,
+        this.state.role,
+        this.state.email,
+        this.state.phone
+      )
+    }
+  }
+
   render() {
-    return(
+    return (
       <div className="container-fluid">
         <div className="signup-form m-lg-5">
           <h2 className=" text-primary text-center">Create your account</h2>
@@ -42,50 +70,50 @@ class RegisterComponent extends React.Component {
             </div>
           </div>
           {this.state.registerWithEmail &&
-            <div>
-              <div className="form-group row">
-                <label htmlFor="email"
-                       className="col-sm-2 col-form-label ">
-                  Email
-                </label>
-                <div className="col-sm-10">
-                  <input className="form-control"
-                         type="email"
-                         id="email"
-                         placeholder="alice@gmail.com"
-                         onChange={(event) => {
-                           this.setState({email: event.target.value});
-                         }}/>
-                  <button className="btn border-0 text-primary pt-3 pb-0"
-                          onClick={this.toggleRegisterWithEmail}>
-                    Use phone instead
-                  </button>
-                </div>
+          <div>
+            <div className="form-group row">
+              <label htmlFor="email"
+                     className="col-sm-2 col-form-label ">
+                Email
+              </label>
+              <div className="col-sm-10">
+                <input className="form-control"
+                       type="email"
+                       id="email"
+                       placeholder="alice@gmail.com"
+                       onChange={(event) => {
+                         this.setState({email: event.target.value});
+                       }}/>
+                <button className="btn border-0 text-primary pt-3 pb-0"
+                        onClick={this.toggleRegisterWithEmail}>
+                  Use phone instead
+                </button>
               </div>
             </div>
+          </div>
           }
           {!this.state.registerWithEmail &&
-           <div>
-             <div className="form-group row">
-               <label htmlFor="phone"
-                      className="col-sm-2 col-form-label ">
-                 Phone
-               </label>
-               <div className="col-sm-10">
-                 <input className="form-control"
-                        type="tel"
-                        id="phone"
-                        placeholder="(123) 456-7890"
-                        onChange={(event) => {
-                          this.setState({phone: event.target.value});
-                        }}/>
-                 <button className="btn border-0 text-primary pt-3 pb-0"
-                         onClick={this.toggleRegisterWithEmail}>
-                   Use email instead
-                 </button>
-               </div>
-             </div>
-           </div>
+          <div>
+            <div className="form-group row">
+              <label htmlFor="phone"
+                     className="col-sm-2 col-form-label ">
+                Phone
+              </label>
+              <div className="col-sm-10">
+                <input className="form-control"
+                       type="tel"
+                       id="phone"
+                       placeholder="(123) 456-7890"
+                       onChange={(event) => {
+                         this.setState({phone: event.target.value});
+                       }}/>
+                <button className="btn border-0 text-primary pt-3 pb-0"
+                        onClick={this.toggleRegisterWithEmail}>
+                  Use email instead
+                </button>
+              </div>
+            </div>
+          </div>
           }
           <div className="form-group row">
             <label htmlFor="password"
@@ -142,17 +170,7 @@ class RegisterComponent extends React.Component {
             <div className="col-sm-2"/>
             <div className="col-sm-10">
               <button className="btn btn-primary btn-block"
-                      onClick={() => {
-                        if(this.props.register(this.state.username,
-                                            this.state.password,
-                                            this.state.verifyPassword,
-                                            this.state.role,
-                                            this.state.email,
-                                            this.state.phone)) {
-                          //TODO: need to think about the route later
-                          this.props.history.push("/profile");
-                        }
-                      }}>
+                      onClick={this.register}>
                 Sign up
               </button>
               <button className="btn btn-secondary btn-block"
@@ -162,10 +180,10 @@ class RegisterComponent extends React.Component {
               <div className="row">
                 <div className="col-12 float-left mt-2">
                   <p id="LoginHelpInline"
-                         className="text-muted">
+                     className="text-muted">
                     Have an account?
                     <Link to="/login"
-                       className="pl-2">
+                          className="pl-2">
                       Login
                     </Link>
                   </p>
