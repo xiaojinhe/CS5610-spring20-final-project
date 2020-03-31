@@ -52,6 +52,7 @@ class MovieDetailComponent extends React.Component {
               <div className="col-lg-3 col-md-3 col-sm-2 col-12 p-1">
                 {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
+                  history={this.props.history}
                   toggleFavorite={this.props.toggleFavorite}
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}

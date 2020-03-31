@@ -105,7 +105,7 @@ deleteUserFollows = (userId, criticId) => {
 
 findAllFansForUser = (userId) =>{
   return userModel.findOne({_id: userId}, 'followedBy')
-}
+};
 
 updateUserFollowedBy = (userId, userInfo) => {
   return userModel.update({_id: userId}, {$push: {followedBy: userInfo}});

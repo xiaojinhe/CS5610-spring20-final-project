@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
 import CommentService from "../services/CommentService";
+import React from "react";
 
 const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
@@ -42,6 +43,7 @@ const dispatchToPropertyMapper = (dispatch) => {
       dispatch(findCommentsForMovie(comments));
     },
     toggleFavorite: () => {
+      //TODO: need to actual update the favorite to server
       dispatch(toggleFavorite())
     }
   });
