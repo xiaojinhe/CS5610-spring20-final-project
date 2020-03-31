@@ -9,7 +9,7 @@ import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
 import NavComponent from "../NavComponent";
 
-const pickedReviewDisplayNum = 100;
+const pickedReviewDisplayNum = 5;
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -57,8 +57,9 @@ class MovieDetailComponent extends React.Component {
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={{
-                  pathname: `/movies/${this.props.movieId}/new_comment`,
-                  state: {movieName: this.props.movie.title}
+                  pathname: `/movies/${this.props.movieId}/new_comment`, state: {
+                    movieName: this.props.movie.title
+                  }
                 }}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>

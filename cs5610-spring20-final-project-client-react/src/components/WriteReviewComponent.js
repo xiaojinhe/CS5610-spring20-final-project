@@ -19,8 +19,6 @@ class WriteReviewComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location.movieName)
-    console.log(this.props.location.moviePosterUrl)
     this.setState({movieName: this.props.location.state.movieName})
   }
 
@@ -51,7 +49,7 @@ class WriteReviewComponent extends React.Component {
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterURL: this.state.url === "" ? this.props.location.state.moviePosterURL :  this.state.url,
+        moviePosterURL: this.state.url === "" ? this.props.location.state.moviePosterURL : this.state.url,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,

@@ -29,7 +29,6 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   cancelLikeReview = (reviewId) => {
-
     ReviewService.cancelLikeReview(reviewId)
       .then(response => {
         if (response.status === 200) {
@@ -61,7 +60,7 @@ class MovieReviewItemComponent extends React.Component {
       //if no user has logged in
       return false;
     }
-  }
+  };
 
 
   render() {
