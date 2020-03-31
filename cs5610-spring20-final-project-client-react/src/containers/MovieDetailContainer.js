@@ -12,7 +12,7 @@ import CommentService from "../services/CommentService";
 import React from "react";
 import UserService from "../services/UserService";
 
-const store = require('store')
+const store = require('store');
 
 const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
@@ -48,7 +48,7 @@ const dispatchToPropertyMapper = (dispatch) => {
       MovieService.addMovieToUserFavorites(movieId, movie)
         .then(response => {
           if (response.status === 200) {
-            dispatch(setMovieAsFavoriteAction())
+            dispatch(setMovieAsFavoriteAction());
             //should also update the user because
             UserService.getCurrentUser()
               .then(response => {
