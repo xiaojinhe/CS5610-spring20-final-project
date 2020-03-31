@@ -42,7 +42,6 @@ class WriteReviewComponent extends React.Component {
   };
 
   triggerChange = () => {
-    //TODO: SAVE THE CHANGE TO LOCAL STORE
   };
 
   //TODO: the type field may should be set in server?
@@ -79,6 +78,7 @@ class WriteReviewComponent extends React.Component {
                     start={0}
                     stop={10}
                     step={2}
+                    initialRating={this.state.rating}
                     onChange={(value) => {
                       this.setState({rating: value})
                     }}

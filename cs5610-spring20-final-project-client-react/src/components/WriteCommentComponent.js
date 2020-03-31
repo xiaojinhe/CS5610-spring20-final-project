@@ -46,6 +46,7 @@ class WriteCommentComponent extends React.Component {
                     start={0}
                     stop={10}
                     step={2}
+                    initialRating={this.state.rating}
                     onChange={(value) => {
                       this.setState({rating: value})
                     }}

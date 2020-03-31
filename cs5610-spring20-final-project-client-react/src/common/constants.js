@@ -72,5 +72,5 @@ export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 export const GET_CURRENT_USER = "GET_CURRENT_USER";
 
-export const CRITIC_USER = "CRITIC"
-export const REGULAR_USER = "REGULAR"
+export const CRITIC_USER = "CRITIC";
+export const REGULAR_USER = "REGULAR";
