@@ -53,7 +53,7 @@ const UserProfileTabComponent = ({user, updateUser}) =>
        </div>
       }
       <div className="tab-pane fade show" id="nav-favorites" role="tabpanel">
-        {user.favorites && user.favorites.map(movie =>
+        {user.favoriteMovies && user.favoriteMovies.map(movie =>
           <MovieItemComponent
             movie={movie}
             key={movie.id}/>

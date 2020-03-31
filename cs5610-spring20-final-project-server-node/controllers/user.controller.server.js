@@ -199,15 +199,10 @@ module.exports = function (app) {
     function addFavorite(req, res) {
         const user = req.user;
         const uid = user._id;
-        const movie = {
-            tmdbId: req.body['tmdbId'],
-            movieName: req.body['movieName'],
-            moviePosterURL: req.body['moviePosterURL'],
-            rating: req.body['rating']
-        };
+        const movie = req.body;
 
         // check if in favorite list
-        let m = user.favoriteMovies.find(m => m.tmdbId === movie.tmdbId);
+        let m = user.favoriteMovies.find(m => m.id === movie.id);
         if (m) {
             return res.sendStatus(200);
         }
