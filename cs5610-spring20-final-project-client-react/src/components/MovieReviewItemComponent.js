@@ -13,7 +13,7 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   likeReview = (reviewId) => {
-    if (store.get('currUser') == null)  {
+    if (store.get('currUser') == null) {
       this.props.history.push('/login')
       return
     }
@@ -53,9 +53,18 @@ class MovieReviewItemComponent extends React.Component {
     })
   };
 
-  render() {
-    console.log(this.state.review)
+  isReviewWrittenByCurrentUser = () => {
+    const currUser = store.get("currUser");
+    if (currUser) {
+      return this.state.review.userId === currUser._id
+    } else {
+      //if no user has logged in
+      return false;
+    }
+  }
 
+
+  render() {
     return (
       <div className="p-2 mt-2 row">
         {this.state.review.moviePosterURL &&
@@ -73,8 +82,7 @@ class MovieReviewItemComponent extends React.Component {
         <div className="col-10">
           <div>
             {/*//todo: change a to the link to */}
-            <a href={this.state.review.title}
-               className="font-weight-bold pr-2">{this.state.review.title}</a>
+            <span className="font-weight-bold pr-2">{this.state.review.title}</span>
           </div>
           {
             this.props.isInProfile ?
@@ -97,7 +105,13 @@ class MovieReviewItemComponent extends React.Component {
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
             <span
-              className="ml-2">Published at {this.state.review.date && this.state.review.date.substring(0, 10)}</span>
+              className="ml-2">Published at {this.state.review.date && this.state.review.date.substring(0, 10)} </span>
+            {!this.props.isInProfile &&
+            <div> Written by <Link
+              to={this.isReviewWrittenByCurrentUser() ? "/profile" : `/profile/${this.state.review.userId}`}>
+              {this.state.review.username}</Link>
+            </div>
+            }
           </div>
           <div>{this.state.review.content}</div>
           <div>
