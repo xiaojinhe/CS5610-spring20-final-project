@@ -30,7 +30,7 @@ class WriteCommentComponent extends React.Component {
       content: this.state.content,
       date: new Date(),
       type: "COMMENT"
-    })
+    }).then(response => this.props.history.push(`/details/${this.props.movieId}`))
   };
 
   render() {

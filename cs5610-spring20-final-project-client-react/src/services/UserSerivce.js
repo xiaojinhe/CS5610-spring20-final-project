@@ -39,7 +39,14 @@ export const logout = () =>
 export const getCurrentUser = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/currentUser`, {
     credentials: "include"
-  }).then(response => response.json());
+  }).then(response => {
+    if (response.status === 401) {
+      alert("You are not authorized.");
+      return null;
+    } else {
+      return response.json()
+    }
+  });
 
 export const getAllUsers = () =>
   fetch(USER_API_URL)

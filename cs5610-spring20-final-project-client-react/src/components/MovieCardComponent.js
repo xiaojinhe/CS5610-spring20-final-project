@@ -1,6 +1,7 @@
 import React from 'react'
 import {TMDB_IMAGE_URL} from "../common/constants";
 import {Link} from "react-router-dom";
+import Rating from "react-rating";
 
 const MovieCardComponent = ({movie}) =>
     <div className="col-4 col-sm-3 col-md-2">
@@ -15,7 +16,18 @@ const MovieCardComponent = ({movie}) =>
                 <Link to={`/details/${movie.id}`}>
                     {movie.title}
                 </Link>
-                <span className="ml-2 text-right">{movie.vote_average}</span>
+              <div>
+                <Rating fractions={4}
+                        start={0}
+                        stop={10}
+                        step={2}
+                        initialRating={movie.vote_average}
+                        readonly={true}
+                        fullSymbol={<i className="fas fa-star"/>}
+                        emptySymbol={<i className="far fa-star"/>}/>
+                <span className="float-right">{movie.vote_average}</span>
+              </div>
+
             </div>
         </div>
     </div>;
