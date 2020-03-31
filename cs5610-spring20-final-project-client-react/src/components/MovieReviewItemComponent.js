@@ -2,7 +2,7 @@ import React from "react";
 import Rating from "react-rating";
 import {Link} from "react-router-dom";
 import ReviewService from "../services/ReviewService";
-import UserSerivce from "../services/UserSerivce";
+import UserService from "../services/UserService";
 
 const store = require('store');
 
@@ -41,7 +41,7 @@ class MovieReviewItemComponent extends React.Component {
 
   //to get the updated current user and review
   updateData = (reviewId) => {
-    UserSerivce.getCurrentUser().then(response => {
+    UserService.getCurrentUser().then(response => {
       if (response) {
         store.set('currUser', response);
         ReviewService.getReviewById(reviewId)

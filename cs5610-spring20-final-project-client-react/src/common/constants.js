@@ -53,6 +53,9 @@ export const MOVIE_COMMENTS_API_URL =
 export const MOVIE_REVIEWS_API_URL =
   (movieId) => `${MOVIE_TIME_BASE_URL}/api/movies/${movieId}/reviews`
 
+export const NYTIMES_MOVIE_REVIEWS_API_URL =
+  (movieTitle) => `https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${movieTitle}&api-key=${NYT_API_KEY}`;
+
 
 /* =========== Redux action type =========*/
 export const FIND_MOVIE_BY_ID = "FIND_MOVIE_BY_ID";
@@ -61,7 +64,8 @@ export const FIND_COMMENTS_FOR_MOVIE = "FIND_COMMENTS_FOR_MOVIE";
 export const FIND_ALL_MOVIE_INFO_BY_ID = "FIND_ALL_MOVIE_INFO_BY_ID";
 export const RATE_MOVIE = "RATE_MOVIE";
 export const FAVORITE_MOVIE = "FAVORITE_MOVIE";
-export const TOGGLE_FAVORITE = "TOGGLE_FAVORITE";
+export const SET_MOVIE_AS_FAVORITE = "SET_MOVIE_AS_FAVORITE";
+export const SET_MOVIE_NOT_FAVORITE = "SET_MOVIE_NOT_FAVORITE";
 
 //action type for user profile
 export const FIND_USER_BY_ID = "FIND_USER_BY_ID";

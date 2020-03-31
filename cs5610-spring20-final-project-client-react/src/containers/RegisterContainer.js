@@ -1,8 +1,7 @@
 import {connect} from "react-redux";
 import {registerUser} from "../actions/UserProfileAction";
 import RegisterComponent from "../components/register/RegisterComponent";
-import UserSerivce from "../services/UserSerivce";
-
+import UserService from "../services/UserService";
 const store = require('store');
 
 const stateToPropertyMapper = (state) => ({
@@ -18,7 +17,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
       email: email,
       phone: phone
     };
-    UserSerivce.register(newUser)
+    UserService.register(newUser)
       .then(response => {
         if (response.status && response.status > 200) {
           alert(response.error);

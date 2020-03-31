@@ -7,7 +7,12 @@ class MovieRatingFavorComponent extends React.Component {
   favoriteOnClick = () => {
     const currUser = store.get('currUser');
     if (currUser) {
-      this.props.toggleFavorite();
+      if (this.props.favorite) {
+        //remove movie from favorites
+        this.props.removeMovieFromFavorite();
+      } else {
+        this.props.addMovieToFavorite();
+      }
     } else {
       alert("Please login first");
       this.props.history.push("/login");

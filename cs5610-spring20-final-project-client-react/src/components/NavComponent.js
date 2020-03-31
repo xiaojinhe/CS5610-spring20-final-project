@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import UserSerivce from "../services/UserSerivce";
+import UserService from "../services/UserService";
 const store = require('store');
 
 class NavComponent extends React.Component {
@@ -28,7 +28,7 @@ class NavComponent extends React.Component {
     };
 
     logout = () => {
-        UserSerivce.logout()
+        UserService.logout()
           .then(response => {
               if (response.status === 200) {
                   store.remove('currUser');
