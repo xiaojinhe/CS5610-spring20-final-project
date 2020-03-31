@@ -30,7 +30,7 @@ class MovieDetailComponent extends React.Component {
   setMovieFavoriteInitialState = () => {
     if (store.get("currUser")) {
       for (const movie of store.get("currUser").favoriteMovies) {
-        if (movie.tmdbId === this.props.movieId) {
+        if (movie.id === this.props.movieId) {
           this.props.setMovieAsFavorite();
           return;
         }
