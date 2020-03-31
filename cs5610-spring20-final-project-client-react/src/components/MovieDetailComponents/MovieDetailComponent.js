@@ -1,5 +1,5 @@
 import React from "react";
-import {MOVIE_TRAILER_API_URL, TMDB_IMAGE_URL} from "../../common/constants";
+import {CRITIC_USER, MOVIE_TRAILER_API_URL, REGULAR_USER, TMDB_IMAGE_URL} from "../../common/constants";
 import CastCardComponent from "./CastCardComponent";
 import MovieDetailSummaryComponent from "./MovieDetailSummaryComponent";
 import MovieRatingFavorComponent from "./MovieRatingFavorComponent";
@@ -10,6 +10,7 @@ import MovieCardComponent from "../MovieCardComponent";
 import NavComponent from "../NavComponent";
 
 const pickedReviewDisplayNum = 5;
+const store = require("store");
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class MovieDetailComponent extends React.Component {
             allowFullScreen/>;
 
   render() {
+    const currUser = store.get("currUser");
     if (this.props.movie) {
       return (
         <div className="container-fluid movie-detail-container">
@@ -56,22 +58,29 @@ class MovieDetailComponent extends React.Component {
                   favorite={this.props.favorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
-                <Link to={{
+
+                {(!currUser || currUser.role === REGULAR_USER) &&
+                <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`, state: {
                     movieName: this.props.movie.title
                   }
-                }}>
+                } : "/login"}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
-                <Link to={{
+                }
+
+                {(!currUser || currUser.role === CRITIC_USER) &&
+                <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
                     movieName: this.props.movie.title,
                     moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
                   }
-                }}>
+                } : "/login"}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
+                }
+
               </div>
             </div>
           </div>
@@ -115,12 +124,15 @@ class MovieDetailComponent extends React.Component {
                 <h3 className="movie-header">Movie Comments</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={{
+                {(!currUser || currUser.role === REGULAR_USER) &&
+                <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`,
                   state: {movieTitle: this.props.movie.title}
-                }}>
+                } : "/login"}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
+                }
+
               </div>
             </div>
             <MovieCommentsListComponent comments={this.props.comments}/>
@@ -134,15 +146,17 @@ class MovieDetailComponent extends React.Component {
                 <h3 className="movie-header">Movie Reviews</h3>
               </div>
               <div className="col-3 pt-2 pr-2 text-center">
-                <Link to={{
+                {(!currUser || currUser.role === CRITIC_USER) &&
+                < Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
                     movieName: this.props.movie.title,
                     moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
                   }
-                }}>
+                } : "/login"}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
+                }
               </div>
             </div>
             <MovieReviewListComponent
