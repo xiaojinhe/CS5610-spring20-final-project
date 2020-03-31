@@ -223,7 +223,7 @@ module.exports = function (app) {
         const mid = req.params['mid'];
 
         // check if in favorite list
-        let m = user.favoriteMovies.find(m => m.tmdbId === mid);
+        let m = user.favoriteMovies.find(m => m.id === mid);
         if (!m) {
             return res.sendStatus(200);
         }
