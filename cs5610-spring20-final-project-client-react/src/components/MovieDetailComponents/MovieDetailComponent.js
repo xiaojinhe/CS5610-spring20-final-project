@@ -44,10 +44,12 @@ class MovieDetailComponent extends React.Component {
   addMovieToFavorite = () => {
     this.props.addMovieToUserFavorites(this.props.movieId,
       {
-        tmdbId: this.props.movieId,
-        movieName: this.props.movie.title,
-        moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path),
-        rating: this.props.movie.vote_average
+        id: this.props.movieId,
+        title: this.props.movie.title,
+        release_date: this.props.movie.release_date,
+        poster_path: this.props.movie.poster_path,
+        vote_average: this.props.movie.vote_average,
+        overview: this.props.movie.overview
       });
   };
 
