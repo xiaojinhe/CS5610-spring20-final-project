@@ -1,4 +1,11 @@
 .user-icon{
     width: 150px;
     height: 150px;
+    margin-left: 72px;
+}
+
+.user-role{
+    position:relative;
+    left: 5px;
+    top: -50px;
 }

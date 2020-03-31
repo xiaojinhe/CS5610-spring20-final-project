@@ -8,11 +8,10 @@ const UserProfileHeaderComponent = ({user, isCurrentUserProfile, isFollowedBy, f
     <div className="card-body">
       <div className="text-center">
         <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
-             className="rounded-circle user-icon border p-3 ml-5"
+             className="rounded-circle user-icon border p-3"
              alt="user icon"/>
-        <div className="d-inline-block position-relative px-2 py-1
-                        rounded text-capitalize text-white bg-success"
-             style={{left: "5px", top: "-50px"}}>
+        <div className="d-inline-block user-role px-2 py-1
+                        rounded text-capitalize text-white bg-success">
           {user.role.toLowerCase()}
         </div>
       </div>
