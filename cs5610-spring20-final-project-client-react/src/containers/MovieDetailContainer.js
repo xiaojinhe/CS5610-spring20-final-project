@@ -38,7 +38,6 @@ const dispatchToPropertyMapper = (dispatch) => {
       const reviews = await ReviewService.findAllReviewsByMovieId(movieId);
       const comments = await CommentService.findAllCommentsByMovieId(movieId);
       const publicReviews = await ReviewService.findPublicReviewsForMovie(movie.title);
-      console.log(publicReviews)
       dispatch(findAllMovieInfoById(movie, comments, reviews, publicReviews.results));
     },
     findCommentsForMovie: async (movieId) => {

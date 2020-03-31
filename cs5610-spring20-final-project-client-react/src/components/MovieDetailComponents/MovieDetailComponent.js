@@ -67,7 +67,6 @@ class MovieDetailComponent extends React.Component {
             allowFullScreen/>;
 
   render() {
-    console.log(this.props.publicReviews);
     const currUser = store.get("currUser");
     if (this.props.movie) {
       return (

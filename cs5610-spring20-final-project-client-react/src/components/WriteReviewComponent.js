@@ -54,7 +54,7 @@ class WriteReviewComponent extends React.Component {
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterUrl: this.state.url !== "" ? this.state.url : this.state.moviePosterURL,
+        moviePosterURL: this.state.url !== "" ? this.state.url : this.state.moviePosterURL,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,
