@@ -105,7 +105,13 @@ module.exports = function (app) {
     function updateUser(req, res) {
         const uid = req.params['uid'];
         userDao.updateUser(uid, req.body)
-            .then(result => res.json(result))
+            .then(result => {
+                if (result.n === 1) {
+                    res.sendStatus(result.nModified === 1 ? 200 : 500)
+                } else {
+                    res.sendStatus(400)
+                }
+            })
     }
 
     /* ========= FOLLOWS ======== */

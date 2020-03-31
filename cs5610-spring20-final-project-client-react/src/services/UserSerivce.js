@@ -57,7 +57,7 @@ export const updateUser = (uid, user) =>
     headers: {
       'content-type': 'application/json'
     }
-  }).then(response => response.json());
+  })
 
 //get all follows
 export const findAllFollowsByUserId = (uid) =>

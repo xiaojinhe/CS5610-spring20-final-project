@@ -19,6 +19,7 @@ const dispatchToPropertyMapper = (dispatch) => ({
       .then(response => {
         if (response.status === 200) {
           alert("Successully update your profile!");
+          store.set('currUser', user);
           dispatch(updateUserAction(user));
         }
       })
