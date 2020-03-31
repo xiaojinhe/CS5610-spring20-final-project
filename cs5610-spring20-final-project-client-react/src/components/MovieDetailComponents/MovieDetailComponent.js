@@ -9,7 +9,7 @@ import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
 import NavComponent from "../NavComponent";
 
-const pickedReviewDisplayNum = 5;
+const pickedReviewDisplayNum = 100;
 
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
@@ -57,10 +57,8 @@ class MovieDetailComponent extends React.Component {
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={{
-                  pathname: `/movies/${this.props.movieId}/new_comment`, state: {
-                    movieName: this.props.movie.title,
-                    moviePosterUrl: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
-                  }
+                  pathname: `/movies/${this.props.movieId}/new_comment`,
+                  state: {movieName: this.props.movie.title}
                 }}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
@@ -68,7 +66,7 @@ class MovieDetailComponent extends React.Component {
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
                     movieName: this.props.movie.title,
-                    moviePosterUrl: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
+                    moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
                   }
                 }}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
@@ -137,7 +135,10 @@ class MovieDetailComponent extends React.Component {
               <div className="col-3 pt-2 pr-2 text-center">
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_review`,
-                  state: {movieTitle: this.props.movie.title}
+                  state: {
+                    movieName: this.props.movie.title,
+                    moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path)
+                  }
                 }}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>

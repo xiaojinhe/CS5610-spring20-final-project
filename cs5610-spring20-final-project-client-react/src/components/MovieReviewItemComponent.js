@@ -54,7 +54,8 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   render() {
-    console.log(store.get("currUser"));
+    console.log(this.state.review)
+
     return (
       <div className="p-2 mt-2 row">
         {this.state.review.moviePosterURL &&

@@ -19,8 +19,9 @@ class WriteReviewComponent extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({movieName: this.props.location.movieName})
+    console.log(this.props.location.movieName)
     console.log(this.props.location.moviePosterUrl)
+    this.setState({movieName: this.props.location.state.movieName})
   }
 
   handleOnChange = (event) => {
@@ -45,13 +46,12 @@ class WriteReviewComponent extends React.Component {
     //TODO: SAVE THE CHANGE TO LOCAL STORE
   };
 
-  //TODO: the type field may should be set in server?
   createReview = () => {
     ReviewService.createReview(this.props.movieId,
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterUrl: this.state.url !== "" ? this.state.url : this.props.location.moviePosterUrl,
+        moviePosterURL: this.state.url === "" ? this.props.location.state.moviePosterURL :  this.state.url,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,
