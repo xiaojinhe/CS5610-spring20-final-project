@@ -49,7 +49,7 @@ module.exports = function (app) {
             .then(review => {
                 if (review) {
                     userDao.updateUserRatingAndCommentOrReview(user._id, review._id)
-                      .then(res.json(review))
+                        .then(res.json(review))
                 }
             })
     }
@@ -72,7 +72,7 @@ module.exports = function (app) {
                 if (result.deletedCount === 1) {
                     // delete from author review list
                     userDao.deleteUserRatingAndCommentOrReview(uid, rid)
-                      .then(userDao.deleteLikedReviewById(rid));
+                        .then(userDao.deleteLikedReviewById(rid));
                 }
                 res.sendStatus(200);
             })
@@ -97,11 +97,11 @@ module.exports = function (app) {
                             if (result.nModified === 1) {
                                 res.sendStatus(200);
                             } else {
-                                res.status(500).send("addLikes failed")
+                                res.status(500).json({error: "addLikes failed"})
                             }
                         })
                 } else {
-                    res.status(500).send("updateUserLikedReview failed")
+                    res.status(500).json({error: "updateUserLikedReview failed"})
                 }
             })
     }
@@ -125,11 +125,11 @@ module.exports = function (app) {
                             if (result.nModified === 1) {
                                 res.sendStatus(200);
                             } else {
-                                res.status(500).send("removeLikes failed")
+                                res.status(500).json({error: "removeLikes failed"})
                             }
                         })
                 } else {
-                    res.status(500).send("deleteUserLikedReview failed")
+                    res.status(500).json({error: "deleteUserLikedReview failed"})
                 }
             })
     }
@@ -161,7 +161,7 @@ module.exports = function (app) {
             .then(comment => {
                 if (comment) {
                     userDao.updateUserRatingAndCommentOrReview(user._id, comment._id)
-                      .then(res.json(comment));
+                        .then(res.json(comment));
                 }
             })
     }

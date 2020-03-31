@@ -60,7 +60,7 @@ module.exports = function (app) {
             .then((user) => {
                       if (user) {
                           // TODO: what if username exist
-                          res.status(400).send("User already exists");
+                          res.status(400).json({error: "User already exists"});
                       } else {
                           return userDao.createUser(newUser);
                       }
@@ -71,7 +71,7 @@ module.exports = function (app) {
                           // login after register
                           req.login(user, (err) => {
                               if (err) {
-                                  res.status(400).send(err);
+                                  res.status(500).json({error: err});
                               } else {
                                   res.json(user)
                               }
@@ -91,7 +91,7 @@ module.exports = function (app) {
     }
 
     function getCurrentUser(req, res) {
-        res.send(req.isAuthenticated() ? req.user : '0');
+        res.json(req.user);
     }
 
     function authorized(req, res, next) {
@@ -149,14 +149,14 @@ module.exports = function (app) {
                 if (result.nModified === 1) {
                     userDao.updateUserFollowedBy(user2Info.userId, user1Info)
                         .then(result => {
-                            if(result.nModified === 1){
+                            if (result.nModified === 1) {
                                 res.sendStatus(200);
-                            }else{
-                                res.status(500).send("updateUserFollowedBy failed");
+                            } else {
+                                res.status(500).json({error: "updateUserFollowedBy failed"});
                             }
                         })
                 } else {
-                    res.status(500).send("updateUserFollows failed");
+                    res.status(500).json({error: "updateUserFollows failed"});
                 }
             })
     }
@@ -211,7 +211,7 @@ module.exports = function (app) {
                 if (result.nModified === 1) {
                     res.sendStatus(200)
                 } else {
-                    res.status(500).send("updateUserFavoriteMovie failed");
+                    res.status(500).json({error: "updateUserFavoriteMovie failed"});
                 }
             })
     }
