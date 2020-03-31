@@ -15,13 +15,43 @@ const store = require("store");
 class MovieDetailComponent extends React.Component {
   componentDidMount() {
     this.props.findAllMovieInfoById(this.props.movieId);
+    this.setMovieFavoriteInitialState();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.movieId !== this.props.movieId) {
       this.props.findAllMovieInfoById(this.props.movieId);
+      this.setMovieFavoriteInitialState();
     }
   }
+
+  setMovieFavoriteInitialState = () => {
+    if (store.get("currUser")) {
+      for (const movie of store.get("currUser").favoriteMovies) {
+        if (movie.tmdbId === this.props.movieId) {
+          this.props.setMovieAsFavorite();
+          return;
+        }
+      }
+      this.props.setMovieNotFavorite()
+    } else {
+      this.props.setMovieNotFavorite()
+    }
+  };
+
+  addMovieToFavorite = () => {
+    this.props.addMovieToUserFavorites(this.props.movieId,
+      {
+        tmdbId: this.props.movieId,
+        movieName: this.props.movie.title,
+        moviePosterURL: TMDB_IMAGE_URL(185, this.props.movie.poster_path),
+        rating: this.props.movie.vote_average
+      });
+  };
+
+  removeMovieFromFavorite = () => {
+    this.props.removeMovieFromUserFavorites(this.props.movieId);
+  };
 
   renderTrailer = (video, index) =>
     <iframe width="400"
@@ -55,8 +85,9 @@ class MovieDetailComponent extends React.Component {
                 {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
                   history={this.props.history}
-                  toggleFavorite={this.props.toggleFavorite}
                   favorite={this.props.favorite}
+                  addMovieToFavorite={this.addMovieToFavorite}
+                  removeMovieFromFavorite={this.removeMovieFromFavorite}
                   rating={this.props.movie.vote_average}
                   voteCount={this.props.movie.vote_count}/>
 

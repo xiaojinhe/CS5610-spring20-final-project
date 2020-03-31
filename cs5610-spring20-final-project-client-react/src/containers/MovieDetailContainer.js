@@ -3,7 +3,7 @@ import {
   findAllMovieInfoById,
   findMovieById,
   findReviewsForMovie,
-  findCommentsForMovie
+  findCommentsForMovie, setMovieAsFavorite, setMovieAsFavoriteAction, setMovieNotFavoriteAction
 } from "../actions/MovieDetailActions";
 import MovieDetailComponent from "../components/MovieDetailComponents/MovieDetailComponent";
 import {connect} from "react-redux";
@@ -11,6 +11,9 @@ import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
 import CommentService from "../services/CommentService";
 import React from "react";
+import UserService from "../services/UserService";
+
+const store = require('store')
 
 const stateToPropertyMapper = (state) => ({
   movie: state.movieDetail.movie,
@@ -20,7 +23,7 @@ const stateToPropertyMapper = (state) => ({
 });
 
 const dispatchToPropertyMapper = (dispatch) => {
-  return ({
+  return {
     findMovieById: async (movieId) => {
       const movie = await MovieService.findMovieById(movieId);
       dispatch(findMovieById(movie));
@@ -42,11 +45,47 @@ const dispatchToPropertyMapper = (dispatch) => {
       const comments = await CommentService.findAllCommentsByMovieId(movieId);
       dispatch(findCommentsForMovie(comments));
     },
-    toggleFavorite: () => {
-      //TODO: need to actual update the favorite to server
-      dispatch(toggleFavorite())
+    addMovieToUserFavorites: (movieId, movie) => {
+      MovieService.addMovieToUserFavorites(movieId, movie)
+        .then(response => {
+          if (response.status === 200) {
+            dispatch(setMovieAsFavoriteAction())
+            //should also update the user because
+            UserService.getCurrentUser()
+              .then(response => {
+                if (response) {
+                  store.set('currUser', response);
+                }
+              })
+          } else {
+            alert("Fail to add movie to your favorite list. Please try again later");
+          }
+        })
+    },
+    removeMovieFromUserFavorites: (movieId) => {
+      MovieService.removeMovieFromUserFavorites(movieId)
+        .then(response => {
+          if (response.status === 200) {
+            dispatch(setMovieNotFavoriteAction())
+            //should also update the user because
+            UserService.getCurrentUser()
+              .then(response => {
+                if (response) {
+                  store.set('currUser', response);
+                }
+              })
+          } else {
+            alert("Fail to remove movie from your favorite list. Please try again later");
+          }
+        })
+    },
+    setMovieAsFavorite: () => {
+      dispatch(setMovieAsFavoriteAction())
+    },
+    setMovieNotFavorite: () => {
+      dispatch(setMovieNotFavoriteAction())
     }
-  });
+  };
 };
 
 const MovieDetailContainer = connect(

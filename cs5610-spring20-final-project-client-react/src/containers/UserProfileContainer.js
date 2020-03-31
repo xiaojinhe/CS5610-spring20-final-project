@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import UserProfileComponent from "../components/UserProfileComponents/UserProfileComponent";
-import UserService from "../services/UserSerivce";
+import UserService from "../services/UserService";
 import {findUserByIdAction, updateUserAction} from "../actions/UserProfileAction";
 const store = require('store');
 

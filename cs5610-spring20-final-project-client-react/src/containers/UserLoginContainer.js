@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import UserService from "../services/UserSerivce";
+import UserService from "../services/UserService";
 import {loginUserAction} from "../actions/UserProfileAction";
 import UserLoginComponent from "../components/UserLoginComponent";
 
