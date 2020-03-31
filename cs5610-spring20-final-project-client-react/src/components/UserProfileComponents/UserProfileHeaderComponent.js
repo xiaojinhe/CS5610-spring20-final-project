@@ -67,13 +67,13 @@ const UserProfileHeaderComponent = ({user, isCurrentUserProfile, isFollowedBy, f
         }
         {user.role === CRITIC_USER &&
         <div className="row">
-          <div className="col-xs-12 col-sm-6">
+          <div className="col-6">
             <div>
               <h2 className="text-center font-weight-bold">{user.followedBy.length}</h2>
               <div className="text-center">Followers</div>
             </div>
           </div>
-          <div className="col-xs-12 col-sm-6">
+          <div className="col-6">
             <div>
               <h2 className="text-center font-weight-bold">{user.ratingAndCommentsOrReviews.length}</h2>
               <div className="text-center">Reviews</div>

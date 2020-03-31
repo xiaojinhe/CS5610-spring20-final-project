@@ -92,7 +92,7 @@ class UserLoginComponent extends React.Component {
               <Link
                 id="cancel_btn"
                 to="/"
-                className="btn btn-danger btn-block">
+                className="btn btn-secondary btn-block">
                 Cancel
               </Link>
               <div className="row">
