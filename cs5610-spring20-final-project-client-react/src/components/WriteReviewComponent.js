@@ -13,14 +13,19 @@ class WriteReviewComponent extends React.Component {
       content: "",
       title: "",
       rating: 0,
-      movieName: ""
+      movieName: "",
+      moviePosterURL: ""
     };
     this.timer = null;
   }
 
   componentDidMount() {
     const {movieName} = this.props.location.state;
-    this.setState({movieName: movieName})
+    const {moviePosterURL} = this.props.location.state;
+    this.setState({
+      movieName: movieName,
+      moviePosterURL: `https://image.tmdb.org/t/p/w200${moviePosterURL}`
+    });
   }
 
   handleOnChange = (event) => {
@@ -42,22 +47,20 @@ class WriteReviewComponent extends React.Component {
   };
 
   triggerChange = () => {
-    //TODO: SAVE THE CHANGE TO LOCAL STORE
   };
 
-  //TODO: the type field may should be set in server?
   createReview = () => {
     ReviewService.createReview(this.props.movieId,
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterUrl: this.state.url,
+        moviePosterUrl: this.state.url !== "" ? this.state.url : this.state.moviePosterURL,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,
         date: new Date(),
         type: "REVIEW"
-      })
+      }).then(response => this.props.history.push(`/details/${this.props.movieId}`))
   };
 
   render() {
@@ -79,6 +82,7 @@ class WriteReviewComponent extends React.Component {
                     start={0}
                     stop={10}
                     step={2}
+                    initialRating={this.state.rating}
                     onChange={(value) => {
                       this.setState({rating: value})
                     }}
@@ -135,10 +139,10 @@ class WriteReviewComponent extends React.Component {
             {this.state.url && <h4>Image Preview</h4>}
             {
               this.state.url ?
-              <img src={this.state.url}
-                   className="image-fluid"
-                   alt=""/> :
-              ""
+                <img src={this.state.url}
+                     className="image-fluid"
+                     alt=""/> :
+                ""
             }
           </div>
           {/*TODO: SAVE THE REVIEW*/}

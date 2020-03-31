@@ -46,8 +46,10 @@ const dispatchToPropertyMapper = (dispatch) => ({
       })
   },
   getCurrentUser: () => {
-    const user = store.get('currUser') ? store.get('currUser') : UserService.getCurrentUser();
-    dispatch(findUserByIdAction(user));
+    UserService.getCurrentUser().then(user => {
+      store.set('currUser', user);
+      dispatch(findUserByIdAction(user));
+    });
   }
 });
 

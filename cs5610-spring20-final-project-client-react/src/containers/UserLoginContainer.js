@@ -9,7 +9,6 @@ const stateToPropertyMapper = (state) => ({
 
 const dispatchToPropertyMapper = (dispatch) => ({
   login: (user) => {
-    //todo: may change reducer behavior
     return UserService.login(user);
   },
   updateUserState: (user) => {

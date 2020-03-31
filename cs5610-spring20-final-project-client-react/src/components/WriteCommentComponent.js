@@ -8,23 +8,28 @@ class WriteCommentComponent extends React.Component {
   state = {
     content: "",
     rating: 0,
-    movieName: ""
+    movieName: "",
+    moviePosterURL: ""
   };
 
   componentDidMount() {
     const {movieName} = this.props.location.state;
-    this.setState({movieName: movieName})
+    const {moviePosterURL} = this.props.location.state;
+    this.setState({
+                    movieName: movieName,
+                    moviePosterURL: moviePosterURL});
   }
 
   createComment = () => {
     CommentService.createComment(this.props.movieId, {
       tmdbId: this.props.movieId,
       movieName: this.state.movieName,
+      moviePosterURL: this.state.moviePosterURL,
       rating: this.state.rating,
       content: this.state.content,
       date: new Date(),
       type: "COMMENT"
-    })
+    }).then(response => this.props.history.push(`/details/${this.props.movieId}`))
   };
 
   render() {
@@ -46,6 +51,7 @@ class WriteCommentComponent extends React.Component {
                     start={0}
                     stop={10}
                     step={2}
+                    initialRating={this.state.rating}
                     onChange={(value) => {
                       this.setState({rating: value})
                     }}

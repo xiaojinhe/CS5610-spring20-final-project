@@ -31,7 +31,7 @@ const MovieCommentItemComponent = ({comment, isInProfile}) =>
                 </Link>
               </div>
               :
-              <Link to={`/profile/${comment.username}`}
+              <Link to={`/profile/${comment.userId}`}
                     className="font-weight-bold pr-2">
                 {comment.username}
               </Link>
