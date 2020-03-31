@@ -8,18 +8,24 @@ class WriteCommentComponent extends React.Component {
   state = {
     content: "",
     rating: 0,
-    movieName: ""
+    movieName: "",
+    moviePosterURL: ""
   };
 
   componentDidMount() {
     const {movieName} = this.props.location.state;
-    this.setState({movieName: movieName})
+    const {moviePosterURL} = this.props.location.state;
+    console.log(moviePosterURL);
+    this.setState({
+                    movieName: movieName,
+                    moviePosterURL: moviePosterURL});
   }
 
   createComment = () => {
     CommentService.createComment(this.props.movieId, {
       tmdbId: this.props.movieId,
       movieName: this.state.movieName,
+      moviePosterURL: this.state.moviePosterURL,
       rating: this.state.rating,
       content: this.state.content,
       date: new Date(),

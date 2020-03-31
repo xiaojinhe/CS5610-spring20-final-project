@@ -59,7 +59,8 @@ class MovieDetailComponent extends React.Component {
                   voteCount={this.props.movie.vote_count}/>
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_comment`, state: {
-                    movieName: this.props.movie.title
+                    movieName: this.props.movie.title,
+                    moviePosterURL: this.props.movie.poster_path
                   }
                 }}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
@@ -67,7 +68,8 @@ class MovieDetailComponent extends React.Component {
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {
-                    movieName: this.props.movie.title
+                    movieName: this.props.movie.title,
+                    moviePosterURL: this.props.movie.poster_path
                   }
                 }}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
@@ -117,7 +119,7 @@ class MovieDetailComponent extends React.Component {
               <div className="col-3 pt-2 pr-2 text-center">
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_comment`,
-                  state: {movieTitle: this.props.movie.title}
+                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 }}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
@@ -136,7 +138,7 @@ class MovieDetailComponent extends React.Component {
               <div className="col-3 pt-2 pr-2 text-center">
                 <Link to={{
                   pathname: `/movies/${this.props.movieId}/new_review`,
-                  state: {movieTitle: this.props.movie.title}
+                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 }}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
@@ -158,7 +160,6 @@ class MovieDetailComponent extends React.Component {
               }
             </div>
           </div>}
-
         </div>
       )
     }

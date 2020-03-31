@@ -13,14 +13,18 @@ class WriteReviewComponent extends React.Component {
       content: "",
       title: "",
       rating: 0,
-      movieName: ""
+      movieName: "",
+      moviePosterURL: ""
     };
     this.timer = null;
   }
 
   componentDidMount() {
     const {movieName} = this.props.location.state;
-    this.setState({movieName: movieName})
+    const {moviePosterURL} = this.props.location.state;
+    this.setState({
+                    movieName: movieName,
+                    moviePosterURL: `https://image.tmdb.org/t/p/w200${moviePosterURL}`});
   }
 
   handleOnChange = (event) => {
@@ -50,7 +54,7 @@ class WriteReviewComponent extends React.Component {
       {
         tmdbId: this.props.movieId,
         movieName: this.state.movieName,
-        moviePosterUrl: this.state.url,
+        moviePosterUrl: this.state.url ? this.state.url : this.state.moviePosterURL,
         rating: this.state.rating,
         title: this.state.title,
         content: this.state.content,
