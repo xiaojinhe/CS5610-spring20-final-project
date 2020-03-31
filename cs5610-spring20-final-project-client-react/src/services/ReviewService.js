@@ -1,5 +1,5 @@
 import {
-  MOVIE_REVIEWS_API_URL, MOVIE_TIME_BASE_URL,
+  MOVIE_REVIEWS_API_URL, MOVIE_TIME_BASE_URL, NYTIMES_MOVIE_REVIEW_URL, NYTIMES_MOVIE_REVIEWS_API_URL,
   REVIEW_API_URL,
   USER_REVIEWS_API_URL
 } from "../common/constants";
@@ -62,6 +62,13 @@ export const findMostLikedReview = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/mostLikedReviews`)
     .then(response => response.json());
 
+
+//TODO: may delete when implement our own most liked reviews
+export const findPublicReviewsForMovie = async (movieTitle) => {
+  const response = await fetch(NYTIMES_MOVIE_REVIEWS_API_URL(movieTitle));
+  return await response.json();
+};
+
 export default {
   createReview,
   deleteReview,
@@ -71,5 +78,6 @@ export default {
   findAllReviewsByUserId,
   likeReview,
   cancelLikeReview,
-  findMostLikedReview
+  findMostLikedReview,
+  findPublicReviewsForMovie
 }
