@@ -15,7 +15,6 @@ class WriteCommentComponent extends React.Component {
   componentDidMount() {
     const {movieName} = this.props.location.state;
     const {moviePosterURL} = this.props.location.state;
-    console.log(moviePosterURL);
     this.setState({
                     movieName: movieName,
                     moviePosterURL: moviePosterURL});
