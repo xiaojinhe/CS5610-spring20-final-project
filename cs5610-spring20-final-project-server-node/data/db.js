@@ -8,7 +8,7 @@ module.exports = function() {
     connectionString = 'mongodb://' + username + ':' + password;
     connectionString += '@ds133086.mlab.com:33086/'+ databaseName;
   }
-
+  console.log('connectionString:', connectionString);
   mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
