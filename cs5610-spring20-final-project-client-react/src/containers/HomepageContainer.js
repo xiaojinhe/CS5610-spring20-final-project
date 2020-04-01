@@ -55,6 +55,20 @@ class HomepageContainer extends React.Component {
     }
   }
 
+  componentDidUpdate(nextProps, nextState, nextContext) {
+    if (!store.get('currUser') && this.state.topRatedMovies.length === 0) {
+      Promise.all([MovieService.findTopRatedMovies(), ReviewService.findMostLikedReview()])
+        .then(([topRatedMovies, pickedReviews]) => {
+          this.setState(
+            {
+              topRatedMovies:
+                topRatedMovies.results.slice(0, topRatedMoviesDisplayNum),
+              pickedReviews: pickedReviews.slice(0, pickedReviewDisplayNum)
+            })
+        });
+    }
+  }
+
   render() {
     const currUser = store.get('currUser');
     if (currUser) {
