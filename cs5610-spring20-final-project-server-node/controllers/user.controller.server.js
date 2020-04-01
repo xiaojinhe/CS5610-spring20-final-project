@@ -2,7 +2,6 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 const userDao = require('../data/daos/user.dao.server');
-const RCRDao = require('../data/daos/rating-comment-review.dao.server');
 
 module.exports = function (app) {
 
