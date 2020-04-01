@@ -4,8 +4,8 @@ import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
-import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
 import UserService from "../services/UserService";
+import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
 import MovieCommentItemComponent from "../components/MovieCommentItemComponent";
 import {CRITIC_USER} from "../common/constants";
 
