@@ -57,6 +57,12 @@ class MovieDetailComponent extends React.Component {
     this.props.removeMovieFromUserFavorites(this.props.movieId);
   };
 
+  loginCheck = () => {
+    if (!store.get('currUser')) {
+      alert("Please login first!");
+    }
+  };
+
   renderTrailer = (video, index) =>
     <iframe width="400"
             key={index}
@@ -101,7 +107,8 @@ class MovieDetailComponent extends React.Component {
                     movieName: this.props.movie.title,
                     moviePosterURL: this.props.movie.poster_path
                   }
-                } : "/login"}>
+                } : "/login"}
+                      onClick={this.loginCheck}>
                   <h6><i className="far fa-comment-alt mt-2"/> Write Comment</h6>
                 </Link>
                 }
@@ -113,11 +120,11 @@ class MovieDetailComponent extends React.Component {
                     movieName: this.props.movie.title,
                     moviePosterURL: this.props.movie.poster_path
                   }
-                } : "/login"}>
+                } : "/login"}
+                      onClick={this.loginCheck}>
                   <h6><i className="fas fa-pencil-alt mt-2"/> Write Review</h6>
                 </Link>
                 }
-
               </div>
             </div>
           </div>
@@ -165,7 +172,8 @@ class MovieDetailComponent extends React.Component {
                 <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`,
                   state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
-                } : "/login"}>
+                } : "/login"}
+                      onClick={this.loginCheck}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
                 </Link>
                 }
@@ -187,7 +195,8 @@ class MovieDetailComponent extends React.Component {
                 < Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_review`,
                   state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
-                } : "/login"}>
+                } : "/login"}
+                       onClick={this.loginCheck}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
                 </Link>
                 }

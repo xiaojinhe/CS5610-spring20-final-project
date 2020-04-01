@@ -108,7 +108,7 @@ class UserProfileInfoComponent extends React.Component {
         </div>
 
         <div className="form-group row">
-          <button className="btn btn-info btn-block"
+          <button className="btn btn-primary btn-block"
                   onClick={() => {
                     this.props.updateUser(this.state.user._id, this.state.user)
                   }}>

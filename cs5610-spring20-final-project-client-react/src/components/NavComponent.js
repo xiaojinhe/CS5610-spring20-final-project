@@ -45,7 +45,7 @@ class NavComponent extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-md navbar-light bg-light">
                 <a className="navbar-brand" href="/">MovieTime</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent">
@@ -61,8 +61,10 @@ class NavComponent extends React.Component {
                         }
                         {store.get('currUser') &&
                             <li className="nav-item d-flex ml-lg-3 align-items-center">
-                                <a className="nav-link p-0"
-                                   onClick={this.logout}>Logout</a>
+                                <a className="btn nav-link"
+                                   onClick={this.logout}>
+                                  Logout
+                                </a>
                             </li>
                         }
                         {!store.get('currUser') &&

@@ -14,7 +14,7 @@ class MovieRatingFavorComponent extends React.Component {
         this.props.addMovieToFavorite();
       }
     } else {
-      alert("Please login first");
+      alert("Please login first!");
       this.props.history.push("/login");
     }
   };
