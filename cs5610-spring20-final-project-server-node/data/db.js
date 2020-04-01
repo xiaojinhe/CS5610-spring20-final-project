@@ -1,7 +1,14 @@
 module.exports = function() {
   const mongoose = require('mongoose');
   const databaseName = 'movie-time';
-  const connectionString = 'mongodb://localhost:27017/' + databaseName;
+  let connectionString = 'mongodb://localhost:27017/' + databaseName;
+  if(process.env.MLAB_USERNAME_WEBDEV) {
+    let username = process.env.MLAB_USERNAME_WEBDEV;
+    let password = process.env.MLAB_PASSWORD_WEBDEV;
+    connectionString = 'mongodb://' + username + ':' + password;
+    connectionString += '@ds133086.mlab.com:33086/'+ databaseName;
+  }
+
   mongoose.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true
