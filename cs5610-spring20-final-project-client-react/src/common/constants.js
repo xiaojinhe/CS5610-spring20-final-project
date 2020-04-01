@@ -35,8 +35,8 @@ export const MOVIE_TRAILER_API_URL =
 
 /* =========== API for MovieTime Service ========= */
 export const MOVIE_TIME_BASE_URL =
-  'https://movie-time-server-node.herokuapp.com'
-  // "http://localhost:3000"
+  // 'https://movie-time-server-node.herokuapp.com'
+  "http://localhost:3000"
 
 export const USER_API_URL = `${MOVIE_TIME_BASE_URL}/api/users`
 export const MOVIE_API_URL = `${MOVIE_TIME_BASE_URL}/api/movies`

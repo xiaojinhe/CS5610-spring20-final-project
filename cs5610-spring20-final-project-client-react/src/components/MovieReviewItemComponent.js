@@ -101,7 +101,7 @@ class MovieReviewItemComponent extends React.Component {
                     emptySymbol={<i className="far fa-star"/>}/>
 
             {/* TODO: change date text style */}
-            {this.props.isHomePage && this.state.review.date ?
+            {this.props.isHomePage?
               <small>
                 Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
               </small> :
@@ -110,7 +110,7 @@ class MovieReviewItemComponent extends React.Component {
               </span>
             }
 
-            {!(this.props.isInProfile || this.props.isHomePage) &&
+            {!this.props.isInProfile &&
             <div> Written by <Link
               to={this.isReviewWrittenByCurrentUser() ? "/profile" : `/profile/${this.state.review.userId}`}>
               {this.state.review.username}</Link>
