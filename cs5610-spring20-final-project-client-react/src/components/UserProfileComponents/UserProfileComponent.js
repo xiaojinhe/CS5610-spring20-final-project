@@ -46,7 +46,7 @@ class UserProfileComponent extends React.Component {
       return false;
     }
     return currentUser._id === this.props.user._id;
-  }
+  };
 
   isFollowedBy = () => {
     const currentUser = store.get('currUser');
@@ -55,7 +55,7 @@ class UserProfileComponent extends React.Component {
     }
     return this.props.user.followedBy &&
       this.props.user.followedBy.find(fan => fan.userId === currentUser._id) != null
-  }
+  };
 
   followUser = () => {
     const currentUser = store.get('currUser');
@@ -64,11 +64,12 @@ class UserProfileComponent extends React.Component {
     } else {
       const userToFollow = {
         userId: this.props.userId,
-        username: this.props.user.username
-      }
+        username: this.props.user.username,
+        avatarURL: this.props.user.avatarURL
+      };
       this.props.followUser(currentUser._id, userToFollow)
     }
-  }
+  };
 
   unfollowUser = () => {
     const currentUser = store.get('currUser');
@@ -77,7 +78,7 @@ class UserProfileComponent extends React.Component {
     } else {
       this.props.unfollowUser(currentUser._id, this.props.userId)
     }
-  }
+  };
 
   render() {
     return (
