@@ -4,6 +4,8 @@ import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
+import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
+import UserService from "../services/UserService";
 const store = require('store');
 
 const topRatedMoviesDisplayNum = 18;
@@ -15,19 +17,24 @@ class HomepageContainer extends React.Component {
     state = {
         topRatedMovies: [],
         nowPlayingMovies: [],
-        pickedReviews: []
+        pickedReviews: [],
+        followedCriticReviews: []
     };
 
     componentDidMount() {
-        if (store.get('currUser')) {
-            MovieService.findNowPlayingMovies().then(
-              movies => {
-                  this.setState(
-                    {
-                        nowPlayingMovies: movies.results.slice(0, nowPlayingMoviesDisplayNum)
-                    })
-              }
-            );
+      const currUser = store.get('currUser');
+      console.log(currUser);
+        if (currUser) {
+          Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id)])
+            .then(([nowPlayingMovies, followedCriticReviews]) => {
+              console.log(followedCriticReviews);
+              this.setState(
+                {
+                  nowPlayingMovies:
+                    nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum),
+                  followedCriticReviews: followedCriticReviews
+                })
+            });
         } else {
             Promise.all([MovieService.findTopRatedMovies(), MovieService.findNowPlayingMovies(), ReviewService.findMostLikedReview()])
               .then(([topRatedMovies, nowPlayingMovies, pickedReviews]) => {
@@ -51,8 +58,8 @@ class HomepageContainer extends React.Component {
                   <NavComponent history={this.props.history}
                                 enableSearch={true}/>
                   <div className="row">
-                      <div className="mt-3 col-sm-12 col-md-7">
-                          <h1 className="border-bottom pt-2 pb-2 text-left">Now Playing Movies</h1>
+                      <div className="mt-3 col-sm-12 col-md-6">
+                          <h1 className="border-bottom pt-1 pb-2 text-left">Now Playing Movies</h1>
                           <div className="row">
                               {
                                   this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
@@ -64,8 +71,16 @@ class HomepageContainer extends React.Component {
                               }
                           </div>
                       </div>
-                      <div className="mt-3 col-sm-12 col-md-4">
-
+                      <div className="mt-3 col-sm-12 col-md-6">
+                        <h4 className="pt-3 pb-2 text-center">Recent Reviews from Followed Critics</h4>
+                        {
+                          this.state.followedCriticReviews && this.state.followedCriticReviews.map(
+                            review =>
+                              <MovieReviewItemComponent
+                                isInProfile={false}
+                                review={review}
+                                key={review._id}/>
+                        )}
                       </div>
                   </div>
               </div>

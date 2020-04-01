@@ -14,7 +14,7 @@ class MovieReviewItemComponent extends React.Component {
 
   likeReview = (reviewId) => {
     if (store.get('currUser') == null) {
-      this.props.history.push('/login')
+      this.props.history.push('/login');
       return
     }
     ReviewService.likeReview(reviewId)
@@ -67,44 +67,31 @@ class MovieReviewItemComponent extends React.Component {
     return (
       <div className="p-2 mt-2 row">
         {this.state.review.moviePosterURL &&
-        <div className="col-2">
-          {
-            this.props.isInProfile ?
-              <Link to={`/details/${this.state.review.tmdbId}`}>
-                <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
-              </Link>
-              :
-              <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
-          }
+        <div className="col-3">
+          <Link to={`/details/${this.state.review.tmdbId}`}>
+            <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
+          </Link>
         </div>
         }
-        <div className="col-10">
-          <div>
-            {/*//todo: change a to the link to */}
-            <span className="font-weight-bold pr-2">{this.state.review.title}</span>
+        <div className="col-9">
+          <div className="font-weight-bold pr-2">
+            {this.state.review.title}
           </div>
-          {
-            this.props.isInProfile ?
-              <small>Review for&nbsp;
-                <Link to={`/details/${this.state.review.tmdbId}`}>
-                  {this.state.review.movieName}
-                </Link>
-              </small>
-              :
-              <small>Review for {this.state.review.movieName}</small>
-          }
+          <Link to={`/details/${this.state.review.tmdbId}`}>
+            Review for {this.state.review.movieName}
+          </Link>
           <div>
-            {/*//todo: change to actual rating */}
             <Rating fractions={4}
                     start={0}
                     stop={10}
                     step={2}
-                    initialRating={this.state.review.rating ? this.state.review.rating : 7}
+                    initialRating={this.state.review.rating ? this.state.review.rating : 0}
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <span
-              className="ml-2">Published at {this.state.review.date && this.state.review.date.substring(0, 10)} </span>
+            <small className="ml-2">
+              Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
+            </small>
             {!this.props.isInProfile &&
             <div> Written by <Link
               to={this.isReviewWrittenByCurrentUser() ? "/profile" : `/profile/${this.state.review.userId}`}>
@@ -114,7 +101,6 @@ class MovieReviewItemComponent extends React.Component {
           </div>
           <div>{this.state.review.content}</div>
           <div>
-            {/*//todo: change to actual rating */}
             {(!store.get("currUser") || (store.get("currUser") && !store.get("currUser").likedReviews.includes(this.state.review._id))) &&
             <button className="btn"
                     onClick={() => {
