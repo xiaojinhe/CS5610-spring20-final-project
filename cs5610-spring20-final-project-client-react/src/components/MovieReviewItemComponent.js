@@ -97,10 +97,10 @@ class MovieReviewItemComponent extends React.Component {
             {/* TODO: change date text style */}
             {this.props.isHomePage && this.state.review.date ?
               <small>
-                Published at {this.state.review.date.substring(0, 10)}
+                Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
               </small> :
               <span className="ml-2">
-                Published at {this.state.review.date.substring(0, 10)}
+                Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
               </span>
             }
 
