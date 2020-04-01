@@ -64,7 +64,7 @@ export const updateUser = (uid, user) =>
     headers: {
       'content-type': 'application/json'
     }
-  })
+  });
 
 //get all follows
 export const findAllFollowsByUserId = (uid) =>
@@ -103,6 +103,12 @@ export const getLikedReviewsForUser = (uid) =>
   fetch(`${USER_API_URL}/${uid}/likedReviews`)
     .then(response => response.json());
 
+export const findFollowedCriticsReviews = (uid) =>
+  fetch(`${USER_API_URL}/${uid}/followedCriticsReviews`)
+    .then(response => {
+      return response.json()
+    });
+
 
 export default {
   findUserById,
@@ -117,5 +123,6 @@ export default {
   followUser,
   unfollowUser,
   getFavoriteMoviesForUser,
-  getLikedReviewsForUser
+  getLikedReviewsForUser,
+  findFollowedCriticsReviews
 }

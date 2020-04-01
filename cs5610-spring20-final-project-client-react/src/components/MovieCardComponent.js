@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import Rating from "react-rating";
 
 const MovieCardComponent = ({movie, logined}) =>
-    <div className={logined ? "col-6 col-sm-4 col-md-4 col-lg-3" : "col-4 col-sm-3 col-md-2"}>
+    <div className={logined ? "col-6 col-sm-4 col-md-4" : "col-4 col-sm-3 col-md-2"}>
         <div className="card">
           <Link to={`/details/${movie.id}`}>
             <img className="card-img-top" src={TMDB_IMAGE_URL(500, movie.poster_path)}
