@@ -36,7 +36,7 @@ module.exports = function (app) {
     app.post('/api/register', register);
     app.post('/api/login', passport.authenticate('local'), login);
     app.post('/api/logout', logout);
-    app.get('/api/currentUser', authorized, getCurrentUser);
+    app.get('/api/currentUser', getCurrentUser);
 
     app.get('/api/users', getAllUsers);
     app.get('/api/users/:uid', getUserById);
