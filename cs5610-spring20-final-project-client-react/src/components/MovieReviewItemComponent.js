@@ -73,19 +73,23 @@ class MovieReviewItemComponent extends React.Component {
     return (
       <div className="p-2 mt-2 row">
         {this.state.review.moviePosterURL &&
-        <div className="col-3">
+        <div className={`${this.props.isHomePage ? 'col-3 pr-0' : 'col-2'}`}>
           <Link to={`/details/${this.state.review.tmdbId}`}>
             <img className="img-thumbnail" src={this.state.review.moviePosterURL} alt=""/>
           </Link>
         </div>
         }
-        <div className="col-9">
+        <div className={`${this.props.isHomePage ? 'col-9' : 'col-10'}`}>
           <div className="font-weight-bold pr-2">
             {this.state.review.title}
           </div>
-          <Link to={`/details/${this.state.review.tmdbId}`}>
-            Review for {this.state.review.movieName}
-          </Link>
+          {
+            <small>Review for&nbsp;
+              <Link to={`/details/${this.state.review.tmdbId}`}>
+                {this.state.review.movieName}
+              </Link>
+            </small>
+          }
           <div>
             <Rating fractions={4}
                     start={0}
@@ -95,17 +99,25 @@ class MovieReviewItemComponent extends React.Component {
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
-            <small className="ml-2">
-              Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
-            </small>
-            {!this.props.isInProfile &&
+
+            {/* TODO: change date text style */}
+            {this.props.isHomePage && this.state.review.date ?
+              <small>
+                Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
+              </small> :
+              <span className="ml-2">
+                Published at {this.state.review.date && this.state.review.date.substring(0, 10)}
+              </span>
+            }
+
+            {!(this.props.isInProfile || this.props.isHomePage) &&
             <div> Written by <Link
               to={this.isReviewWrittenByCurrentUser() ? "/profile" : `/profile/${this.state.review.userId}`}>
               {this.state.review.username}</Link>
             </div>
             }
           </div>
-          <div>{this.state.review.content}</div>
+          <div className="text-break">{this.state.review.content}</div>
           <div>
             {this.shouldShowHollowLikeButton(store.get("currUser")) &&
             <button className="btn"

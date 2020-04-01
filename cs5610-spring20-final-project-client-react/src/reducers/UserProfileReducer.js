@@ -1,4 +1,4 @@
-import {FIND_USER_BY_ID, FOLLOW_USER, UNFOLLOW_USER} from "../common/constants";
+import {FIND_USER_BY_ID, FOLLOW_USER, UNFOLLOW_USER, UPDATE_USER} from "../common/constants";
 
 const userProfileReducer = (state = {user: ""}, action) => {
   switch (action.type) {
@@ -6,6 +6,11 @@ const userProfileReducer = (state = {user: ""}, action) => {
       return {
         ...state,
         user: action.user,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: action.updatedUser,
       };
     case FOLLOW_USER:
       return {

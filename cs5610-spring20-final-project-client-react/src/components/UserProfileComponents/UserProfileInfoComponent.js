@@ -1,4 +1,5 @@
 import React from 'react'
+import UserProfileEditAvatarComponent from "./UserProfileEditAvatarComponent";
 
 class UserProfileInfoComponent extends React.Component {
   state = {
@@ -28,6 +29,15 @@ class UserProfileInfoComponent extends React.Component {
       user: {
         ...this.state.user,
         email: event.target.value
+      }
+    })
+  };
+
+  onAvatarSave = (value) => {
+    this.setState({
+      user: {
+        ...this.state.user,
+        avatarURL: value
       }
     })
   };
@@ -105,6 +115,16 @@ class UserProfileInfoComponent extends React.Component {
                    id="role"
                    value={this.state.user.role}/>
           </div>
+        </div>
+        <div className="form-group row">
+          <label htmlFor="role"
+                 className="col-sm-2 col-form-label">
+            Avatar
+          </label>
+          <UserProfileEditAvatarComponent
+            user={this.state.user}
+            onAvatarSave={this.onAvatarSave}
+          />
         </div>
 
         <div className="form-group row">
