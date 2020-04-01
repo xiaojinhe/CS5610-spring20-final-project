@@ -20,17 +20,17 @@ const MovieCommentItemComponent = ({comment, isInProfile, isHomePage}) =>
       <div className={`${isHomePage ? 'col-9' : 'col-10'}`}>
         <div>
           {isInProfile || isHomePage ?
-              <div>
-                <Link to={`/details/${comment.tmdbId}`}
-                      className="font-weight-bold pr-2">
-                  {comment.movieName}
-                </Link>
-              </div>
-              :
-              <Link to={`/profile/${comment.userId}`}
+            <div>
+              <Link to={`/details/${comment.tmdbId}`}
                     className="font-weight-bold pr-2">
-                {comment.username}
+                {comment.movieName}
               </Link>
+            </div>
+            :
+            <Link to={`/profile/${comment.userId}`}
+                  className="font-weight-bold pr-2">
+              {comment.username}
+            </Link>
           }
           <Rating fractions={4}
                   start={0}
@@ -40,9 +40,9 @@ const MovieCommentItemComponent = ({comment, isInProfile, isHomePage}) =>
                   readonly={true}
                   fullSymbol={<i className="fas fa-star"/>}
                   emptySymbol={<i className="far fa-star"/>}/>
-          {isHomePage && comment.date?
-            <div>{comment.date.substring(0, 10)}</div> :
-            <span className="pl-2">{comment.date.substring(0, 10)}</span>
+          {isHomePage ?
+            <div>{comment.date && comment.date.substring(0, 10)}</div> :
+            <span className="pl-2">{comment.date && comment.date.substring(0, 10)}</span>
           }
         </div>
         <div>{comment.content}</div>
