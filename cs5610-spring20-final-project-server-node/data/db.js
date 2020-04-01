@@ -6,7 +6,7 @@ module.exports = function() {
     let username = process.env.MLAB_USERNAME_WEBDEV;
     let password = process.env.MLAB_PASSWORD_WEBDEV;
     connectionString = 'mongodb://' + username + ':' + password;
-    connectionString += '@ds133086.mlab.com:33086/'+ databaseName;
+    connectionString += '@ds133086.mlab.com:33086/heroku_vs0wtmtl';
   }
   console.log('connectionString:', connectionString);
   mongoose.connect(connectionString, {
