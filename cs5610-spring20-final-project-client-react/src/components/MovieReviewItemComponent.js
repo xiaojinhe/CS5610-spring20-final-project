@@ -54,7 +54,7 @@ class MovieReviewItemComponent extends React.Component {
   };
 
   shouldShowHollowLikeButton = (user) => {
-    return user && user.likedReviews.filter(review => review._id === this.state.review._id).length === 0;
+    return !user || (user && user.likedReviews.filter(review => review._id === this.state.review._id).length === 0);
   };
 
 
