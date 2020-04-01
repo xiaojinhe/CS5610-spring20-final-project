@@ -22,10 +22,18 @@ class UserProfileEditAvatarComponent extends React.Component {
   render() {
     return (
       <div className="col-sm-10">
-        <button type="button" className="btn btn-primary" data-toggle="modal"
-                data-target="#staticBackdrop" onClick={this.onAvatarReset}>
-          Change photo
-        </button>
+        <div className="input-group">
+          <input readOnly
+                 className="form-control"
+                 id="avatar"
+                 value={this.props.user.avatarURL}/>
+          <div className="input-group-prepend">
+            <button type="button" className="btn btn-primary" data-toggle="modal"
+                    data-target="#staticBackdrop" onClick={this.onAvatarReset}>
+              Click to change
+            </button>
+          </div>
+        </div>
         <div className="modal fade" id="staticBackdrop" data-backdrop="static"
              role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
@@ -68,7 +76,7 @@ class UserProfileEditAvatarComponent extends React.Component {
                 </button>
                 <button type="button" className="btn btn-primary"
                         data-dismiss="modal" onClick={() => this.props.onAvatarSave(this.state.previewingAvatarURL)}>
-                  Save
+                  Confirm
                 </button>
               </div>
             </div>
