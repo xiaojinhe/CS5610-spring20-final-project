@@ -8,7 +8,8 @@ const UserProfileHeaderComponent = ({user, isCurrentUserProfile, isFollowedBy, f
     <div className="card-body">
       <div className="text-center">
         <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
-             className="rounded-circle user-icon border p-3"
+             className={`rounded-circle user-icon border 
+             ${user.avatarURL? "" : "p-3"}`}
              alt="user icon"/>
         <div className="d-inline-block user-role px-2 py-1
                         rounded text-capitalize text-white bg-success">

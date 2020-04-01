@@ -4,8 +4,11 @@ import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
-import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
 import UserService from "../services/UserService";
+import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
+import MovieCommentItemComponent from "../components/MovieCommentItemComponent";
+import {CRITIC_USER} from "../common/constants";
+
 const store = require('store');
 
 const topRatedMoviesDisplayNum = 18;
@@ -77,10 +80,30 @@ class HomepageContainer extends React.Component {
                           this.state.followedCriticReviews && this.state.followedCriticReviews.map(
                             review =>
                               <MovieReviewItemComponent
-                                isInProfile={false}
+                                isHomePage={true}
                                 review={review}
                                 key={review._id}/>
                         )}
+                        <h4 className="pt-2 pb-2 text-center">
+                          {`My ${currUser.role === CRITIC_USER? 'Reviews' : 'Comments'}`}
+                        </h4>
+                        {currUser.ratingAndCommentsOrReviews && currUser.ratingAndCommentsOrReviews.length > 0 ?
+                          currUser.ratingAndCommentsOrReviews.map(post => {
+                              if (currUser.role === CRITIC_USER) {
+                                return <MovieReviewItemComponent
+                                  isHomePage={true}
+                                  review={post}
+                                  key={post._id}/>
+                              } else {
+                                return <MovieCommentItemComponent
+                                  isHomePage={true}
+                                  comment={post}
+                                  key={post._id}/>
+                              }
+                            }
+                          ) :
+                          <div>No posts yet</div>
+                        }
                       </div>
                   </div>
               </div>
