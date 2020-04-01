@@ -118,9 +118,10 @@ class HomepageContainer extends React.Component {
                           </div>
                       </div>
                       <div>
-                          <h1 className="border-bottom pt-2 pb-2 text-left">Critic Picked Reviews</h1>
+                          <h1 className="border-bottom pt-2 pb-2 text-left">Most Liked Reviews</h1>
                           <MovieReviewListComponent
-                            pickedReviews={this.state.pickedReviews}/>
+                            pickedReviews={this.state.pickedReviews}
+                            history={this.props.history}/>
                       </div>
 
                   </div>

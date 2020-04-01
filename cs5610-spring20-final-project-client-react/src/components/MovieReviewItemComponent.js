@@ -14,6 +14,7 @@ class MovieReviewItemComponent extends React.Component {
 
   likeReview = (reviewId) => {
     if (store.get('currUser') == null) {
+      alert("Please login first!");
       this.props.history.push('/login');
       return
     }
