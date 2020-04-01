@@ -83,7 +83,7 @@ class MovieDetailComponent extends React.Component {
                         enableSearch={true}/>
           <div className="movie-summary pt-3">
             <div className="row">
-              <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mt-2 mr-lg-5 mr-md-4">
+              <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mr-2 mt-2 mr-lg-5 mr-md-4">
                 <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}
                      className="image-fluid"
                      alt=""/>
@@ -92,7 +92,6 @@ class MovieDetailComponent extends React.Component {
                 <MovieDetailSummaryComponent movie={this.props.movie}/>
               </div>
               <div className="col-lg-3 col-md-3 col-sm-2 col-12 p-1">
-                {/*TODO: NEED TO HANDLE LOGIN OR NOT*/}
                 <MovieRatingFavorComponent
                   history={this.props.history}
                   favorite={this.props.favorite}
