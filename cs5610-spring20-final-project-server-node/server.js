@@ -21,8 +21,8 @@ app.use(passport.session());
 // Configure CORS
 app.use(function (req, res, next) {
     //change 'http://localhost:3001' to where your client is running
-    res.header("Access-Control-Allow-Origin",
-               '*');
+    let allowedOrigins = ['https://movie-time-client-react.herokuapp.com', 'http://localhost:3000'];
+    res.header("Access-Control-Allow-Origin", allowedOrigins);
     res.header("Access-Control-Allow-Headers",
                "Content-Type, X-Requested-With, Origin");
     res.header("Access-Control-Allow-Methods",
