@@ -26,11 +26,10 @@ class UserLoginComponent extends React.Component {
       username: this.state.username,
       password: this.state.password
     }).then(response => {
-      console.log(response);
       if (response) {
         this.props.updateUserState(response);
         store.set('currUser', response);
-        this.props.history.push('/profile');
+        this.props.history.push('/');
       } else {
         alert("Invalid username or password!");
       }
