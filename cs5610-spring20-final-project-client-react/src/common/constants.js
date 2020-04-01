@@ -34,7 +34,9 @@ export const MOVIE_TRAILER_API_URL =
   (key) => `https://www.youtube.com/embed/${key}`;
 
 /* =========== API for MovieTime Service ========= */
-export const MOVIE_TIME_BASE_URL = "http://localhost:3000"
+export const MOVIE_TIME_BASE_URL =
+  'https://movie-time-server-node.herokuapp.com'
+  // "http://localhost:3000"
 
 export const USER_API_URL = `${MOVIE_TIME_BASE_URL}/api/users`
 export const MOVIE_API_URL = `${MOVIE_TIME_BASE_URL}/api/movies`
