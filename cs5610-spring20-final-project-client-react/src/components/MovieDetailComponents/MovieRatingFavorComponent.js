@@ -1,5 +1,6 @@
 import Rating from "react-rating";
 import React from "react";
+
 const store = require('store');
 
 class MovieRatingFavorComponent extends React.Component {
@@ -20,14 +21,14 @@ class MovieRatingFavorComponent extends React.Component {
   };
 
   render() {
-    return(
+    return (
       <div>
         <h6 className="movie-header">Rating Score</h6>
         <div className="row">
-          <div className="col-3">
+          <div className="col-2 col-md-3">
             <h3>{this.props.rating}</h3>
           </div>
-          <div className="col-9 pt-1">
+          <div className="col-10 col-md-9 pt-1">
             <Rating fractions={4}
                     start={0}
                     stop={10}
@@ -35,10 +36,11 @@ class MovieRatingFavorComponent extends React.Component {
                     initialRating={this.props.rating}
                     readonly={true}
                     fullSymbol={<i className="fas fa-star"/>}
-                    emptySymbol={<i className="far fa-star"/>}/>
+                    emptySymbol={<i className="far fa-star"/>}
+            />
           </div>
         </div>
-        <h6 className="movie-header">Total votes: {this.props.voteCount}</h6>
+        <h6 className="movie-header mt-1">Total votes: {this.props.voteCount}</h6>
 
         <label htmlFor="favor" className="favor-label pr-2">
           <h6 className="movie-header">Favor this:</h6>

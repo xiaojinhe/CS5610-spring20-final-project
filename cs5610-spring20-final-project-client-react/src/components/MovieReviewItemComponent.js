@@ -14,6 +14,7 @@ class MovieReviewItemComponent extends React.Component {
 
   likeReview = (reviewId) => {
     if (store.get('currUser') == null) {
+      alert("Please login first!");
       this.props.history.push('/login');
       return
     }
@@ -51,6 +52,11 @@ class MovieReviewItemComponent extends React.Component {
       }
     })
   };
+
+  shouldShowHollowLikeButton = (user) => {
+    return !user || (user && user.likedReviews.filter(review => review._id === this.state.review._id).length === 0);
+  };
+
 
   isReviewWrittenByCurrentUser = () => {
     const currUser = store.get("currUser");
@@ -113,7 +119,7 @@ class MovieReviewItemComponent extends React.Component {
           </div>
           <div className="text-break">{this.state.review.content}</div>
           <div>
-            {(!store.get("currUser") || (store.get("currUser") && !store.get("currUser").likedReviews.includes(this.state.review._id))) &&
+            {this.shouldShowHollowLikeButton(store.get("currUser")) &&
             <button className="btn"
                     onClick={() => {
                       this.likeReview(this.state.review._id);
@@ -123,7 +129,7 @@ class MovieReviewItemComponent extends React.Component {
             </button>
             }
 
-            {store.get("currUser") && store.get("currUser").likedReviews.includes(this.state.review._id) &&
+            {!this.shouldShowHollowLikeButton(store.get("currUser")) &&
             <button className="btn"
                     onClick={() => {
                       this.cancelLikeReview(this.state.review._id);
