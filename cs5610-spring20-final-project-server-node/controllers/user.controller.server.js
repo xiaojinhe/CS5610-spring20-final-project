@@ -234,6 +234,7 @@ module.exports = function (app) {
     /* ========= RATINGS AND COMMENTS/REVIEWS ======== */
     app.get('/api/users/:uid/comments', findCommentsForRegularUser);
     app.get('/api/users/:uid/reviews', findReviewsForCritic);
+    app.get('/api/users/:uid/followedCriticsReviews', findFollowedCriticsReviews);
 
     function findCommentsForRegularUser(req, res) {
         const uid = req.params['uid'];
@@ -245,6 +246,19 @@ module.exports = function (app) {
         const uid = req.params['uid'];
         userDao.findAllRatingAndCommentOrReviewsForUser(uid)
             .then(reviews => res.json(reviews))
+    }
+
+    async function findFollowedCriticsReviews(req, res) {
+        const uid = req.params['uid'];
+        let critics = await userDao.findAllFollowsForUser(uid);
+        let results = [];
+        for (critic of critics.follows) {
+            let reviews = await userDao.findAllRatingAndCommentsOrReviewsForUser(critic.userId);
+            for (review of reviews.ratingAndCommentsOrReviews) {
+                results.push(review);
+            }
+        }
+        return res.json(results);
     }
 
     /* ========= LIKED REVIEWS ======== */

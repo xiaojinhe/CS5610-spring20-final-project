@@ -61,7 +61,7 @@ deleteUserRatingAndCommentOrReview = (userId, reviewOrCommentId) => {
 };
 
 findAllFavoriteMoviesForUser = (userId) => {
-  return userModel.findOne({_id: userId}, {favoriteMovies: 1});
+  return userModel.find({_id: userId}, {favoriteMovies: 1});
 };
 
 updateUserFavoriteMovie = (userId, movie) => {
