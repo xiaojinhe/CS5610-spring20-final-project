@@ -3,7 +3,6 @@ import Rating from "react-rating";
 import {Link} from "react-router-dom";
 import CommentService from "../services/CommentService";
 
-//TODO: Limit the input length and redirect to ? after success
 class WriteCommentComponent extends React.Component {
   state = {
     content: "",

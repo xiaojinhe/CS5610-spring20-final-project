@@ -1,6 +1,6 @@
 import React from 'react'
-import NavComponent from "./NavComponent";
 import {Link} from "react-router-dom";
+import NavContainer from "../containers/NavContainer";
 const store = require('store');
 
 class UserLoginComponent extends React.Component {
@@ -26,11 +26,10 @@ class UserLoginComponent extends React.Component {
       username: this.state.username,
       password: this.state.password
     }).then(response => {
-      console.log(response);
       if (response) {
         this.props.updateUserState(response);
         store.set('currUser', response);
-        this.props.history.push('/profile');
+        this.props.history.push('/');
       } else {
         alert("Invalid username or password!");
       }
@@ -40,7 +39,8 @@ class UserLoginComponent extends React.Component {
   render() {
     return (
       <div>
-        <NavComponent/>
+        <NavContainer history={this.props.history}
+                      enableSearch={true}/>
         <div className="container">
           <h1>Sign In</h1>
 

@@ -1,8 +1,8 @@
 import React from 'react'
 import UserProfileHeaderComponent from "./UserProfileHeaderComponent";
 
-import NavComponent from "../NavComponent";
 import UserProfileTabComponent from "./UserProfileTabComponent";
+import NavContainer from "../../containers/NavContainer";
 
 const store = require('store');
 
@@ -83,7 +83,7 @@ class UserProfileComponent extends React.Component {
   render() {
     return (
       <div>
-        <NavComponent history={this.props.history}
+        <NavContainer history={this.props.history}
                       enableSearch={true}/>
         <div className="container">
           {

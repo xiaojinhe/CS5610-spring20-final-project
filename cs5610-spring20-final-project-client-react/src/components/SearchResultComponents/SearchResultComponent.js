@@ -1,29 +1,32 @@
 import React from 'react'
 import MovieItemComponent from "./MovieItemComponent";
-import NavComponent from "../NavComponent";
 import MovieService from "../../services/MovieService";
+import NavContainer from "../../containers/NavContainer";
 
 class SearchResultComponent extends React.Component {
-    state = {
-        results: []
-    };
 
     componentDidMount() {
-        MovieService.searchMovies(this.props.criteria)
-            .then(response =>
-                this.setState({
-                    results: response.results
-                })
-            )
+        //to show result search, even if user refreshes
+        if (!this.props.results || this.props.results.length === 0) {
+            MovieService.searchMovies(this.props.criteria)
+                .then(response => {
+                        if (response.results && response.results.length > 0) {
+                            this.props.setSearchResult(response.results);
+                        } else {
+                            alert("No result found!")
+                        }
+                    }
+                )
+        }
     }
 
     render() {
         return (
             <div>
-              <NavComponent history={this.props.history}
-                            enableSearch={true}/>
+                <NavContainer history={this.props.history}
+                              enableSearch={true}/>
                 <div className="container">
-                    {this.state.results && this.state.results.map(movie =>
+                    {this.props.results && this.props.results.map(movie =>
                         <MovieItemComponent
                             movie={movie}
                             key={movie.id}/>

@@ -1,14 +1,14 @@
 import React from 'react'
-import MovieCardComponent from "../components/MovieCardComponent";
-import NavComponent from "../components/NavComponent";
-import MovieReviewListComponent from "../components/MovieReviewListComponent";
+import MovieCardComponent from "./MovieCardComponent";
+import MovieReviewListComponent from "./MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
 import UserService from "../services/UserService";
-import MovieItemComponent from "../components/SearchResultComponents/MovieItemComponent";
-import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
-import MovieCommentItemComponent from "../components/MovieCommentItemComponent";
+import MovieItemComponent from "./SearchResultComponents/MovieItemComponent";
+import MovieReviewItemComponent from "./MovieReviewItemComponent";
+import MovieCommentItemComponent from "./MovieCommentItemComponent";
 import {CRITIC_USER} from "../common/constants";
+import NavContainer from "../containers/NavContainer";
 
 const store = require('store');
 
@@ -17,7 +17,7 @@ const nowPlayingMoviesDisplayNum = 18;
 const pickedReviewDisplayNum = 5;
 const favoriteMoviesDisplayNum = 5;
 
-class HomepageContainer extends React.Component {
+class HomepageComponent extends React.Component {
 
   state = {
     topRatedMovies: [],
@@ -29,10 +29,10 @@ class HomepageContainer extends React.Component {
   componentDidMount() {
     const currUser = store.get('currUser');
     if (currUser) {
-      Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id),
-      ])
-        .then(([nowPlayingMovies, followedCriticReviews]) => {
+      Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id), UserService.getCurrentUser()])
+        .then(([nowPlayingMovies, followedCriticReviews, currUser]) => {
           console.log(followedCriticReviews);
+          store.set('currUser', currUser)
           this.setState(
             {
               nowPlayingMovies:
@@ -74,7 +74,7 @@ class HomepageContainer extends React.Component {
     if (currUser) {
       return (
         <div className="container-fluid">
-          <NavComponent history={this.props.history}
+          <NavContainer history={this.props.history}
                         enableSearch={true}/>
           <div className="row">
             <div className="mt-3 col-sm-12 col-md-6">
@@ -140,7 +140,7 @@ class HomepageContainer extends React.Component {
     } else {
       return (
         <div className="container-fluid">
-          <NavComponent history={this.props.history}
+          <NavContainer history={this.props.history}
                         enableSearch={true}/>
           <div className="container">
             <div className="mt-3">
@@ -183,4 +183,4 @@ class HomepageContainer extends React.Component {
   }
 }
 
-export default HomepageContainer
+export default HomepageComponent

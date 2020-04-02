@@ -1,6 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import UserService from "../services/UserService";
+import MovieService from "../services/MovieService";
+
 const store = require('store');
 
 class NavComponent extends React.Component {
@@ -21,10 +23,19 @@ class NavComponent extends React.Component {
 
     performSearch = () => {
         const criteria = this.state.searchCriteria.trim();
+        this.clearInputField();
         if (criteria.length > 0) {
-            this.props.history.push(`/search/${criteria}`)
+            MovieService.searchMovies(criteria)
+                .then(response => {
+                        if (response.results && response.results.length > 0) {
+                            this.props.setSearchResult(response.results);
+                            this.props.history.push(`/search/${criteria}`)
+                        } else {
+                            alert("No result found!")
+                        }
+                    }
+                )
         }
-        this.clearInputField()
     };
 
     logout = () => {
@@ -76,16 +87,17 @@ class NavComponent extends React.Component {
                     </ul>
 
                     {this.props.enableSearch &&
-                    <form className="form-inline my-2 my-lg-0">
+                    <div className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search"
                                onChange={this.updateInputField}
-                               onKeyDown={this.handleKeyDown}/>
+                               onKeyDown={this.handleKeyDown}
+                               value={this.state.searchCriteria}/>
                         <button className="btn btn-outline-success my-2 my-sm-0"
                                 type="button"
                                 onClick={this.performSearch}>
                             Search
                         </button>
-                    </form>
+                    </div>
                     }
                 </div>
             </nav>
@@ -95,3 +107,4 @@ class NavComponent extends React.Component {
 }
 
 export default NavComponent
+

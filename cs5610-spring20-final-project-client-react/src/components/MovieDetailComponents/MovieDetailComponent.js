@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 import MovieCommentsListComponent from "../MovieCommentsListComponent";
 import MovieReviewListComponent from "../MovieReviewListComponent";
 import MovieCardComponent from "../MovieCardComponent";
-import NavComponent from "../NavComponent";
 import PublicMovieReviewListComponent from "./PublicMovieReviewListComponent";
+import NavContainer from "../../containers/NavContainer";
 
 const publicReviewDisplayNum = 5;
 const store = require("store");
@@ -79,7 +79,7 @@ class MovieDetailComponent extends React.Component {
     if (this.props.movie) {
       return (
         <div className="container-fluid movie-detail-container">
-          <NavComponent history={this.props.history}
+          <NavContainer history={this.props.history}
                         enableSearch={true}/>
           <div className="movie-summary pt-3">
             <div className="row">
