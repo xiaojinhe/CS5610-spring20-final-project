@@ -1,14 +1,14 @@
 import React from 'react'
-import MovieCardComponent from "../components/MovieCardComponent";
-import MovieReviewListComponent from "../components/MovieReviewListComponent";
+import MovieCardComponent from "./MovieCardComponent";
+import MovieReviewListComponent from "./MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
 import UserService from "../services/UserService";
-import MovieItemComponent from "../components/SearchResultComponents/MovieItemComponent";
-import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
-import MovieCommentItemComponent from "../components/MovieCommentItemComponent";
+import MovieItemComponent from "./SearchResultComponents/MovieItemComponent";
+import MovieReviewItemComponent from "./MovieReviewItemComponent";
+import MovieCommentItemComponent from "./MovieCommentItemComponent";
 import {CRITIC_USER} from "../common/constants";
-import NavContainer from "./NavContainer";
+import NavContainer from "../containers/NavContainer";
 
 const store = require('store');
 
@@ -17,7 +17,7 @@ const nowPlayingMoviesDisplayNum = 18;
 const pickedReviewDisplayNum = 5;
 const favoriteMoviesDisplayNum = 5;
 
-class HomepageContainer extends React.Component {
+class HomepageComponent extends React.Component {
 
   state = {
     topRatedMovies: [],
@@ -169,4 +169,4 @@ class HomepageContainer extends React.Component {
   }
 }
 
-export default HomepageContainer
+export default HomepageComponent

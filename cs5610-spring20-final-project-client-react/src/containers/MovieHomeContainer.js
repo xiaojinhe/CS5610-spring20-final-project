@@ -5,7 +5,6 @@ import {Provider} from "react-redux";
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import MovieDetailContainer from "./MovieDetailContainer";
 import movieDetailReducer from "../reducers/MovieDetailReducer";
-import HomepageContainer from "./HomepageContainer";
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
 import UserLoginContainer from "./UserLoginContainer";
@@ -15,6 +14,7 @@ import RegisterContainer from "./RegisterContainer";
 import userAuthenticationReducer from "../reducers/UserAuthenticationReducer";
 import searchReducer from "../reducers/SearchReducer";
 import SearchResultContainer from "./SearchResultContainer";
+import HomepageComponent from "../components/HomepageComponent";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
@@ -33,7 +33,7 @@ class MovieHomeContainer extends React.Component {
           <Router>
             <Route path="/"
                    exact={true}
-                   render={(props) => <HomepageContainer
+                   render={(props) => <HomepageComponent
                      {...props}/>
                    }/>
             <Route path="/search/:criteria"
