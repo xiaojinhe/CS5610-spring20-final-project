@@ -1,8 +1,6 @@
 import React from 'react'
 import MovieItemComponent from "./MovieItemComponent";
-import {connect} from "react-redux";
 import MovieService from "../../services/MovieService";
-import {setSearchResultAction} from "../../actions/SearchActions";
 import NavContainer from "../../containers/NavContainer";
 
 class SearchResultComponent extends React.Component {
