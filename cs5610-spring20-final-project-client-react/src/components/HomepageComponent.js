@@ -29,10 +29,10 @@ class HomepageComponent extends React.Component {
   componentDidMount() {
     const currUser = store.get('currUser');
     if (currUser) {
-      Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id),
-      ])
-        .then(([nowPlayingMovies, followedCriticReviews]) => {
+      Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id), UserService.getCurrentUser()])
+        .then(([nowPlayingMovies, followedCriticReviews, currUser]) => {
           console.log(followedCriticReviews);
+          store.set('currUser', currUser)
           this.setState(
             {
               nowPlayingMovies:
