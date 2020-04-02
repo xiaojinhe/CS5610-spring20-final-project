@@ -135,12 +135,14 @@ module.exports = function (app) {
         const user1 = req.user;
         const user1Info = {
             userId: user1._id,
-            username: user1.username
+            username: user1.username,
+            avatarURL: user1.avatarURL
         };
 
         const user2Info = {
             userId: req.body['userId'],
-            username: req.body['username']
+            username: req.body['username'],
+            avatarURL: req.body['avatarURL']
         };
 
         // check if already followed

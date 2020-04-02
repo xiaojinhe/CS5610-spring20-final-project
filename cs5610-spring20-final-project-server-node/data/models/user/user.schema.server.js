@@ -45,13 +45,15 @@ const userSchema = mongoose.Schema(
     follows: [
       {
         userId: String,
-        username: String
+        username: String,
+        avatarURL: String
       }
     ],
     followedBy: [
       {
         userId: String,
-        username: String
+        username: String,
+        avatarURL: String
       }
     ]
   }, {collection: 'users'});
