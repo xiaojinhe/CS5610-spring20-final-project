@@ -1,6 +1,5 @@
 import React from 'react'
 import MovieCardComponent from "../components/MovieCardComponent";
-import NavComponent from "../components/NavComponent";
 import MovieReviewListComponent from "../components/MovieReviewListComponent";
 import MovieService from "../services/MovieService";
 import ReviewService from "../services/ReviewService";
@@ -9,6 +8,7 @@ import MovieItemComponent from "../components/SearchResultComponents/MovieItemCo
 import MovieReviewItemComponent from "../components/MovieReviewItemComponent";
 import MovieCommentItemComponent from "../components/MovieCommentItemComponent";
 import {CRITIC_USER} from "../common/constants";
+import NavContainer from "./NavContainer";
 
 const store = require('store');
 
@@ -60,7 +60,7 @@ class HomepageContainer extends React.Component {
     if (currUser) {
       return (
         <div className="container-fluid">
-          <NavComponent history={this.props.history}
+          <NavContainer history={this.props.history}
                         enableSearch={true}/>
           <div className="row">
             <div className="mt-3 col-sm-12 col-md-6">
@@ -126,7 +126,7 @@ class HomepageContainer extends React.Component {
     } else {
       return (
         <div className="container-fluid">
-          <NavComponent history={this.props.history}
+          <NavContainer history={this.props.history}
                         enableSearch={true}/>
           <div className="container">
             <div className="mt-3">

@@ -82,3 +82,6 @@ export const GET_CURRENT_USER = "GET_CURRENT_USER";
 
 export const CRITIC_USER = "CRITIC";
 export const REGULAR_USER = "REGULAR";
+
+//action for search
+export const SET_SEARCH_RESULT = "SET_SEARCH_RESULT";

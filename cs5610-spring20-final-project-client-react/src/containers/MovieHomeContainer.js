@@ -6,7 +6,6 @@ import {BrowserRouter as Router, Route} from "react-router-dom";
 import MovieDetailContainer from "./MovieDetailContainer";
 import movieDetailReducer from "../reducers/MovieDetailReducer";
 import HomepageContainer from "./HomepageContainer";
-import SearchResultComponent from "../components/SearchResultComponents/SearchResultComponent";
 import UserProfileContainer from "./UserProfileContainer";
 import userProfileReducer from "../reducers/UserProfileReducer";
 import UserLoginContainer from "./UserLoginContainer";
@@ -14,11 +13,14 @@ import WriteCommentComponent from "../components/WriteCommentComponent";
 import WriteReviewComponent from "../components/WriteReviewComponent";
 import RegisterContainer from "./RegisterContainer";
 import userAuthenticationReducer from "../reducers/UserAuthenticationReducer";
+import searchReducer from "../reducers/SearchReducer";
+import SearchResultContainer from "./SearchResultContainer";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
   userProfile: userProfileReducer,
-  userAuthentication: userAuthenticationReducer
+  userAuthentication: userAuthenticationReducer,
+  searchResults: searchReducer
 });
 
 const store = createStore(reducers);
@@ -36,7 +38,7 @@ class MovieHomeContainer extends React.Component {
                    }/>
             <Route path="/search/:criteria"
                    exact={true}
-                   render={(props) => <SearchResultComponent
+                   render={(props) => <SearchResultContainer
                      {...props}
                      criteria={props.match.params.criteria}
                    />

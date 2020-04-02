@@ -1,6 +1,6 @@
 import React from 'react'
-import NavComponent from "./NavComponent";
 import {Link} from "react-router-dom";
+import NavContainer from "../containers/NavContainer";
 const store = require('store');
 
 class UserLoginComponent extends React.Component {
@@ -39,7 +39,8 @@ class UserLoginComponent extends React.Component {
   render() {
     return (
       <div>
-        <NavComponent/>
+        <NavContainer history={this.props.history}
+                      enableSearch={true}/>
         <div className="container">
           <h1>Sign In</h1>
 

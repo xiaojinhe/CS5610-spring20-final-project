@@ -20,7 +20,6 @@ class RegisterComponent extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (store.get('currUser')) {
       alert("Successfully created account!");
-      //TODO: need to think about the route late
       this.props.history.push("/profile")
     }
   }
