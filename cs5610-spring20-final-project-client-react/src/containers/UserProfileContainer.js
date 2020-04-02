@@ -27,11 +27,10 @@ const dispatchToPropertyMapper = (dispatch) => ({
   followUser: (userId, userToFollow) => {
     UserService.followUser(userId, userToFollow)
       .then(response => {
-        // console.log(response)
         if (response.status === 200) {
           const currUser = store.get('currUser');
-          currUser.follows.push(userToFollow)
-          dispatch(followUserAction({userId: userId, username: currUser.username}));
+          currUser.follows.push(userToFollow);
+          dispatch(followUserAction({userId: userId, username: currUser.username, avatarURL: currUser.avatarURL}));
         }
       })
   },
