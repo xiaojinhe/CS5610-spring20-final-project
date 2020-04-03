@@ -20,11 +20,23 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Configure CORS
+let allowedOrigins = 'http://localhost:3000';
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", allowedOrigins);
+    res.header("Access-Control-Allow-Headers",
+               "Content-Type, X-Requested-With, Origin");
+    res.header("Access-Control-Allow-Methods",
+               "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
+});
+
 require('./controllers/user.controller.server')(app)
 require('./controllers/rating-comment-review.controller.server')(app)
 
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('../cs5610-spring20-final-project-client-react/build'));
+    app.use(express.static('cs5610-spring20-final-project-client-react/build'));
 
     app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname,
