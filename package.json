@@ -2,14 +2,17 @@
   "name": "cs5610-spring20-final-project-server-node",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./cs5610-spring20-final-project-server-node/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./cs5610-spring20-final-project-server-node/server.js",
+    "heroku-postbuild": "cd cs5610-spring20-final-project-client-react && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
