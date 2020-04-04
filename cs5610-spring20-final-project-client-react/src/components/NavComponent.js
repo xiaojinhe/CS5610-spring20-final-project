@@ -43,6 +43,7 @@ class NavComponent extends React.Component {
           .then(response => {
               if (response.status === 200) {
                   store.remove('currUser');
+                  this.props.history.push('/logout');
                   this.props.history.push('/');
               }
           })
