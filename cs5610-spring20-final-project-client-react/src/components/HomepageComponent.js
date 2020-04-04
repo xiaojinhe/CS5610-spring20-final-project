@@ -78,8 +78,8 @@ class HomepageComponent extends React.Component {
                         enableSearch={true}/>
           <div className="row">
             <div className="mt-3 col-sm-12 col-md-6">
-              <h1 className="border-bottom pt-1 pb-2 text-left">Now Playing Movies</h1>
-              <div className="row">
+                <h4 className="border-bottom pt-3 pb-2 text-left">Now Playing Movies</h4>
+                <div className="row">
                 {
                   this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
                     function (movie) {
@@ -91,16 +91,19 @@ class HomepageComponent extends React.Component {
               </div>
             </div>
             <div className="mt-3 col-sm-12 col-md-6">
-              <h4 className="pt-3 pb-2 text-center">Recent Reviews from Followed Critics</h4>
+                <h4 className="border-bottom pt-3 pb-2 text-center">Recent Reviews from Followed Critics</h4>
               {
-                this.state.followedCriticReviews && this.state.followedCriticReviews.map(
+                this.state.followedCriticReviews && this.state.followedCriticReviews.length > 0?
+                  this.state.followedCriticReviews.map(
                   review =>
                     <MovieReviewItemComponent
                       isHomePage={true}
                       review={review}
                       key={review._id}/>
-                )}
-              <h4 className="pt-2 pb-2 text-center">
+                ): <div>No reviews yet</div>
+              }
+
+              <h4 className="border-bottom pt-2 pb-2 text-center">
                 {`My ${currUser.role === CRITIC_USER ? 'Reviews' : 'Comments'}`}
               </h4>
               {currUser.ratingAndCommentsOrReviews && currUser.ratingAndCommentsOrReviews.length > 0 ?
@@ -130,7 +133,7 @@ class HomepageComponent extends React.Component {
                           movie={movie}
                           key={movie.id}/>)
                     :
-                    <div>You have not put any movie in your favorite list. </div>
+                    <div>No favorite movies yet</div>
                 }
               </div>
             </div>
@@ -144,7 +147,7 @@ class HomepageComponent extends React.Component {
                         enableSearch={true}/>
           <div className="container">
             <div className="mt-3">
-              <h1 className="border-bottom pt-2 pb-2 text-left">Now Playing Movies</h1>
+              <h4 className="border-bottom pt-2 pb-2 text-left">Now Playing Movies</h4>
               <div className="row">
                 {
                   this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
@@ -157,7 +160,7 @@ class HomepageComponent extends React.Component {
             </div>
 
             <div className="mt-2">
-              <h1 className="border-bottom pt-2 pb-2 text-left">Top Rated Movies</h1>
+              <h4 className="border-bottom pt-2 pb-2 text-left">Top Rated Movies</h4>
               <div className="row">
                 {
                   this.state.topRatedMovies && this.state.topRatedMovies.map(
@@ -170,7 +173,7 @@ class HomepageComponent extends React.Component {
               </div>
             </div>
             <div>
-              <h1 className="border-bottom pt-2 pb-2 text-left">Most Liked Reviews</h1>
+              <h4 className="border-bottom pt-2 pb-2 text-left">Most Liked Reviews</h4>
               <MovieReviewListComponent
                 pickedReviews={this.state.pickedReviews}
                 history={this.props.history}/>

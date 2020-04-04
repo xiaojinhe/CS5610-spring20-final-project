@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {TMDB_IMAGE_URL} from "../common/constants";
 
 const MovieCommentItemComponent = ({comment, isInProfile, isHomePage}) =>
-  <div className="mt-2 p-2 border border-top-0 border-right-0 border-left-0 border-secondary">
+  <div className="mt-2 p-2 border-secondary">
     <div className="row">
       {
         (isInProfile || isHomePage) &&
