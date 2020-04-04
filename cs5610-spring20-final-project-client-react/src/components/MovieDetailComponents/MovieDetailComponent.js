@@ -170,7 +170,7 @@ class MovieDetailComponent extends React.Component {
                 {(!currUser || currUser.role === REGULAR_USER) &&
                 <Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_comment`,
-                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
+                  state: {movieName: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 } : "/login"}
                       onClick={this.loginCheck}>
                   <h6><i className="far fa-comment-alt"/> Write Comment</h6>
@@ -193,7 +193,7 @@ class MovieDetailComponent extends React.Component {
                 {(!currUser || currUser.role === CRITIC_USER) &&
                 < Link to={currUser ? {
                   pathname: `/movies/${this.props.movieId}/new_review`,
-                  state: {movieTitle: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
+                  state: {movieName: this.props.movie.title, moviePosterURL: this.props.movie.poster_path}
                 } : "/login"}
                        onClick={this.loginCheck}>
                   <h6><i className="fas fa-pencil-alt"/> Write Review</h6>
