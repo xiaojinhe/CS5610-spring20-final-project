@@ -19,11 +19,9 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-favorites" role="tab">
           Favorites
         </a>
-        {user.role === REGULAR_USER &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-following" role="tab">
           Following
         </a>
-        }
         {user.role === CRITIC_USER &&
         <a className="nav-item nav-link" data-toggle="tab" href="#nav-followers" role="tab">
           Followers
