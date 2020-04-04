@@ -7,8 +7,9 @@ import UserService from "../services/UserService";
 import MovieItemComponent from "./SearchResultComponents/MovieItemComponent";
 import MovieReviewItemComponent from "./MovieReviewItemComponent";
 import MovieCommentItemComponent from "./MovieCommentItemComponent";
-import {CRITIC_USER} from "../common/constants";
+import {CRITIC_USER, USER_ICON_PATH} from "../common/constants";
 import NavContainer from "../containers/NavContainer";
+import UserItemComponent from "./UserProfileComponents/UserItemComponent";
 
 const store = require('store');
 
@@ -23,34 +24,44 @@ class HomepageComponent extends React.Component {
     topRatedMovies: [],
     nowPlayingMovies: [],
     pickedReviews: [],
-    followedCriticReviews: []
+    followedCriticReviews: [],
+    allUsers: []
   };
 
   componentDidMount() {
     const currUser = store.get('currUser');
     if (currUser) {
-      Promise.all([MovieService.findNowPlayingMovies(), UserService.findFollowedCriticsReviews(currUser._id), UserService.getCurrentUser()])
-        .then(([nowPlayingMovies, followedCriticReviews, currUser]) => {
+      Promise.all([MovieService.findNowPlayingMovies(),
+                   UserService.findFollowedCriticsReviews(currUser._id),
+                   UserService.getCurrentUser(), UserService.getAllUsers()])
+        .then(([nowPlayingMovies, followedCriticReviews, currUser, allUsers]) => {
           console.log(followedCriticReviews);
           store.set('currUser', currUser)
           this.setState(
             {
               nowPlayingMovies:
                 nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum),
-              followedCriticReviews: followedCriticReviews
+              followedCriticReviews: followedCriticReviews,
+              allUsers: allUsers
             })
+          console.log(this.state.allUsers);
         });
+
     } else {
-      Promise.all([MovieService.findTopRatedMovies(), MovieService.findNowPlayingMovies(), ReviewService.findMostLikedReview()])
-        .then(([topRatedMovies, nowPlayingMovies, pickedReviews]) => {
+      Promise.all([MovieService.findTopRatedMovies(),
+                   MovieService.findNowPlayingMovies(),
+                   ReviewService.findMostLikedReview(), UserService.getAllUsers()])
+        .then(([topRatedMovies, nowPlayingMovies, pickedReviews, allUsers]) => {
           this.setState(
             {
               topRatedMovies:
                 topRatedMovies.results.slice(0, topRatedMoviesDisplayNum),
               nowPlayingMovies:
                 nowPlayingMovies.results.slice(0, nowPlayingMoviesDisplayNum),
-              pickedReviews: pickedReviews.slice(0, pickedReviewDisplayNum)
-            })
+              pickedReviews: pickedReviews.slice(0, pickedReviewDisplayNum),
+              allUsers: allUsers
+            });
+          console.log(this.state.allUsers);
         });
     }
   }
@@ -78,8 +89,8 @@ class HomepageComponent extends React.Component {
                         enableSearch={true}/>
           <div className="row">
             <div className="mt-3 col-sm-12 col-md-6">
-                <h4 className="border-bottom pt-3 pb-2 text-left">Now Playing Movies</h4>
-                <div className="row">
+              <h4 className="border-bottom pt-3 pb-2 text-left">Now Playing Movies</h4>
+              <div className="row">
                 {
                   this.state.nowPlayingMovies && this.state.nowPlayingMovies.map(
                     function (movie) {
@@ -87,6 +98,29 @@ class HomepageComponent extends React.Component {
                                                  logined={true}
                                                  key={movie.id}/>
                     })
+                }
+              </div>
+              <h4 className="border-bottom pt-3 pb-2 text-left">User List</h4>
+              <div className="row">
+                {
+                  this.state.allUsers && this.state.allUsers.map(
+                    user =>
+                      <div className="col-4">
+                        <div className="row mt-1 py-2">
+                          <div className="col-6 col-sm-4 col-md-5">
+                            <a href={`/profile/${user._id}`}>
+                              <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
+                                   className="rounded-circle d-flex border w-100 h-100 pr-0"
+                                   alt="user icon"/>
+                            </a>
+                          </div>
+                          <div className="col-6 col-sm-4 col-md-7 pt-2 pl-0">
+                            <a href={`/profile/${user._id}`}
+                               className="font-weight-bold">{user.username}</a>
+                          </div>
+                        </div>
+                      </div>
+                  )
                 }
               </div>
             </div>
@@ -178,7 +212,29 @@ class HomepageComponent extends React.Component {
                 pickedReviews={this.state.pickedReviews}
                 history={this.props.history}/>
             </div>
-
+            <h4 className="border-bottom pt-3 pb-2 text-left">User List</h4>
+            <div className="row">
+              {
+                this.state.allUsers && this.state.allUsers.map(
+                  user =>
+                    <div className="col-3">
+                      <div className="row mt-1 py-2">
+                        <div className="col-7 col-md-5 col-lg-4">
+                          <a href={`/profile/${user._id}`}>
+                            <img src={user.avatarURL ? user.avatarURL : USER_ICON_PATH}
+                                 className="rounded-circle d-flex border w-100 h-100 pr-0"
+                                 alt="user icon"/>
+                          </a>
+                        </div>
+                        <div className="col-5 col-md-7 col-lg-8 pt-2 pl-0">
+                          <a href={`/profile/${user._id}`}
+                             className="font-weight-bold">{user.username}</a>
+                        </div>
+                      </div>
+                    </div>
+                )
+              }
+            </div>
           </div>
         </div>
       );
