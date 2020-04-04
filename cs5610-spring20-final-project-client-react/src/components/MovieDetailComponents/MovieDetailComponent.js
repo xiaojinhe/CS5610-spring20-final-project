@@ -85,7 +85,7 @@ class MovieDetailComponent extends React.Component {
             <div className="row">
               <div className="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-12 ml-1 mr-2 mt-2 mr-lg-5 mr-md-4">
                 <img src={TMDB_IMAGE_URL(185, this.props.movie.poster_path)}
-                     className="image-fluid"
+                     className="img-thumbnail"
                      alt=""/>
               </div>
               <div className="col-lg-6 col-md-5 col-sm-5 col-12 p-1">
