@@ -115,6 +115,17 @@ deleteUserFollowedBy = (userId, fanId) => {
   return userModel.update({_id: userId}, {$pull: {followedBy: {userId: fanId}}});
 };
 
+updateAvatarURLInFollows = (userId, avatarURL) => {
+  return userModel.update({ "followedBy.userId": userId},
+                          {$set: { "followedBy.$.avatarURL" : avatarURL }});
+};
+
+updateAvatarURLInFans = (userId, avatarURL) => {
+  return userModel.update({ "follows.userId": userId},
+                          {$set: { "follows.$.avatarURL" : avatarURL }});
+};
+
+
 module.exports = {
   findUserByCredentials,
   findUserById,
@@ -140,7 +151,9 @@ module.exports = {
   deleteUserFollows,
   findAllFansForUser,
   updateUserFollowedBy,
-  deleteUserFollowedBy
+  deleteUserFollowedBy,
+  updateAvatarURLInFollows,
+  updateAvatarURLInFans
 };
 
 
