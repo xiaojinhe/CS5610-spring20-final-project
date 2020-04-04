@@ -63,19 +63,17 @@ module.exports = function (app) {
             .then(result => res.json(result))
     }
 
-    function deleteReview(req, res) {
+    async function deleteReview(req, res) {
         const user = req.user;
         const uid = user._id;
         const rid = req.params['rid'];
-        RCRDao.deleteRatingAndCommentOrReview(rid)
-            .then(result => {
-                if (result.deletedCount === 1) {
-                    // delete from author review list
-                    userDao.deleteUserRatingAndCommentOrReview(uid, rid)
-                        .then(userDao.deleteLikedReviewById(rid));
-                }
-                res.sendStatus(200);
-            })
+        let result = await RCRDao.deleteRatingAndCommentOrReview(rid);
+        if (result.deletedCount === 1) {
+            // delete from author review list
+            await userDao.deleteUserRatingAndCommentOrReview(uid, rid);
+            await userDao.deleteLikedReviewById(rid)
+        }
+        res.sendStatus(200);
     }
 
     function likeReview(req, res) {

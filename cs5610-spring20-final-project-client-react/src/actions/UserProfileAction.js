@@ -1,4 +1,6 @@
 import {
+  DELETE_COMMENT,
+  DELETE_REVIEW,
   FIND_USER_BY_ID,
   FOLLOW_USER,
   GET_CURRENT_USER,
@@ -41,4 +43,14 @@ export const followUserAction = (currUser) => ({
 export const unfollowUserAction = (currUserId) => ({
   type: UNFOLLOW_USER,
   currUserId: currUserId
+});
+
+export const deleteReviewAction = (reviewId) => ({
+  type: DELETE_REVIEW,
+  reviewId: reviewId
+});
+
+export const deleteCommentAction = (commentId) => ({
+  type: DELETE_COMMENT,
+  commentId: commentId
 });

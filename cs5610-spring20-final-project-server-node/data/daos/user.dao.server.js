@@ -88,7 +88,7 @@ deleteUserLikedReview = (userId, reviewId) => {
 };
 
 deleteLikedReviewById = (reviewId) => {
-  return userModel.deleteMany({likedReviews: reviewId});
+  return userModel.update({$pull: { likedReviews: reviewId}});
 };
 
 findAllFollowsForUser = (userId) =>{

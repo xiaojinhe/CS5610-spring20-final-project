@@ -1,7 +1,16 @@
 import {connect} from "react-redux";
 import UserProfileComponent from "../components/UserProfileComponents/UserProfileComponent";
 import UserService from "../services/UserService";
-import {findUserByIdAction, followUserAction, unfollowUserAction, updateUserAction} from "../actions/UserProfileAction";
+import {
+  deleteCommentAction,
+  deleteReviewAction,
+  findUserByIdAction,
+  followUserAction,
+  unfollowUserAction,
+  updateUserAction
+} from "../actions/UserProfileAction";
+import ReviewService from "../services/ReviewService";
+import CommentService from "../services/CommentService";
 
 const store = require('store');
 
@@ -49,6 +58,26 @@ const dispatchToPropertyMapper = (dispatch) => ({
       store.set('currUser', user);
       dispatch(findUserByIdAction(user));
     });
+  },
+  deleteReview: (reviewId) => {
+    ReviewService.deleteReview(reviewId)
+        .then((response) => {
+          const currUser = store.get('currUser');
+          currUser.ratingAndCommentsOrReviews =
+              currUser.ratingAndCommentsOrReviews.filter(r => r._id !== reviewId);
+            currUser.likedReviews =
+                currUser.likedReviews.filter(rid => rid !== reviewId);
+          dispatch(deleteReviewAction(reviewId));
+        })
+  },
+  deleteComment: (commentId) => {
+    CommentService.deleteComment(commentId)
+        .then((response) => {
+          const currUser = store.get('currUser');
+          currUser.ratingAndCommentsOrReviews =
+              currUser.ratingAndCommentsOrReviews.filter(c => c._id !== commentId);
+          dispatch(deleteCommentAction(commentId));
+        })
   }
 });
 

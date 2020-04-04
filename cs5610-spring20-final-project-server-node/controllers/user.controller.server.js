@@ -265,8 +265,10 @@ module.exports = function (app) {
         let results = [];
         for (critic of critics.follows) {
             let reviews = await userDao.findAllRatingAndCommentsOrReviewsForUser(critic.userId);
-            for (review of reviews.ratingAndCommentsOrReviews) {
-                results.push(review);
+            if(reviews){
+                for (review of reviews.ratingAndCommentsOrReviews) {
+                    results.push(review);
+                }
             }
         }
         return res.json(results);
