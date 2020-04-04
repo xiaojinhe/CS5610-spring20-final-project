@@ -101,16 +101,26 @@ module.exports = function (app) {
         }
     }
 
-    function updateUser(req, res) {
+    async function updateUser(req, res) {
+        const currentUser = req.user;
         const uid = req.params['uid'];
-        userDao.updateUser(uid, req.body)
-            .then(result => {
-                if (result.n === 1) {
-                    res.sendStatus(result.nModified === 1 ? 200 : 500)
-                } else {
-                    res.sendStatus(400)
+        const oldAvatar = currentUser.avatarURL;
+        let updateResult = await userDao.updateUser(uid, req.body);
+        if (updateResult.n === 1) {
+            if (updateResult.nModified === 1) {
+                // update avatar
+                let newAvatar = req.body.avatarURL;
+                if (newAvatar != oldAvatar) {
+                    await userDao.updateAvatarURLInFollows(uid, newAvatar);
+                    await userDao.updateAvatarURLInFans(uid, newAvatar);
                 }
-            })
+                res.sendStatus(200)
+            } else {
+                res.status(500).json({error: "updateUser failed"});
+            }
+        } else {
+            res.sendStatus(400)
+        }
     }
 
     /* ========= FOLLOWS ======== */
