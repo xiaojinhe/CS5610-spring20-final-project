@@ -42,6 +42,15 @@ class UserProfileInfoComponent extends React.Component {
     })
   };
 
+  validateInfo = () => {
+    // validate email
+    if (!this.state.user.email || this.state.user.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
+      return true;
+    }
+    alert("Please provide a valid email!");
+    return false;
+  };
+
   render() {
     return (
       <div className="m-3">
@@ -130,7 +139,9 @@ class UserProfileInfoComponent extends React.Component {
         <div className="form-group row">
           <button className="btn btn-primary btn-block"
                   onClick={() => {
-                    this.props.updateUser(this.state.user._id, this.state.user)
+                    if (this.validateInfo()) {
+                      this.props.updateUser(this.state.user._id, this.state.user)
+                    }
                   }}>
             Update
           </button>
