@@ -80,6 +80,11 @@ class MovieReviewItemComponent extends React.Component {
         </div>
         }
         <div className={`${this.props.isHomePage ? 'col-9' : 'col-10'}`}>
+          {this.props.isCurrentUser&&
+           <button className="btn btn-warning float-right" onClick={this.props.deleteReview}>
+             Delete
+           </button>
+          }
           <div className="font-weight-bold pr-2">
             {this.state.review.title}
           </div>
@@ -118,27 +123,35 @@ class MovieReviewItemComponent extends React.Component {
             }
           </div>
           <div className="text-break">{this.state.review.content}</div>
-          <div>
-            {this.shouldShowHollowLikeButton(store.get("currUser")) &&
-            <button className="btn"
-                    onClick={() => {
-                      this.likeReview(this.state.review._id);
-                    }}>
-              <i className="far fa-thumbs-up fa-lg pr-2"/>
-              {this.state.review.likes ? this.state.review.likes : 0}
-            </button>
-            }
+          {!this.props.isInProfile&&
+           <div>
+             {this.shouldShowHollowLikeButton(store.get("currUser")) &&
+              <button className="btn"
+                      onClick={() => {
+                        this.likeReview(this.state.review._id);
+                      }}>
+                <i className="far fa-thumbs-up fa-lg pr-2"/>
+                {this.state.review.likes ? this.state.review.likes : 0}
+              </button>
+             }
 
-            {!this.shouldShowHollowLikeButton(store.get("currUser")) &&
-            <button className="btn"
-                    onClick={() => {
-                      this.cancelLikeReview(this.state.review._id);
-                    }}>
-              <i className="fas fa-thumbs-up fa-lg pr-2"/>
-              {this.state.review.likes ? this.state.review.likes : 0}
-            </button>
-            }
-          </div>
+             {!this.shouldShowHollowLikeButton(store.get("currUser")) &&
+              <button className="btn"
+                      onClick={() => {
+                        this.cancelLikeReview(this.state.review._id);
+                      }}>
+                <i className="fas fa-thumbs-up fa-lg pr-2"/>
+                {this.state.review.likes ? this.state.review.likes : 0}
+              </button>
+             }
+           </div>
+          }
+          {this.props.isInProfile&&
+           <div>
+             <i className="fas fa-fire fa-lg pt-2 pr-2"/>
+             {this.state.review.likes ? this.state.review.likes : 0}
+           </div>
+          }
         </div>
       </div>
     )

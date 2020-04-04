@@ -5,9 +5,10 @@ import MovieCommentItemComponent from "../MovieCommentItemComponent";
 import UserItemComponent from "./UserItemComponent";
 import MovieReviewItemComponent from "../MovieReviewItemComponent";
 import {CRITIC_USER, REGULAR_USER} from "../../common/constants";
+
 const store = require('store');
 
-const UserProfileTabComponent = ({user, updateUser}) =>
+const UserProfileTabComponent = ({user, updateUser, deleteReview, deleteComment}) =>
   <div className="mt-5">
     <nav>
       <div className="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
@@ -77,6 +78,8 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         {user.ratingAndCommentsOrReviews && user.ratingAndCommentsOrReviews.map(comment =>
           <MovieCommentItemComponent
             isInProfile={true}
+            isCurrentUser={store.get('currUser') && store.get('currUser')._id === user._id}
+            deleteComment={() => deleteComment(comment._id)}
             comment={comment}
             key={comment._id}/>
         )}
@@ -86,6 +89,8 @@ const UserProfileTabComponent = ({user, updateUser}) =>
         {user.ratingAndCommentsOrReviews && user.ratingAndCommentsOrReviews.map(review =>
           <MovieReviewItemComponent
             isInProfile={true}
+            isCurrentUser={store.get('currUser') && store.get('currUser')._id === user._id}
+            deleteReview={() => deleteReview(review._id)}
             review={review}
             key={review._id}/>
         )}
@@ -95,7 +100,6 @@ const UserProfileTabComponent = ({user, updateUser}) =>
       <div className="tab-pane fade show" id="nav-likes" role="tabpanel">
         {user.likedReviews && user.likedReviews.map(review =>
           <MovieReviewItemComponent
-            isInProfile={true}
             review={review}
             key={review._id}/>
         )}

@@ -73,6 +73,8 @@ export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
 export const UPDATE_USER = "UPDATE_USER";
 export const FOLLOW_USER = "FOLLOW_USER";
 export const UNFOLLOW_USER = "UNFOLLOW_USER";
+export const DELETE_REVIEW = "DELETE_REVIEW";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 // action for login and register
 export const REGISTER = "REGISTER";
