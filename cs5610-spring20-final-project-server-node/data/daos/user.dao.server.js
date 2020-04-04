@@ -116,12 +116,12 @@ deleteUserFollowedBy = (userId, fanId) => {
 };
 
 updateAvatarURLInFollows = (userId, avatarURL) => {
-  return userModel.update({ "followedBy.userId": userId},
+  return userModel.updateMany({ "followedBy.userId": userId},
                           {$set: { "followedBy.$.avatarURL" : avatarURL }});
 };
 
 updateAvatarURLInFans = (userId, avatarURL) => {
-  return userModel.update({ "follows.userId": userId},
+  return userModel.updateMany({ "follows.userId": userId},
                           {$set: { "follows.$.avatarURL" : avatarURL }});
 };
 
