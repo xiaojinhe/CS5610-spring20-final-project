@@ -1,4 +1,11 @@
-import {FIND_USER_BY_ID, FOLLOW_USER, UNFOLLOW_USER, UPDATE_USER} from "../common/constants";
+import {
+  DELETE_COMMENT,
+  DELETE_REVIEW,
+  FIND_USER_BY_ID,
+  FOLLOW_USER,
+  UNFOLLOW_USER,
+  UPDATE_USER
+} from "../common/constants";
 
 const userProfileReducer = (state = {user: ""}, action) => {
   switch (action.type) {
@@ -30,6 +37,26 @@ const userProfileReducer = (state = {user: ""}, action) => {
           ...state.user,
           followedBy:
             state.user.followedBy.filter(f => f.userId !== action.currUserId)
+        }
+      };
+    case DELETE_REVIEW:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ratingAndCommentsOrReviews:
+              state.user.ratingAndCommentsOrReviews.filter(r => r._id !== action.reviewId),
+          likedReviews:
+              state.user.likedReviews.filter(r => r._id !== action.reviewId)
+        }
+      };
+    case DELETE_COMMENT:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          ratingAndCommentsOrReviews:
+              state.user.ratingAndCommentsOrReviews.filter(c => c._id !== action.commentId)
         }
       };
     default:

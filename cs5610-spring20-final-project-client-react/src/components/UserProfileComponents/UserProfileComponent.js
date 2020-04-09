@@ -94,7 +94,9 @@ class UserProfileComponent extends React.Component {
                                           followUser={this.followUser}
                                           unfollowUser={this.unfollowUser}/>
               <UserProfileTabComponent user={this.props.user}
-                                       updateUser={this.props.updateUser}/>
+                                       updateUser={this.props.updateUser}
+                                       deleteReview={this.props.deleteReview}
+                                       deleteComment={this.props.deleteComment}/>
             </div>
           }
         </div>
