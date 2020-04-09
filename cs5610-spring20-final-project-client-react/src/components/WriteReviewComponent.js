@@ -145,7 +145,6 @@ class WriteReviewComponent extends React.Component {
                 ""
             }
           </div>
-          {/*TODO: SAVE THE REVIEW*/}
           <div className="content-form pl-3 pr-3 pb-3 ml-3 mr-3 mb-3 pt-2">
             <button className="btn btn-success"
                     onClick={this.createReview}>

@@ -54,7 +54,6 @@ class UserProfileInfoComponent extends React.Component {
   render() {
     return (
       <div className="m-3">
-        {/*//todo: show this when user save profile success*/}
         <div className="alert alert-success d-none" role="alert">
           Profile successfully saved!
         </div>

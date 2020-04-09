@@ -6,7 +6,6 @@ import NavContainer from "../../containers/NavContainer";
 
 const store = require('store');
 
-//todo: need to separate the condition, when user is viewing his own profile
 class UserProfileComponent extends React.Component {
   componentDidMount() {
     if (this.props.userId) {  // with userId in url

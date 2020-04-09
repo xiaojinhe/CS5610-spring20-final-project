@@ -21,12 +21,6 @@ const UserProfileHeaderComponent = ({user, isCurrentUserProfile, isFollowedBy, f
           className={`my-auto ${!isCurrentUserProfile && user.role === CRITIC_USER ? "ml-auto" : "mx-auto"}`}>
           {user.username}
         </h4>
-        {/*//todo: hide the follow button for three situation:
-        (1) the logged in user is viewing his own profile -- checked
-        (2) if the profile belongs to a regular user -- checked
-        (3) if the profile is viewing by anonymous user -- checked
-        (4) TODO: do we have to hid the button if the current user is a critic?
-        */}
         {!isCurrentUserProfile && user.role === CRITIC_USER &&
         <div className="ml-2 mr-auto my-auto">
           {isFollowedBy ?

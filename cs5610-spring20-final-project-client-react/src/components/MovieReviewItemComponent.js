@@ -100,7 +100,6 @@ class MovieReviewItemComponent extends React.Component {
                     fullSymbol={<i className="fas fa-star"/>}
                     emptySymbol={<i className="far fa-star"/>}/>
 
-            {/* TODO: change date text style */}
             {this.props.isHomePage?
               <small>
                 Published at {this.state.review.date && this.state.review.date.substring(0, 10)}

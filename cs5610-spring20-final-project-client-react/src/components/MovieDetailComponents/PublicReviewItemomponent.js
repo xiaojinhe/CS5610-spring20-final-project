@@ -10,10 +10,8 @@ const PublicReviewItemComponent = ({review}) =>
     }
     <div className="col-10">
       <div>
-        {/*//todo: change a to the link to */}
         <a href={review.link.url}
            className="font-weight-bold pr-2">{review.headline}</a>
-        {/*//todo: change to actual rating */}
         <Rating fractions={4}
                 start={0}
                 stop={10}

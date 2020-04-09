@@ -62,8 +62,6 @@ export const findMostLikedReview = () =>
   fetch(`${MOVIE_TIME_BASE_URL}/api/mostLikedReviews`)
     .then(response => response.json());
 
-
-//TODO: may delete when implement our own most liked reviews
 export const findPublicReviewsForMovie = async (movieTitle) => {
   const response = await fetch(NYTIMES_MOVIE_REVIEWS_API_URL(movieTitle));
   return await response.json();

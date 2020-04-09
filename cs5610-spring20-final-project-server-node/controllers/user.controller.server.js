@@ -58,7 +58,6 @@ module.exports = function (app) {
         userDao.findByUsername(newUser.username)
             .then((user) => {
                       if (user) {
-                          // TODO: what if username exist
                           res.status(400).json({error: "User already exists"});
                       } else {
                           return userDao.createUser(newUser);
