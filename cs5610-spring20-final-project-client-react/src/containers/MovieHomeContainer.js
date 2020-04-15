@@ -103,7 +103,9 @@ class MovieHomeContainer extends React.Component {
                 path="/privacy"
                 exact={true}
                 render={(props) =>
-                <PrivacyComponent/>}
+                <PrivacyComponent
+                    {...props}
+                />}
               />
 
           </Router>

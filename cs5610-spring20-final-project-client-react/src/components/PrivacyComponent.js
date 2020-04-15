@@ -1,6 +1,12 @@
 import React from "react";
+import NavContainer from "../containers/NavContainer";
 
-const PrivacyComponent = () =>
+const PrivacyComponent = ({history}) =>
+    <div>
+        <NavContainer
+            enableSearch={true}
+            history={history}
+        />
     <div className="container mt-5 mb-5">
 
         <h1 className="text-left">Privacy Policy</h1>
@@ -195,6 +201,7 @@ const PrivacyComponent = () =>
                 <a href="mailto:cs5610webdevmovie@gmail.com"> cs5610webdevmovie@gmail.com</a>
             </li>
         </ul>
+    </div>
     </div>
 
 export default PrivacyComponent
