@@ -84,7 +84,9 @@ class NavComponent extends React.Component {
                                 <Link className="nav-link p-0" to="/login">Login</Link>
                             </li>
                         }
-
+                        <li className="nav-item d-flex ml-3 align-items-center">
+                            <Link className="nav-link p-0" to="/privacy">Privacy Policy</Link>
+                        </li>
                     </ul>
 
                     {this.props.enableSearch &&
