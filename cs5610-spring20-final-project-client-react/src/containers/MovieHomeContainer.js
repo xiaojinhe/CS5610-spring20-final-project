@@ -15,6 +15,7 @@ import userAuthenticationReducer from "../reducers/UserAuthenticationReducer";
 import searchReducer from "../reducers/SearchReducer";
 import SearchResultContainer from "./SearchResultContainer";
 import HomepageComponent from "../components/HomepageComponent";
+import PrivacyComponent from "../components/PrivacyComponent";
 
 const reducers = combineReducers({
   movieDetail: movieDetailReducer,
@@ -97,6 +98,13 @@ class MovieHomeContainer extends React.Component {
                 <RegisterContainer {...props}
                                    isLoggedInUser={false}/>
               }/>
+
+              <Route
+                path="/privacy"
+                exact={true}
+                render={(props) =>
+                <PrivacyComponent/>}
+              />
 
           </Router>
         </div>
